@@ -1,26 +1,31 @@
 package filrouge.app;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+/*
+ * author = TORRI Clara
+ * vue au lancement de l'application
+ *
+ */
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        /* animation de la voiture*/
+        //initialisation de l'animation
+        Animation exitAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.exit_cars);
+
+        //initialisation de l'image et lancement de l'animation sur l'image
+        ImageView imageView = findViewById(R.id.picture);
+        imageView.startAnimation(exitAnimation);
     }
 }
