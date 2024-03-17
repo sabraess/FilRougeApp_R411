@@ -1,0 +1,61 @@
+package filrouge.app;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarsList {
+    private static List<Cars> carsList = new ArrayList<>();
+    private static List<Cars> displayCars = new ArrayList<>();
+    private static CarsList instance = null;
+
+    private CarsList() {
+        for(String name : CarsApp.getContext().getResources().getStringArray(R.array.cars)){
+            Cars cars = new Cars(name);
+            carsList.add(cars);
+            displayCars.add(cars);
+        }
+    }
+
+    public static List<Cars> getCarsList() {
+        if (instance == null) {
+            instance = new CarsList();
+        }
+        return carsList;
+    }
+
+    public static List<Cars> getDisplayCars() {
+        if (instance == null) {
+            instance = new CarsList();
+        }
+        return displayCars;
+    }
+
+    public static void clearDisplayCars() {
+        if(instance == null){
+            instance = new CarsList();
+        }
+        displayCars.clear();
+    }
+
+    public static void addDisplayCars(Cars cars){
+        if(instance == null){
+            instance = new CarsList();
+        }
+        displayCars.add(cars);
+    }
+
+    public static Cars getDisplayCars(int index){
+        if(instance == null){
+            instance = new CarsList();
+        }
+        return displayCars.get(index);
+    }
+
+    public static Cars getCars(int index){
+        if(instance == null){
+            instance = new CarsList();
+        }
+        return carsList.get(index);
+    }
+
+}

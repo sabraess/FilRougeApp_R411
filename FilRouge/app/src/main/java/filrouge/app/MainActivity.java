@@ -1,11 +1,9 @@
 package filrouge.app;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,5 +25,23 @@ public class MainActivity extends AppCompatActivity {
         //initialisation de l'image et lancement de l'animation sur l'image
         ImageView imageView = findViewById(R.id.picture);
         imageView.startAnimation(exitAnimation);
+
+        exitAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //lancement de l'activité HomeActivity
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
     }
 }
