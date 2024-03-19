@@ -3,10 +3,27 @@
 ## Ce qui a été réalisé
 
 #### faire l'animation lors de l'ouverture du site (temps 40min)
+#### lien entre les 2 première activités
 
 ## Ce qu'on doit faire
 
-#### les 2 autres activités (accueil et vu voiture)
+#### 2eme Activité :
+##### rajouté bonhomme pour se connecter ou s'inscrire
+
+#### à Faire (niveau activité) :
+
+##### 3eme Activité pour s'inscrire 
+##### 4eme Activité pour se connecter
+##### 5eme Activité pour voir la voiture choisie
+##### 6ème Activité pour voir les avis
+
+#### Code : 
+
+##### lier toutes les activités 
+##### faire la vue de toutes les activités
+##### faire firebase
+##### faire code voiture choisie
+##### lier avec le json
 
 #### json + connecter le webService
 
