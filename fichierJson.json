@@ -6,7 +6,7 @@
         "english": "Ferrari's iconic hybrid supercar, combining a 6.3-litre V12 engine with an electric motor for a total output of over 950 bhp, propelling the car from 0 to 100 km/h in less than three seconds. ",
         "french": "Supercar hybride emblématique de Ferrari, alliant un moteur V12 de 6,3 litres à un moteur électrique pour une puissance totale de plus de 950 chevaux, propulsant la voiture de 0 à 100 km/h en moins de trois secondes. "
       },
-      "prix":"1 250 000€,
+      "prix":"1 250 000€",
       "vitesseMax": "370 km/h",
       "energie": "hybride",		
       "pictureDescription": "laFerrari1.jpg",
