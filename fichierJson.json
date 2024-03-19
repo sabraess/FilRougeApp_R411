@@ -1,0 +1,134 @@
+[
+    {
+      "id": 1,
+      "name": "Ferrari LaFerrari",
+      "description": {
+        "english": "Ferrari's iconic hybrid supercar, combining a 6.3-litre V12 engine with an electric motor for a total output of over 950 bhp, propelling the car from 0 to 100 km/h in less than three seconds. ",
+        "french": "Supercar hybride emblématique de Ferrari, alliant un moteur V12 de 6,3 litres à un moteur électrique pour une puissance totale de plus de 950 chevaux, propulsant la voiture de 0 à 100 km/h en moins de trois secondes. "
+      },
+      "prix":"1 250 000€,
+      "vitesseMax": "370 km/h",
+      "energie": "hybride",		
+      "pictureDescription": "laFerrari1.jpg",
+      "picture": "laFerrari.jpg"
+    },
+
+    {
+      "id": 2,
+      "name": "Porsche 911 GT3 RS",
+      "description": {
+        "english": "It offers an exhilarating driving experience thanks to its exceptional power and handling. Featuring cutting-edge technology and an aerodynamic design, it has been engineered for optimum track performance while remaining perfectly suited to everyday use.",
+        "french": "Elle offre une expérience de conduite exaltante grâce à sa puissance et à sa maniabilité exceptionnelles. Dotée d'une technologie de pointe et d'un design aérodynamique, conçue pour des performances sur piste optimales tout en restant parfaitement adaptée à une utilisation quotidienne."
+      },
+      "prix":"253 454 €",
+      "vitesseMax": "296 km/h",
+      "energie": "essence",		
+      "pictureDescription":"porsche.jpg",
+      "picture": "porsche.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Hyundai Kona",
+      "description": {
+        "english": "It offers a variety of engine options to meet drivers' needs. Its spacious, well-appointed interior offers a comfortable ride, while its agile handling makes it ideal for city driving and daily commuting.",
+        "french": "Elle offre une variété d'options de motorisation pour répondre aux besoins des conducteurs. Son intérieur spacieux et bien aménagé offre un confort de conduite agréable, tandis que sa maniabilité agile en fait un véhicule idéal pour la conduite en ville et les trajets quotidiens."
+      },
+      "prix":"33 400 €",
+      "vitesseMax": "161 km/h",
+      "energie": "hybride",		
+      "pictureDescription":"hyundaiKona.jpg",
+      "picture": "hyundaiKona.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Aston Martin Valkyrie",
+      "description": {
+        "english": "It offers competition-level performance, with impressive power and minimal weight. Its aerodynamic design and carbon-fibre construction make it a veritable track beast, with characteristics approaching those of a Formula 1 car.",
+        "french": "Elle offre des performances de niveau compétition, avec une puissance impressionnante et un poids minimal. Son design aérodynamique et sa construction en fibre de carbone en font une véritable bête de piste, avec des caractéristiques qui se rapprochent de celles d'une voiture de Formule 1."
+      },
+      "prix":"2 500 000 €",
+      "vitesseMax": "355 km/h",
+      "energie": "essence",		
+      "pictureDescription": "valkyrie.jpg",
+      "picture": "valkyrie.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Bentley Continental GT",
+      "description": {
+        "english": "It embodies luxury and performance with a W12 or V8 twin-turbo engine, offering rapid acceleration and sumptuous comfor.",
+        "french": "Elle incarne le luxe et les performances avec un moteur W12 ou V8 biturbo, offrant des accélérations rapides et un confort somptueux. "
+      },
+      "prix":"200 000 €",
+      "vitesseMax": "335 km/h",
+      "energie": "essence",		
+      "pictureDescription": "bentley.jpg",
+      "picture": "bentley.jpg"
+        },
+    {
+      "id": 6,
+      "name": "Lamborghini Aventador",
+      "description": {
+        "english": "It boasts four-wheel steering, a suspension-mounted rear axle, new bumpers to improve aerodynamics and a V12 engine that boosts power to 740 bhp, and accelerates from 0 to 100 km/h in less than 3 seconds.",
+        "french": "Elle se démarque par quatre roues directrices, un train arrière installé sur la suspension, de nouveaux boucliers pour améliorer l'aérodynamisme et un V12 qui modifie sa puissance à 740 ch.Elle atteint 0 à 100 km/h  en moins de 3 secondes."
+      },
+      "prix":"337 866 €",
+      "vitesseMax": "350 km/h",
+      "energie": "essence",		
+      "pictureDescription":"lamborghini.jpg",
+      "picture": "lamborghini.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Rolls royce Phantom",
+      "description": {
+        "english": "It embodies the pinnacle of automotive luxury, with majestic design and exquisite craftsmanship. Powered by a powerful V12 engine, it offers unrivalled driving comfort, with top-of-the-range features and integrated cutting-edge technology.",
+        "french": "Elle incarne le summum du luxe automobile, avec un design majestueux et des finitions artisanales exquises. Propulsée par un moteur V12 puissant, elle offre un confort de conduite inégalé, avec des fonctionnalités haut de gamme et une technologie de pointe intégrée."
+      },
+      "prix":"462 000 €",
+      "vitesseMax": "250 km/h",
+      "energie": "essence",		
+      "pictureDescription":"roolsRoyce.jpg",
+      "picture": "rollsRoyce.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Bugatti Chiron",
+      "description": {
+        "english": "The emblematic supercar from French manufacturer Bugatti. Equipped with a staggeringly powerful quadriturbo W16 engine, it offers outstanding performance, propelling the car to impressive speeds and enabling it to reach 0 to 100 km/h in less than 2.5 seconds.",
+        "french": "Supercar emblématique de la marque française Bugatti. Dotée d'un moteur W16 quadriturbo d'une puissance stupéfiante, elle offre des performances hors normes, propulsant la voiture à des vitesses impressionnantes et lui permettant d'atteindre 0 à 100 km/h en moins de 2,5 secondes."
+      },
+      "prix":"3 200 000 €",
+      "vitesseMax": "420 km/h",
+      "energie": "essence",		
+      "pictureDescription":"bugatti.jpg",
+      "picture": "bugatti.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Aston Martine Vantage",
+      "description": {
+        "english": "An iconic sports car that embodies the character and dynamism of the British marque.Powered by a twin-turbo V8 engine, it offers exhilarating performance with impressive power and precise handling.",
+        "french": "Voiture de sport emblématique qui incarne le caractère et le dynamisme de la marque britannique. Propulsée par un moteur V8 biturbo, elle offre des performances exaltantes avec une puissance impressionnante et une maniabilité précise"
+      },
+      "prix":"188 773 €",
+      "vitesseMax": "314 km/h",
+      "energie": "essence",		
+      "pictureDescription":"vantage.jpg",
+      "picture": "vantage.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Ferrari 296 GTB",
+      "description": {
+        "english": "A latest-generation supercar that combines a twin-turbo V6 engine with an electric motor, delivering a total output of over 800 bhp and accelerating from 0 to 100 km/h in less than 3 seconds.",
+        "french": "Supercar de dernière génération qui combine un moteur V6 biturbo avec un moteur électrique, offrant une puissance totale de plus de 800 chevaux, lui permettant d'atteindre 0 à 100 km/h en moins de 3 secondes"
+      },
+      "prix":"315 377 €",
+      "vitesseMax": "330 km/h",
+      "energie": "hybride",		
+      "pictureDescription":"ferrari.jpg",
+      "picture": "ferrari.jpg"
+    }
+    
+]
