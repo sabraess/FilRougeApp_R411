@@ -20,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //initialisation de l'animation
-        Animation exitAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.exit_cars);
+        Animation startAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.exit_cars);
 
         //initialisation de l'image et lancement de l'animation sur l'image
         ImageView imageView = findViewById(R.id.picture);
-        imageView.startAnimation(exitAnimation);
+        imageView.startAnimation(startAnimation);
 
-        exitAnimation.setAnimationListener(new Animation.AnimationListener() {
+        startAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
             }
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 //lancement de l'activité HomeActivity
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
-                finish();
             }
 
             @Override
