@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 /*
- * author = TORRI Clara
+ * author: TORRI Clara
+ * Modifié par: TORRI Clara
  * vue au lancement de l'application
- *
  */
 public class MainActivity extends AppCompatActivity {
     @Override

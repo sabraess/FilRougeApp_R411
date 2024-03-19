@@ -15,8 +15,7 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 /*
-    * author = TORRI Clara, ESSALAH Sabra
-    * modify by Clara
+    * classe qui permet de créer un adapter
  */
 
 public class CarsAdapter extends BaseAdapter {

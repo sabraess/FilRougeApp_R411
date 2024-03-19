@@ -1,6 +1,8 @@
 package filrouge.app;
 /*
-* vue accueil
+* author : TORRI Clara
+* Modifié par : TORRI Clara
+*  vue accueil
 * */
 import android.os.Bundle;
 import android.util.Log;

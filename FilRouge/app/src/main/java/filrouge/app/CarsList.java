@@ -3,6 +3,10 @@ package filrouge.app;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* classe qui permet de créer une liste de voitures
+*/
+
 public class CarsList {
     private static List<Cars> carsList = new ArrayList<>();
     private static List<Cars> displayCars = new ArrayList<>();

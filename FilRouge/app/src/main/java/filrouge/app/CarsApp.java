@@ -3,6 +3,10 @@ package filrouge.app;
 import android.app.Application;
 import android.content.Context;
 
+/*
+ * classe qui permet de créer un objet Application
+ */
+
 public class CarsApp extends Application {
     private static Context context;
 

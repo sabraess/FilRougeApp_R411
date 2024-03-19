@@ -1,4 +1,7 @@
 package filrouge.app;
+/*
+ * classe qui permet de créer un objet Cars
+ */
 
 public class Cars{
     private final String name;
