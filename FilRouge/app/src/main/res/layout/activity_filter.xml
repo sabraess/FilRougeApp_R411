@@ -25,7 +25,6 @@
             android:layout_marginLeft="10dp"
             android:gravity="right" />
 
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
             android:layout_weight="1"/>
 
         <ImageView
-            android:id="@+id/iconePanier"
+            android:id="@+id/iconPanier"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/panier"
@@ -48,7 +47,7 @@
             android:gravity="right" />
 
         <ImageView
-            android:id="@+id/imageConnection"
+            android:id="@+id/iconConnexion"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="right"
@@ -58,43 +57,55 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/marque"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/label"
+        android:text="Filtre"
+        android:textSize="30sp"
         android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/marque"
         android:text="Marque"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        android:layout_margin="20dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/label"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="113dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/marque"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/label"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/energie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Energie"
+        android:layout_margin="20dp"
+        android:text="Energie:"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/marque"
+        app:layout_constraintStart_toStartOf="@id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/marque"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/energie"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/marque"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -102,37 +113,39 @@
             android:id="@+id/essence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Essence"/>
-
+            android:text="Essence" />
 
         <RadioButton
             android:id="@+id/hybride"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hybride"/>
-
+            android:text="Hybride" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Filtrer"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent">
 
-    <TextView
-        android:id="@+id/prix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:text="Prix"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/energie"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <TextView
+            android:id="@+id/prix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Prix"
+            android:textSize="20sp"/>
+
+        <SeekBar
+            android:id="@+id/seekBarPrix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/vitesseMax"
@@ -141,19 +154,19 @@
         android:layout_marginTop="90dp"
         android:text="Vitesse Maximun"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/prix"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <SeekBar
-        android:id="@+id/seekBarPrix"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/prix"
+        android:layout_margin="20dp"
+        android:text="Filtrer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
 
 
 
