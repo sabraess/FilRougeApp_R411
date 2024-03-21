@@ -30,10 +30,24 @@ public class HomeActivity extends AppCompatActivity implements Clickable {
         carsAdapter = new CarsAdapter(CarsList.getDisplayCars(), this);
         listView.setAdapter(carsAdapter);
 
-        /*si on clique sur l'image connexion ça amène a la vue connexion*/
-        ImageView imageConnection = findViewById(R.id.imageConnection);
+        /*si on clique sur connexion*/
+        ImageView imageConnection = findViewById(R.id.iconConnexion);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
+            startActivity(intent);
+        });
+
+        /*si on clique sur filtre*/
+        ImageView imageFilter = findViewById(R.id.iconFiltre);
+        imageFilter.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
+            startActivity(intent);
+        });
+
+        /*si on clique sur le panier*/
+        ImageView iconBasket = findViewById(R.id.iconPanier);
+        iconBasket.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, BasketActivity.class);
             startActivity(intent);
         });
     }
@@ -46,10 +60,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable {
         Intent intent = new Intent(HomeActivity.this, SelectedCarActivity.class);
         intent.putExtra("cars", itemIndex);
         startActivity(intent);
-
-        /* Intent intent = new Intent(MainActivity.this, CharacterActivity.class);
-        intent.putExtra(getString(R.string.CHARACTER_KEY), itemIndex);
-        startActivity(intent);*/
     }
 
     /*a revoir cette methode c'est pas la meme avec l'ancienne version*/

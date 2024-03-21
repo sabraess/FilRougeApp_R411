@@ -32,7 +32,7 @@
             android:layout_weight="1"/>
 
         <ImageView
-            android:id="@+id/iconePanier"
+            android:id="@+id/iconPanier"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/panier"
@@ -40,7 +40,7 @@
             android:gravity="right" />
 
         <ImageView
-            android:id="@+id/imageConnection"
+            android:id="@+id/iconConnexion"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="right"
@@ -49,11 +49,8 @@
 
     </LinearLayout>
 
-
-
-
     <ImageView
-        android:id="@+id/pictureFiltre"
+        android:id="@+id/iconFiltre"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="10dp"
@@ -67,7 +64,7 @@
         android:layout_height="0dp"
         android:choiceMode="singleChoice"
 
-        app:layout_constraintTop_toBottomOf="@id/pictureFiltre"
+        app:layout_constraintTop_toBottomOf="@id/iconFiltre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
