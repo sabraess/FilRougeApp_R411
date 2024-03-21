@@ -45,6 +45,10 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Pour l'authentification
+    implementation (libs.firebase.ui.auth)
+    //noinspection UseTomlInstead
+    // implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
 
 
 }
