@@ -9,9 +9,9 @@ public class Car {
     private String brand;
     private String description;
     private  String energy;
-    private String price;
-    private String maxSpeed;
-    private String power;
+    private int price;
+    private int maxSpeed;
+    private int power;
     private String pictureDescription;
     private String picture;
 
@@ -49,24 +49,24 @@ public class Car {
         this.energy = energy;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return this.price;
     }
-    public void setPrice(String price){
+    public void setPrice(int price){
         this.price = price;
     }
 
-    public String getMaxSpeed() {
+    public int getMaxSpeed() {
         return this.maxSpeed;
     }
-    public void setMaxSpeed(String maxSpeed){
+    public void setMaxSpeed(int maxSpeed){
         this.maxSpeed = maxSpeed;
     }
 
-    public String getPower() {
+    public int getPower() {
         return this.power;
     }
-    public void setPower(String power){
+    public void setPower(int power){
         this.power = power;
     }
 
@@ -78,14 +78,14 @@ public class Car {
     }
 
     public String getPicture() {
-        return this.picture;
+        return "https://github.com/sabraess/FilRougeApp_R411/blob/fichierJsonImages/imagesDuProjetFilRouge/" + this.picture;
     }
     public void setPicture(String picture){
-        this.picture = "http://" + "/img/"+picture;
+        this.picture = "https://github.com/sabraess/FilRougeApp_R411/blob/fichierJsonImages/imagesDuProjetFilRouge/" + picture;
     }
 
     public String getPictureDescription() {
-        return this.pictureDescription;
+        return "https://github.com/sabraess/FilRougeApp_R411/blob/fichierJsonImages/imagesDuProjetFilRouge/"+pictureDescription;
     }
     public void setPictureDescription(String pictureDescription){
         this.pictureDescription = pictureDescription;

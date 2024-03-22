@@ -28,7 +28,11 @@ public class FilterActivity extends AppCompatActivity {
         /*pour se connecter faire attention si deja connecter !!!!!*/
         clickPictureConnection();
 
-
+//EditText prixMinEditText = findViewById(R.id.prixMin);
+//EditText prixMaxEditText = findViewById(R.id.prixMax);
+//
+//String prixMin = prixMinEditText.getText().toString();
+//String prixMax = prixMaxEditText.getText().toString();
     }
 
 
