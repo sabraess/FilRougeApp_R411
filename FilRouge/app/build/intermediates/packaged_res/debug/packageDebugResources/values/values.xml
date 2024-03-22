@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="appTitle">PrestigeAutos</string>
+    <string name="app_name">FilRouge</string>
+    <string name="connectionTitle">Connexion</string>
+    <string name="email"> Mail</string>
+    <string name="gcm_defaultSenderId" translatable="false">778802230839</string>
+    <string name="google_api_key" translatable="false">AIzaSyBuj72ZVAANhmm-J564sed5xayQwgrLbFM</string>
+    <string name="google_app_id" translatable="false">1:778802230839:android:30d4f9215123cdca3d31b2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBuj72ZVAANhmm-J564sed5xayQwgrLbFM</string>
+    <string name="google_storage_bucket" translatable="false">fil-rouge-r411.appspot.com</string>
+    <string name="password"> Mot de passe</string>
+    <string name="project_id" translatable="false">fil-rouge-r411</string>
+    <string name="signUp">Pas encore inscrit ? S\'inscrire</string>
+    <string name="titrePanier">Panier</string>
+    <string name="totalPanier">Total : </string>
+    <style name="Base.Theme.FilRouge" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.FilRouge" parent="Base.Theme.FilRouge"/>
+</resources>

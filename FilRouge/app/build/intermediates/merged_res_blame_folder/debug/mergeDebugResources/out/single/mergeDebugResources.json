@@ -1,0 +1,154 @@
+[
+    {
+        "merged": "filrouge.app-debug-43:/layout_activity_filter.xml.flat",
+        "source": "filrouge.app-main-45:/layout/activity_filter.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_connection.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_connection.xml"
+    },
+    {
+        "merged": "filrouge.app-debug-43:/layout_activity_home.xml.flat",
+        "source": "filrouge.app-main-45:/layout/activity_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_filter.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_filter.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_ratingbar_layout.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\ratingbar_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_fond_edittext.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\fond_edittext.xml"
+    },
+    {
+        "merged": "filrouge.app-debug-43:/drawable_symbol_euro.png.flat",
+        "source": "filrouge.app-main-45:/drawable/symbol_euro.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\anim_exit_cars.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\anim\\exit_cars.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_drapeau_arrivee.png.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\drapeau_arrivee.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_icone_filtre.png.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\icone_filtre.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_opinion.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_opinion.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_icone_cars.png.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\icone_cars.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_panier.png.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\panier.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_selected_car.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_selected_car.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_fleche_retour.png.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\fleche_retour.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_connexion.png.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\connexion.png"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_basket.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_basket.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\drawable_fond_linearlayout.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\drawable\\fond_linearlayout.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_sign_up.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_sign_up.xml"
+    },
+    {
+        "merged": "filrouge.app-debug-43:/layout_activity_selected_car.xml.flat",
+        "source": "filrouge.app-main-45:/layout/activity_selected_car.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_home.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-debug-43:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\sabra\\.gradle\\daemon\\8.4\\filrouge.app-main-45:\\xml\\backup_rules.xml"
+    }
+]
