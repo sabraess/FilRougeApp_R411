@@ -77,7 +77,7 @@
         "brand":"Rolls Royce",
         "description": "Elle incarne le summum du luxe automobile, avec un design majestueux et des finitions artisanales exquises. Propulsée par un moteur V12 puissant, elle offre un confort de conduite inégalé, avec des fonctionnalités haut de gamme et une technologie de pointe intégrée.",
         "price":"462 000 €",
-        "mawSpeed": "250 km/h",
+        "maxSpeed": "250 km/h",
         "power":"571 ch",
         "energy": "Essence",		
         "pictureDescription":"roolsRoyce.jpg",
