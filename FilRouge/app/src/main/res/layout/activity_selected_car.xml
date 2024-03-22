@@ -101,26 +101,14 @@
          >
 
         <TextView
-            android:id="@+id/carBrand"
+            android:id="@+id/carPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marque de la voiture"
+            android:text="Prix : "
             android:textSize="20sp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginEnd="10dp"/>
-
-        <TextView
-            android:id="@+id/carPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prix de la voiture"
-            android:textSize="20sp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_row="1"
             android:layout_column="0"
             android:layout_marginTop="10dp"/>
 
@@ -128,11 +116,11 @@
             android:id="@+id/carMaxSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vitesse maximale de la voiture"
+            android:text="Vitesse maximale : "
             android:textSize="20sp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_row="2"
+            android:layout_row="1"
             android:layout_column="0"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"/>
@@ -141,11 +129,11 @@
             android:id="@+id/carPuissance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puissance de la voiture"
+            android:text="Puissance : "
             android:textSize="20sp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_row="3"
+            android:layout_row="2"
             android:layout_column="0"
             android:layout_marginTop="10dp"/>
 
@@ -153,16 +141,27 @@
             android:id="@+id/carEnergie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type d'énergie"
+            android:text="Type d'énergie : "
             android:textSize="20sp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_row="4"
+            android:layout_row="3"
             android:layout_column="0"
             android:layout_marginTop="10dp"/>
 
     </GridLayout>
 
+
+    <Button
+        android:id="@+id/buttonAjouterAuPanier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Ajouter au panier"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
     <TextView
         android:id="@+id/avisTitre"
@@ -170,8 +169,8 @@
         android:layout_height="wrap_content"
         android:text="Avis"
         android:textSize="30sp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAjouterAuPanier"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/listViewAvis"/>
