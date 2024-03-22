@@ -102,7 +102,7 @@
         "description": "Voiture de sport emblématique qui incarne le caractère et le dynamisme de la marque britannique. Propulsée par un moteur V8 biturbo, elle offre des performances exaltantes avec une puissance impressionnante et une maniabilité précise",
         "price":188773,
         "maxSpeed": 314,
-        "power":"420,
+        "power":420,
         "energy": "Essence",		
         "pictureDescription":"vantage.jpg",
         "picture": "vantage.jpg"
