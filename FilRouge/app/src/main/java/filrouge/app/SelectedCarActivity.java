@@ -1,7 +1,10 @@
 package filrouge.app;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +19,24 @@ public class SelectedCarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_car);
+
+
+        Intent intent = getIntent();
+        int index = intent.getExtras().getInt("cars");
+
+        System.out.println(index);
+
+        TextView carSelectedName = findViewById(R.id.carSelectedName);
+
+
+        // Récupération de l'image View de l'activity
+        ImageView imageViewAnimation = findViewById(R.id.imageViewCarTurningAround);
+
+        // Ajout de l'animation
+        imageViewAnimation.setBackgroundResource(R.drawable.car_turning_animation);
+        AnimationDrawable anim= (AnimationDrawable)imageViewAnimation.getBackground();
+        anim.start();
+
 
         /*
         Intent intent = getIntent();
