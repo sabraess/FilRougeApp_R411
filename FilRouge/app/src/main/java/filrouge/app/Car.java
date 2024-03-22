@@ -3,7 +3,7 @@ package filrouge.app;
  * classe qui permet de créer un objet Cars
  */
 
-public class Cars{
+public class Car {
     private int id;
     private String name;
     private String brand;
@@ -17,7 +17,7 @@ public class Cars{
 
     private float value; //pour le ratingBar
 
-    public Cars(){
+    public Car(){
     }
 
     public int getId(){

@@ -13,11 +13,10 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<Cars> {
+public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<Car> {
     private final String TAG = "HomeActivity";
     private CarsAdapter carsAdapter;
 
@@ -27,7 +26,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         setContentView(R.layout.activity_home);
 
         String url = "https://raw.githubusercontent.com/sabraess/FilRougeApp_R411/fichierJsonImages/fichierJson.json";
-        new HttpAsyncGet<>(url,Cars.class,this,new ProgressDialog(this));
+        new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
 
         /*si on clique sur connexion*/
         clickPictureConnection();
@@ -55,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     }
 
     private int findIndexInList(int index) {
-        Cars cars = CarsList.getDisplayCars(index);
+        Car cars = CarsList.getDisplayCars(index);
         for(int i = 0; i < CarsList.getCarsList().size(); i++){
             if(CarsList.getCars(i).getName().equals(cars.getName())){
                 return i;
@@ -91,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
     //pour fichier Json
     @Override
-    public void onPostExecute(List<Cars> itemList) {
+    public void onPostExecute(List<Car> itemList) {
         ListView listView = findViewById(R.id.listView);
         CarsList.getCarsList().addAll(itemList);
         CarsList.getDisplayCars().addAll(itemList);

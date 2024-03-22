@@ -8,19 +8,19 @@ import java.util.List;
 */
 
 public class CarsList {
-    private static List<Cars> carsList = new ArrayList<>();
-    private static List<Cars> displayCars = new ArrayList<>();
+    private static List<Car> carsList = new ArrayList<>();
+    private static List<Car> displayCars = new ArrayList<>();
     private static CarsList instance = null;
 
 
-    public static List<Cars> getCarsList() {
+    public static List<Car> getCarsList() {
         if (instance == null) {
             instance = new CarsList();
         }
         return carsList;
     }
 
-    public static List<Cars> getDisplayCars() {
+    public static List<Car> getDisplayCars() {
         if (instance == null) {
             instance = new CarsList();
         }
@@ -34,21 +34,21 @@ public class CarsList {
         displayCars.clear();
     }
 
-    public static void addDisplayCars(Cars cars){
+    public static void addDisplayCars(Car cars){
         if(instance == null){
             instance = new CarsList();
         }
         displayCars.add(cars);
     }
 
-    public static Cars getDisplayCars(int index){
+    public static Car getDisplayCars(int index){
         if(instance == null){
             instance = new CarsList();
         }
         return displayCars.get(index);
     }
 
-    public static Cars getCars(int index){
+    public static Car getCars(int index){
         if(instance == null){
             instance = new CarsList();
         }

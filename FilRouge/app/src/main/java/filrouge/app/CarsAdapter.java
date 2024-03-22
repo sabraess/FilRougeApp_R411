@@ -12,8 +12,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /*
@@ -22,11 +20,11 @@ import java.util.List;
 
 public class CarsAdapter extends BaseAdapter {
     private final String TAG = "CarsAdapter";
-    private final List<Cars> carsList;
+    private final List<Car> carsList;
     private LayoutInflater mInflater;
     private Clickable callBackActivity;
 
-    public CarsAdapter(List<Cars> carsList, Clickable clickable) {
+    public CarsAdapter(List<Car> carsList, Clickable clickable) {
         this.carsList = carsList;
         this.mInflater = LayoutInflater.from(CarsApp.getContext());
         this.callBackActivity = clickable;
