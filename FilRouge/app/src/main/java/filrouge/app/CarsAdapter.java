@@ -54,7 +54,6 @@ public class CarsAdapter extends BaseAdapter {
         RatingBar ratingBar = layoutItem.findViewById(R.id.ratingBar);
         ImageView picture = layoutItem.findViewById(R.id.picture);
 
-
         name.setText(carsList.get(position).getName());
         //picture.setImageResource(carsList.get(position).getPicture());
         Picasso.get().load(carsList.get(position).getPicture()).into(picture);

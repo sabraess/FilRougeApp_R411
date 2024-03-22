@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* author :
+* author : ESSALAH Sabra
 * Modifié par :
 * vue pour afficher les détails d'une voiture
 */
 public class SelectedCarActivity extends AppCompatActivity {
-
+    private final String TAG = "Clara "+getClass().getSimpleName();
     private final List<CarsList> displayedCars = new ArrayList<>(); //displayed list
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class SelectedCarActivity extends AppCompatActivity {
         ImageView imageViewAnimation = findViewById(R.id.imageViewCarTurningAround);
         carSelectedName.setText(car.getName());
         Picasso.get().load(car.getPicture()).into(imageViewAnimation);
+        Log.d(TAG, "car = " + car.getPicture());
         // Ajout de l'animation
         // imageViewAnimation.setBackgroundResource(R.drawable.car_turning_animation);
         // AnimationDrawable anim= (AnimationDrawable)imageViewAnimation.getBackground();

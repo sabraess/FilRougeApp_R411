@@ -78,10 +78,10 @@ public class Car {
     }
 
     public String getPicture() {
-        return "https://github.com/sabraess/FilRougeApp_R411/blob/fichierJsonImages/imagesDuProjetFilRouge/" + this.picture;
+       return this.picture;
     }
     public void setPicture(String picture){
-        this.picture = "https://github.com/sabraess/FilRougeApp_R411/blob/fichierJsonImages/imagesDuProjetFilRouge/" + picture;
+        this.picture = "http://edu.info06.net/studients/bottles/pictures/depluie.jpg";
     }
 
     public String getPictureDescription() {
