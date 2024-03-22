@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="brand">
+        <item>Ferrari</item>
+        <item>Porsche</item>
+        <item>Hyundai</item>
+        <item>Aston Martin</item>
+        <item>Bentley</item>
+
+        <item>Lamborghini</item>
+        <item>Rolls Royce</item>
+        <item>Bugatti</item>
+        <item>Aston Martin</item>
+        <item>Ferrari</item>
+    </string-array>
+    <string-array name="cars">
+        <item>Ferrari LaFerrari</item>
+        <item>Porsche 911 GT3 RS</item>
+        <item>Hyundai Kona</item>
+        <item>Aston Martin Valkyrie</item>
+        <item>Bentley Continental GT</item>
+
+        <item>Lamborghini Aventador</item>
+        <item>Rolls royce Phantom</item>
+        <item>Bugatti Chiron</item>
+        <item>Aston Martine Vantage</item>
+        <item>Ferrari 296 GTB</item>
+    </string-array>
+    <string-array name="description">
+        <item>Supercar hybride emblématique de Ferrari, alliant un moteur V12 de 6,3 litres à un moteur électrique pour une puissance totale de plus de 950 chevaux, propulsant la voiture de 0 à 100 km/h en moins de trois secondes.</item>
+        <item>Elle offre une expérience de conduite exaltante grâce à sa puissance et à sa maniabilité exceptionnelles. Dotée d\'une technologie de pointe et d\'un design aérodynamique, conçue pour des performances sur piste optimales tout en restant parfaitement adaptée à une utilisation quotidienne.</item>
+        <item>Elle offre une variété d\'options de motorisation pour répondre aux besoins des conducteurs. Son intérieur spacieux et bien aménagé offre un confort de conduite agréable, tandis que sa maniabilité agile en fait un véhicule idéal pour la conduite en ville et les trajets quotidiens.</item>
+        <item>Elle offre des performances de niveau compétition, avec une puissance impressionnante et un poids minimal. Son design aérodynamique et sa construction en fibre de carbone en font une véritable bête de piste, avec des caractéristiques qui se rapprochent de celles d\'une voiture de Formule 1.</item>
+        <item>Elle incarne le luxe et les performances avec un moteur W12 ou V8 biturbo, offrant des accélérations rapides et un confort somptueux.</item>
+
+        <item>Elle se démarque par quatre roues directrices, un train arrière installé sur la suspension, de nouveaux boucliers pour améliorer l\'aérodynamisme et un V12 qui modifie sa puissance à 740 ch.Elle atteint 0 à 100 km/h  en moins de 3 secondes.</item>
+        <item>Elle incarne le summum du luxe automobile, avec un design majestueux et des finitions artisanales exquises. Propulsée par un moteur V12 puissant, elle offre un confort de conduite inégalé, avec des fonctionnalités haut de gamme et une technologie de pointe intégrée.</item>
+        <item>Supercar emblématique de la marque française Bugatti. Dotée d\'un moteur W16 quadriturbo d\'une puissance stupéfiante, elle offre des performances hors normes, propulsant la voiture à des vitesses impressionnantes et lui permettant d\'atteindre 0 à 100 km/h en moins de 2,5 secondes.</item>
+        <item>Voiture de sport emblématique qui incarne le caractère et le dynamisme de la marque britannique. Propulsée par un moteur V8 biturbo, elle offre des performances exaltantes avec une puissance impressionnante et une maniabilité précise.</item>
+        <item>Supercar de dernière génération qui combine un moteur V6 biturbo avec un moteur électrique, offrant une puissance totale de plus de 800 chevaux, lui permettant d\'atteindre 0 à 100 km/h en moins de 3 secondes</item>
+    </string-array>
+    <string-array name="energy">
+        <item>Hybride</item>
+        <item>Essence</item>
+        <item>Hybride</item>
+        <item>Essence</item>
+        <item>Essence</item>
+
+        <item>Essence</item>
+        <item>Essence</item>
+        <item>Essence</item>
+        <item>Essence</item>
+        <item>Hybride</item>
+    </string-array>
+    <string-array name="maxSpeed">
+        <item>370 km/h</item>
+        <item>296 km/h</item>
+        <item>161 km/h</item>
+        <item>355 km/h</item>
+        <item>335 km/h</item>
+
+        <item>350 km/h</item>
+        <item>250 km/h</item>
+        <item>420 km/h</item>
+        <item>314 km/h</item>
+        <item>330 km/h</item>
+    </string-array>
+    <string-array name="power">
+        <item>950 ch</item>
+        <item>500 ch</item>
+        <item>120 ch</item>
+        <item>1160 ch</item>
+        <item>626 ch</item>
+
+        <item>770 ch</item>
+        <item>563 ch</item>
+        <item>1500 ch</item>
+        <item>510 ch</item>
+        <item>818 ch</item>
+    </string-array>
+    <string-array name="price">
+        <item>1 250 000€</item>
+        <item>253 454 €</item>
+        <item>33 400 €</item>
+        <item>2 500 000 €</item>
+        <item>200 000 €</item>
+
+        <item>337 866 €</item>
+        <item>462 000 €</item>
+        <item>3 200 000 €</item>
+        <item>188 773 €</item>
+        <item>315 377 €</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="appTitle">PrestigeAutos</string>
+    <string name="app_name">FilRouge</string>
+    <string name="connectionTitle">Connexion</string>
+    <string name="email"> Mail</string>
+    <string name="gcm_defaultSenderId" translatable="false">778802230839</string>
+    <string name="google_api_key" translatable="false">AIzaSyBuj72ZVAANhmm-J564sed5xayQwgrLbFM</string>
+    <string name="google_app_id" translatable="false">1:778802230839:android:30d4f9215123cdca3d31b2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBuj72ZVAANhmm-J564sed5xayQwgrLbFM</string>
+    <string name="google_storage_bucket" translatable="false">fil-rouge-r411.appspot.com</string>
+    <string name="password"> Mot de passe</string>
+    <string name="project_id" translatable="false">fil-rouge-r411</string>
+    <string name="signUp">Pas encore inscrit ? S\'inscrire</string>
+    <style name="Base.Theme.FilRouge" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.FilRouge" parent="Base.Theme.FilRouge"/>
+</resources>
