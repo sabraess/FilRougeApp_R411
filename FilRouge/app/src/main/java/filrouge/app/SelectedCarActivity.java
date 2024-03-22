@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +28,13 @@ public class SelectedCarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selected_car);
 
         int indexCar = getIntent().getIntExtra("cars", 0);
-
-        System.out.println(indexCar);
+        Car car = CarsList.getDisplayCars(indexCar);
 
         TextView carSelectedName = findViewById(R.id.carSelectedName);
-
-
         // Récupération de l'image View de l'activity
         ImageView imageViewAnimation = findViewById(R.id.imageViewCarTurningAround);
-
+        carSelectedName.setText(car.getName());
+        Picasso.get().load(car.getPicture()).into(imageViewAnimation);
         // Ajout de l'animation
         // imageViewAnimation.setBackgroundResource(R.drawable.car_turning_animation);
         // AnimationDrawable anim= (AnimationDrawable)imageViewAnimation.getBackground();
