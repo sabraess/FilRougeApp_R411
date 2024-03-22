@@ -8,6 +8,10 @@
     <string name="password"> Mot de passe</string>
     <string name="signUp">Pas encore inscrit ? S\'inscrire</string>
 
+    // Vue panier
+    <string name="titrePanier">Panier</string>
+    <string name="totalPanier">Total : </string>
+
 
     <string-array name="cars">
         <item>Ferrari LaFerrari</item>
