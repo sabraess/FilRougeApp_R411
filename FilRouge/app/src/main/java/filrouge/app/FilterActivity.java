@@ -19,27 +19,42 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        /*pour retourner à l'acceuil*/
+        /*pour retourner à l'accueil*/
+        clickPictureHome();
+
+        /*pour voir le panier*/
+        clickPictureBasket();
+
+        /*pour se connecter faire attention si deja connecter !!!!!*/
+        clickPictureConnection();
+
+
+    }
+
+
+
+    //action lorsqu'on appuie sur les images
+    private void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.flecheRetour);
         imageRetour.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
             startActivity(intent);
         });
+    }
 
-        /*pour voir le panier*/
+    private void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconPanier);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, BasketActivity.class);
             startActivity(intent);
         });
+    }
 
-        /*pour se connecter faire attention si deja connecter !!!!!*/
+    private void clickPictureConnection(){
         ImageView imageConnection = findViewById(R.id.iconConnexion);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, ConnectionActivity.class);
             startActivity(intent);
         });
-
-
     }
 }

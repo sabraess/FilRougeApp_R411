@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -55,7 +57,8 @@ public class CarsAdapter extends BaseAdapter {
         ImageView picture = layoutItem.findViewById(R.id.picture);
 
         name.setText(carsList.get(position).getName());
-        picture.setImageResource(carsList.get(position).getPicture());
+        //picture.setImageResource(carsList.get(position).getPicture());
+        Picasso.get().load(carsList.get(position).getPicture()).into(picture);
 
         ratingBar.setOnRatingBarChangeListener((ratingBar1, value, b) -> {
             callBackActivity.onRatingChanged(position, value);

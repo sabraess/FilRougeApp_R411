@@ -4,50 +4,70 @@ package filrouge.app;
  */
 
 public class Cars{
-    private final String name;
+    private int id;
+    private String name;
+    private String brand;
     private String description;
     private  String energy;
     private String price;
     private String maxSpeed;
-    private float value; //pour le ratingBar
-    private final int picture;
+    private String power;
+    private String pictureDescription;
+    private String picture;
 
-    public Cars(String name) {
-        this.name = name;
-        this.picture = CarsApp.getContext().getResources().getIdentifier(name, "drawable", CarsApp.getContext().getPackageName());
-        this.description = getPosition()<0 ? null : CarsApp.getContext().getResources().getStringArray(R.array.description)[getPosition()];
-        this.maxSpeed = getPosition()<0 ? null : CarsApp.getContext().getResources().getStringArray(R.array.maxSpeed)[getPosition()];
-        this.price = getPosition()<0 ? null : CarsApp.getContext().getResources().getStringArray(R.array.price)[getPosition()];
-        this.energy = getPosition()<0 ? null : CarsApp.getContext().getResources().getStringArray(R.array.energy)[getPosition()];
-        this.value = (name.charAt(0)/name.length()/3)/2.0f;
+    private float value; //pour le ratingBar
+
+    public Cars(){
     }
 
-    private int getPosition(){
-        String[] names = CarsApp.getContext().getResources().getStringArray(R.array.cars);
-        for (int i=0 ; i<names.length ; i++){
-            if (names[i].equals(name)) return i;
-        }
-        return -1;
+    public int getId(){
+        return this.id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getName() {
         return this.name;
     }
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getBrand(){return this.brand;}
+    public void setBrand(String brand){this.brand = brand;}
 
     public String getDescription() {
         return this.description;
     }
+    public void setDescription(String description){ this.description = description;}
 
     public String getEnergy() {
         return this.energy;
+    }
+    public void setEnergy(String energy){
+        this.energy = energy;
     }
 
     public String getPrice() {
         return this.price;
     }
+    public void setPrice(String price){
+        this.price = price;
+    }
 
     public String getMaxSpeed() {
         return this.maxSpeed;
+    }
+    public void setMaxSpeed(String maxSpeed){
+        this.maxSpeed = maxSpeed;
+    }
+
+    public String getPower() {
+        return this.power;
+    }
+    public void setPower(String power){
+        this.power = power;
     }
 
     public float getValue() {
@@ -57,8 +77,18 @@ public class Cars{
         this.value = value;
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return this.picture;
+    }
+    public void setPicture(String picture){
+        this.picture = "http://" + "/img/"+picture;
+    }
+
+    public String getPictureDescription() {
+        return this.pictureDescription;
+    }
+    public void setPictureDescription(String pictureDescription){
+        this.pictureDescription = pictureDescription;
     }
 
     @Override

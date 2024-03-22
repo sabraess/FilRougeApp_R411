@@ -50,5 +50,12 @@ dependencies {
     //noinspection UseTomlInstead
     // implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
 
+    implementation ("com.squareup.retrofit2:converter-jackson:2.7.2")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.10.3")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.10.3")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.10.3")
+
+    implementation ("com.squareup.picasso:picasso:2.71828")
+
 
 }

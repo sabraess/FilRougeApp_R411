@@ -12,13 +12,6 @@ public class CarsList {
     private static List<Cars> displayCars = new ArrayList<>();
     private static CarsList instance = null;
 
-    private CarsList() {
-        for(String name : CarsApp.getContext().getResources().getStringArray(R.array.cars)){
-            Cars cars = new Cars(name);
-            carsList.add(cars);
-            displayCars.add(cars);
-        }
-    }
 
     public static List<Cars> getCarsList() {
         if (instance == null) {

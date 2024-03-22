@@ -105,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/marque"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -125,7 +126,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -135,14 +136,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Prix"
+            android:text="Prix:"
             android:textSize="20sp"/>
 
-        <SeekBar
-            android:id="@+id/seekBarPrix"
-            android:layout_width="match_parent"
+        <EditText
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            android:id="@+id/prixMin"
+            android:hint="Prix Min"
+            android:layout_margin="20dp"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:background="@drawable/fond_edittext"/>
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:id="@+id/prixMax"
+            android:hint=" Prix Max"
+            android:layout_margin="20dp"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:background="@drawable/fond_edittext"/>
+
+
 
 
     </LinearLayout>
@@ -163,7 +180,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Filtrer"
+        android:text="Rechercher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

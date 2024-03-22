@@ -4,6 +4,7 @@ package filrouge.app;
 * Modifié par : TORRI Clara
 *  vue accueil
 * */
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeActivity extends AppCompatActivity implements Clickable {
+public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<Cars> {
     private final String TAG = "HomeActivity";
     private CarsAdapter carsAdapter;
 
@@ -24,32 +25,18 @@ public class HomeActivity extends AppCompatActivity implements Clickable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ListView listView = findViewById(R.id.listView);
 
-        //initialisation de la liste des voitures
-        carsAdapter = new CarsAdapter(CarsList.getDisplayCars(), this);
-        listView.setAdapter(carsAdapter);
+        String url = "https://raw.githubusercontent.com/sabraess/FilRougeApp_R411/fichierJsonImages/fichierJson.json";
+        new HttpAsyncGet<>(url,Cars.class,this,new ProgressDialog(this));
 
         /*si on clique sur connexion*/
-        ImageView imageConnection = findViewById(R.id.iconConnexion);
-        imageConnection.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
-            startActivity(intent);
-        });
+        clickPictureConnection();
 
         /*si on clique sur filtre*/
-        ImageView imageFilter = findViewById(R.id.iconFiltre);
-        imageFilter.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
-            startActivity(intent);
-        });
+        clickPictureFilter();
 
         /*si on clique sur le panier*/
-        ImageView iconBasket = findViewById(R.id.iconPanier);
-        iconBasket.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, BasketActivity.class);
-            startActivity(intent);
-        });
+       clickPictureBasket();
     }
 
     @Override
@@ -76,6 +63,47 @@ public class HomeActivity extends AppCompatActivity implements Clickable {
         }
         return -1;
     }
+
+    //action lorsqu'on appuie sur des images
+    private void clickPictureConnection(){
+        ImageView imageConnection = findViewById(R.id.iconConnexion);
+        imageConnection.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void clickPictureBasket(){
+        ImageView iconBasket = findViewById(R.id.iconPanier);
+        iconBasket.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, BasketActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void clickPictureFilter(){
+        ImageView imageFilter = findViewById(R.id.iconFiltre);
+        imageFilter.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    //pour fichier Json
+    @Override
+    public void onPostExecute(List<Cars> itemList) {
+        ListView listView = findViewById(R.id.listView);
+        CarsList.getCarsList().addAll(itemList);
+        CarsList.getDisplayCars().addAll(itemList);
+        carsAdapter = new CarsAdapter(CarsList.getDisplayCars(), this);
+        listView.setAdapter(carsAdapter);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
 
 
 }
