@@ -20,12 +20,18 @@ import java.util.List;
 * vue pour afficher les détails d'une voiture
 */
 public class SelectedCarActivity extends AppCompatActivity {
-    private final String TAG = "Clara "+getClass().getSimpleName();
-    private final List<CarsList> displayedCars = new ArrayList<>(); //displayed list
+    private final String TAG = "Clara " + getClass().getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_car);
+
+        // Appel des méthodes pour les actions
+        clickPictureConnection();
+        clickPictureBasket();
+        clickPictureHome();
+
 
         int indexCar = getIntent().getIntExtra("cars", 0);
         Car car = CarsList.getDisplayCars(indexCar);
@@ -81,6 +87,32 @@ public class SelectedCarActivity extends AppCompatActivity {
         picture.setImageResource(currentCharacter.getPicture());
         description.setText(currentCharacter.getDescription());
         */
-
     }
+
+    //action lorsqu'on appuie sur des images
+    private void clickPictureConnection(){
+        ImageView imageConnection = findViewById(R.id.iconConnexion);
+        imageConnection.setOnClickListener(v -> {
+            Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void clickPictureBasket(){
+        ImageView iconBasket = findViewById(R.id.iconPanier);
+        iconBasket.setOnClickListener(v -> {
+            Intent intent = new Intent(SelectedCarActivity.this, BasketActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void clickPictureHome(){
+        ImageView imageRetour = findViewById(R.id.flecheRetour);
+        imageRetour.setOnClickListener(v -> {
+            Intent intent = new Intent(SelectedCarActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
+    }
+
+
 }

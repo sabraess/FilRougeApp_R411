@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -35,7 +36,23 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         clickPictureFilter();
 
         /*si on clique sur le panier*/
-       clickPictureBasket();
+        clickPictureBasket();
+
+        // Récupérez les données filtrées
+        /*Car[] carsFiltrees = (Car[]) getIntent().getSerializableExtra("carsFiltrees");
+
+        // Assurez-vous que la liste des voitures n'est pas vide
+        if (carsFiltrees != null && carsFiltrees.length > 0) {
+            // Mettez à jour la liste des voitures affichées dans CarsList avec les voitures filtrées
+            CarsList.clearDisplayCars();
+            for (Car car : carsFiltrees) {
+                CarsList.addDisplayCars(car);
+            }
+
+            // Mettez à jour l'adaptateur avec les nouvelles données filtrées
+            carsAdapter.notifyDataSetChanged();
+        }*/
+
     }
 
     @Override

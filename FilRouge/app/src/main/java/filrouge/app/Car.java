@@ -3,7 +3,9 @@ package filrouge.app;
  * classe qui permet de créer un objet Cars
  */
 
-public class Car {
+import java.io.Serializable;
+
+public class Car implements Serializable {
     private int id;
     private String name;
     private String brand;
@@ -81,11 +83,11 @@ public class Car {
        return this.picture;
     }
     public void setPicture(String picture){
-        this.picture = "http://edu.info06.net/studients/bottles/pictures/depluie.jpg";
+        this.picture = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/imagesfilrouge/" + picture;
     }
 
     public String getPictureDescription() {
-        return "https://github.com/sabraess/FilRougeApp_R411/blob/fichierJsonImages/imagesDuProjetFilRouge/"+pictureDescription;
+        return pictureDescription;
     }
     public void setPictureDescription(String pictureDescription){
         this.pictureDescription = pictureDescription;
