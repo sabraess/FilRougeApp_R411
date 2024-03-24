@@ -9,7 +9,7 @@
         "power": 963,
         "energy": "Hybride",		
         "pictureDescription": "laferrari1.jpg",
-        "picture": "laferrari"
+        "picture": "laferrari.jpg"
     },
     {
         "id": 2,
@@ -32,8 +32,8 @@
         "maxSpeed":161,
         "power":217,
         "energy": "Hybride",
-        "pictureDescription":"hyundaiKona.jpg",
-        "picture": "hyundaiKona.jpg"
+        "pictureDescription":"hyundaikona.jpg",
+        "picture": "hyundaikona.jpg"
     },
     {
         "id": 4, 
@@ -45,7 +45,7 @@
         "power":1014,
         "energy": "Essence",
         "pictureDescription": "valkyrie.jpg",
-        "picture": "valkyrie.jpg"
+        "picture": "astonmartinvalkyrie.jpg"
     },
     {
         "id": 5,
@@ -57,7 +57,7 @@
         "power":558,
         "energy": "Essence",		
         "pictureDescription": "bentley.jpg",
-        "picture": "bentley.jpg"
+        "picture": "bentleycontinentalgt.jpg"
     },
     {
         "id": 6,
@@ -69,7 +69,7 @@
         "power":780,
         "energy": "Essence",		
         "pictureDescription":"lamborghini.jpg",
-        "picture": "lamborghini.jpg"
+        "picture": "lamborghiniaventador.jpg"
     },
     {
         "id": 7,
@@ -81,7 +81,7 @@
         "power":571,
         "energy": "Essence",		
         "pictureDescription":"roolsRoyce.jpg",
-        "picture": "rollsRoyce.jpg"
+        "picture": "rollsroycephantom.jpg"
     },
     {
         "id": 8,
@@ -93,7 +93,7 @@
         "power": 1500,
         "energy": "Essence",		
         "pictureDescription":"bugatti.jpg",
-        "picture": "bugatti.jpg"
+        "picture": "bugattichiron.jpg"
     },
     {
         "id": 9,
@@ -105,7 +105,7 @@
         "power":420,
         "energy": "Essence",		
         "pictureDescription":"vantage.jpg",
-        "picture": "vantage.jpg"
+        "picture": "astonmartinvantage.jpg"
     },
     {
         "id": 10,
@@ -117,7 +117,7 @@
         "power":830,
         "energy": "Hybride",		
         "pictureDescription":"ferrari.jpg",
-        "picture": "ferrari.jpg"
+        "picture": "ferrari296gtb.jpg"
     }
     
 ]
