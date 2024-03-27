@@ -7,9 +7,10 @@
         "price": 1250000,
         "maxSpeed": 370,
         "power": 963,
-        "energy": "Hybride",		
-        "pictureDescription": "laferrari1.jpg",
-        "picture": "laferrari.jpg"
+        "energy": "Hybride",	
+        "picture": "laferrari.jpg",
+        "pictureDescription": "laferrari1.jpg"
+        
     },
     {
         "id": 2,
@@ -20,8 +21,8 @@
         "maxSpeed": 296,
         "power": 525,
         "energy": "Essence",	
-        "pictureDescription":"porsche.jpg",
-        "picture": "porsche.jpg"
+        "picture": "porsche.jpg",
+        "pictureDescription":"porsche.jpg"
     },
     {
         "id": 3,
@@ -32,8 +33,8 @@
         "maxSpeed":161,
         "power":217,
         "energy": "Hybride",
-        "pictureDescription":"hyundaikona.jpg",
-        "picture": "hyundaikona.jpg"
+        "picture": "hyundaikona.jpg",
+        "pictureDescription":"hyundaikona.jpg"
     },
     {
         "id": 4, 
@@ -44,8 +45,9 @@
         "maxSpeed": 355,
         "power":1014,
         "energy": "Essence",
-        "pictureDescription": "valkyrie.jpg",
-        "picture": "astonmartinvalkyrie.jpg"
+        "picture": "astonmartinvalkyrie.jpg",
+        "pictureDescription": "valkyrie.jpg"
+        
     },
     {
         "id": 5,
@@ -56,8 +58,8 @@
         "maxSpeed": 335,
         "power":558,
         "energy": "Essence",		
-        "pictureDescription": "bentley.jpg",
-        "picture": "bentleycontinentalgt.jpg"
+        "picture": "bentleycontinentalgt.jpg",
+        "pictureDescription": "bentley.jpg"
     },
     {
         "id": 6,
@@ -68,8 +70,8 @@
         "maxSpeed":350,
         "power":780,
         "energy": "Essence",		
-        "pictureDescription":"lamborghini.jpg",
-        "picture": "lamborghiniaventador.jpg"
+        "picture": "lamborghiniaventador.jpg",
+        "pictureDescription":"lamborghini.jpg"
     },
     {
         "id": 7,
@@ -80,8 +82,8 @@
         "maxSpeed": 250,
         "power":571,
         "energy": "Essence",		
-        "pictureDescription":"roolsRoyce.jpg",
-        "picture": "rollsroycephantom.jpg"
+        "picture": "rollsroycephantom.jpg",
+        "pictureDescription":"roolsRoyce.jpg"
     },
     {
         "id": 8,
@@ -92,8 +94,8 @@
         "maxSpeed": 420,
         "power": 1500,
         "energy": "Essence",		
-        "pictureDescription":"bugatti.jpg",
-        "picture": "bugattichiron.jpg"
+        "picture": "bugattichiron.jpg",
+        "pictureDescription":"bugatti.jpg"
     },
     {
         "id": 9,
@@ -104,8 +106,8 @@
         "maxSpeed": 314,
         "power":420,
         "energy": "Essence",		
-        "pictureDescription":"vantage.jpg",
-        "picture": "astonmartinvantage.jpg"
+        "picture": "astonmartinvantage.jpg",
+        "pictureDescription":"vantage.jpg"
     },
     {
         "id": 10,
@@ -116,8 +118,8 @@
         "maxSpeed": 330,
         "power":830,
         "energy": "Hybride",		
+        "picture": "ferrari296gtb.jpg",
         "pictureDescription":"ferrari.jpg",
-        "picture": "ferrari296gtb.jpg"
     }
     
 ]
