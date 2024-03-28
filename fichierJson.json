@@ -8,9 +8,7 @@
         "maxSpeed": 370,
         "power": 963,
         "energy": "Hybride",	
-        "picture": "laferrari.jpg",
-        "pictureDescription": "laferrari1.jpg"
-        
+        "picture": "laferrari.jpg"        
     },
     {
         "id": 2,
@@ -21,8 +19,7 @@
         "maxSpeed": 296,
         "power": 525,
         "energy": "Essence",	
-        "picture": "porsche.jpg",
-        "pictureDescription":"porsche.jpg"
+        "picture": "porsche.jpg"
     },
     {
         "id": 3,
@@ -33,8 +30,7 @@
         "maxSpeed":161,
         "power":217,
         "energy": "Hybride",
-        "picture": "hyundaikona.jpg",
-        "pictureDescription":"hyundaikona.jpg"
+        "picture": "hyundaikona.jpg"
     },
     {
         "id": 4, 
@@ -45,9 +41,7 @@
         "maxSpeed": 355,
         "power":1014,
         "energy": "Essence",
-        "picture": "astonmartinvalkyrie.jpg",
-        "pictureDescription": "valkyrie.jpg"
-        
+        "picture": "astonmartinvalkyrie.jpg"        
     },
     {
         "id": 5,
@@ -58,8 +52,7 @@
         "maxSpeed": 335,
         "power":558,
         "energy": "Essence",		
-        "picture": "bentleycontinentalgt.jpg",
-        "pictureDescription": "bentley.jpg"
+        "picture": "bentleycontinentalgt.jpg"
     },
     {
         "id": 6,
@@ -70,8 +63,7 @@
         "maxSpeed":350,
         "power":780,
         "energy": "Essence",		
-        "picture": "lamborghiniaventador.jpg",
-        "pictureDescription":"lamborghini.jpg"
+        "picture": "lamborghiniaventador.jpg"
     },
     {
         "id": 7,
@@ -82,8 +74,7 @@
         "maxSpeed": 250,
         "power":571,
         "energy": "Essence",		
-        "picture": "rollsroycephantom.jpg",
-        "pictureDescription":"roolsRoyce.jpg"
+        "picture": "rollsroycephantom.jpg"
     },
     {
         "id": 8,
@@ -94,8 +85,7 @@
         "maxSpeed": 420,
         "power": 1500,
         "energy": "Essence",		
-        "picture": "bugattichiron.jpg",
-        "pictureDescription":"bugatti.jpg"
+        "picture": "bugattichiron.jpg"
     },
     {
         "id": 9,
@@ -107,7 +97,6 @@
         "power":420,
         "energy": "Essence",		
         "picture": "astonmartinvantage.jpg",
-        "pictureDescription":"vantage.jpg"
     },
     {
         "id": 10,
@@ -118,8 +107,7 @@
         "maxSpeed": 330,
         "power":830,
         "energy": "Hybride",		
-        "picture": "ferrari296gtb.jpg",
-        "pictureDescription":"ferrari.jpg",
+        "picture": "ferrari296gtb.jpg"
     }
     
 ]
