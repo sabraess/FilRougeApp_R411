@@ -79,58 +79,28 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/label"
+        android:layout_marginTop="28dp"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:id="@+id/energie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="Energie:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/marque"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/marque"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <RadioButton
-            android:id="@+id/essence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Essence" />
-
-        <RadioButton
-            android:id="@+id/hybride"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hybride" />
-    </RadioGroup>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label" />
 
     <LinearLayout
+        android:id="@+id/prixMinMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal"
-        android:id="@+id/prixMinMax"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner">
 
         <TextView
             android:id="@+id/prix"
@@ -138,69 +108,39 @@
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:text="Prix:"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <EditText
-            android:layout_width="100dp"
-            android:layout_height="30dp"
             android:id="@+id/prixMin"
-            android:hint="Prix Min"
-            android:layout_margin="30dp"
-            android:inputType="number"
-            android:textSize="20sp"
-            android:background="@drawable/fond_edittext"/>
-
-        <EditText
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:id="@+id/prixMax"
-            android:hint=" Prix Max"
             android:layout_margin="30dp"
+            android:background="@drawable/fond_edittext"
+            android:hint="Prix Min"
             android:inputType="number"
-            android:textSize="20sp"
-            android:background="@drawable/fond_edittext"/>
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/prixMax"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/fond_edittext"
+            android:hint=" Prix Max"
+            android:inputType="number"
+            android:textSize="20sp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/vitesseMax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="Vitesse Maximun:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/prixMinMax"
-        app:layout_constraintTop_toBottomOf="@+id/prixMinMax"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:id="@+id/seekbar"
-        app:layout_constraintTop_toBottomOf="@id/vitesseMax"
-        app:layout_constraintStart_toStartOf="@id/vitesseMax" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0 km/h"
-        android:id="@+id/textVitesse"
-        android:layout_marginRight="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/seekbar"
-        app:layout_constraintLeft_toLeftOf="@+id/seekbar"
-        app:layout_constraintRight_toRightOf="@+id/seekbar"/>
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
+        android:layout_marginTop="184dp"
         android:text="Rechercher"
-        app:layout_constraintTop_toBottomOf="@+id/textVitesse"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prixMinMax" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

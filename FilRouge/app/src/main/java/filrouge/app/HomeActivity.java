@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        String url = "https://raw.githubusercontent.com/sabraess/FilRougeApp_R411/fichierJsonImages/fichierJson.json";
+        String url = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/fichierJson.json";
         new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
 
         /*si on clique sur connexion*/

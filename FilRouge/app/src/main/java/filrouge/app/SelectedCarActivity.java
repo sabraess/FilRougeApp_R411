@@ -32,61 +32,30 @@ public class SelectedCarActivity extends AppCompatActivity {
         clickPictureBasket();
         clickPictureHome();
 
-
         int indexCar = getIntent().getIntExtra("cars", 0);
         Car car = CarsList.getDisplayCars(indexCar);
 
-        TextView carSelectedName = findViewById(R.id.carSelectedName);
-        // Récupération de l'image View de l'activity
-        ImageView imageViewAnimation = findViewById(R.id.imageViewCarTurningAround);
-        carSelectedName.setText(car.getName());
-        Picasso.get().load(car.getPicture()).into(imageViewAnimation);
+        TextView name = findViewById(R.id.carSelectedName);
+        name.setText(car.getName());
+
+        ImageView image = findViewById(R.id.imageViewCarTurningAround);
+        Picasso.get().load(car.getPicture()).into(image);
         Log.d(TAG, "car = " + car.getPicture());
-        // Ajout de l'animation
-        // imageViewAnimation.setBackgroundResource(R.drawable.car_turning_animation);
-        // AnimationDrawable anim= (AnimationDrawable)imageViewAnimation.getBackground();
-        // anim.start();
 
+        TextView description = findViewById(R.id.carDescription);
+        description.setText(car.getDescription());
 
-        Car carSelected = new Car();
-/*
-        displayedCars.getInstance().get(index);
+        TextView price = findViewById(R.id.carPrice);
+        price.setText(getString(R.string.price, String.valueOf(car.getPrice())));
 
-        TextView name = findViewById(R.id.characterName);
-        name.setText(character.getName());
-        TextView description = findViewById(R.id.description);
-        description.setText(character.getDescription());
-        ImageView picture = findViewById(R.id.picture);
-        picture.setImageResource(character.getPicture());
+        TextView maxSpeed = findViewById(R.id.carMaxSpeed);
+        maxSpeed.setText(getString(R.string.vitesse, String.valueOf(car.getMaxSpeed())));
 
-        Intent intent = getIntent();
-        Car carSelectedD = intent.getParcelableExtra(getString(R.string.CHARACTER_KEY));
+        TextView power = findViewById(R.id.carPuissance);
+        power.setText(getString(R.string.power, String.valueOf(car.getPower())));
 
-        Log.d(TAG, "character = " + currentCharacter);
-        TextView name = findViewById(R.id.characterName);
-        ToggleButton favorite = findViewById(R.id.characterFavorite);
-        ImageView picture = findViewById(R.id.characterPicture);
-        TextView description = findViewById(R.id.characterDescription);
-        name.setText(currentCharacter.getName());
-        favorite.setChecked( currentCharacter.isFavorite() );
-        picture.setImageResource(currentCharacter.getPicture());
-        description.setText(currentCharacter.getDescription());
-*/
-        /*
-        Intent intent = getIntent();
-        int index = intent.getIntExtra("cars",0);
-        Cars currentCar = CarsList.getDisplayCars(index);
-
-        Exemple :
-        TextView name = findViewById(R.id.characterName);
-        ToggleButton favorite = findViewById(R.id.characterFavorite);
-        ImageView picture = findViewById(R.id.characterPicture);
-        TextView description = findViewById(R.id.characterDescription);
-        name.setText(currentCharacter.getName());
-        favorite.setChecked( currentCharacter.isFavorite() );
-        picture.setImageResource(currentCharacter.getPicture());
-        description.setText(currentCharacter.getDescription());
-        */
+        TextView energy = findViewById(R.id.carEnergie);
+        energy.setText(car.getEnergy());
     }
 
     //action lorsqu'on appuie sur des images

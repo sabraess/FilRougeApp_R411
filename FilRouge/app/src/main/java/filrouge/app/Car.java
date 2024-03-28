@@ -14,9 +14,7 @@ public class Car implements Serializable {
     private int price;
     private int maxSpeed;
     private int power;
-    private String pictureDescription;
     private String picture;
-
     private float value; //pour le ratingBar
 
     public Car(){
@@ -84,13 +82,6 @@ public class Car implements Serializable {
     }
     public void setPicture(String picture){
         this.picture = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/imagesfilrouge/" + picture;
-    }
-
-    public String getPictureDescription() {
-        return pictureDescription;
-    }
-    public void setPictureDescription(String pictureDescription){
-        this.pictureDescription = pictureDescription;
     }
 
     @Override

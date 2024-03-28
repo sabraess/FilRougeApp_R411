@@ -12,4 +12,10 @@
     <string name="titrePanier">Panier</string>
     <string name="totalPanier">Total : </string>
 
+    //vue voiture selectionné
+    <string name="price">Prix :  %s €</string>
+    <string name="vitesse">Vitesse maximale : %s km/h</string>
+    <string name="power">Puissance : %s ch</string>
+
+
 </resources>
