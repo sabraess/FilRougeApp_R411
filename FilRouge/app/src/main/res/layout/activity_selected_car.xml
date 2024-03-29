@@ -70,9 +70,9 @@
 
     <ImageView
         android:id="@+id/imageViewCarTurningAround"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_margin="15dp"
         app:layout_constraintTop_toBottomOf="@+id/carSelectedName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -83,8 +83,8 @@
         android:layout_height="wrap_content"
         android:text="Description de la voiture"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:gravity="start|end"
+        android:layout_margin="15dp"
         app:layout_constraintTop_toBottomOf="@+id/imageViewCarTurningAround"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/carDescription"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
          >
 
         <TextView
@@ -139,7 +139,7 @@
             android:id="@+id/carEnergie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type d'énergie : "
+            android:text="@string/energy"
             android:textSize="20sp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"

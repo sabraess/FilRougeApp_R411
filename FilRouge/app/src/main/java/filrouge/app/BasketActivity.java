@@ -1,19 +1,24 @@
 package filrouge.app;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Adapter;
-import android.widget.ListAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class BasketActivity extends AppCompatActivity {
+import java.util.List;
 
-    private final String TAG = "BasketActivity";
+/**
+ * Author: TORRI Clara
+ * Modifier par:
+ * permet de voir le panier
+ */
+
+public class BasketActivity extends AppCompatActivity implements TaskbarInterface{
+
+    private final String TAG = "Clara et Sabra " + getClass().getSimpleName();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,15 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basket);
 
         ListView listView = findViewById(R.id.listViewPanier);
+        TextView totalPrice = findViewById(R.id.prixPanier);
+
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+
+        int total = ShoppingBasket.getTotalPrice();
+
+        totalPrice.setText(getString(R.string.price, String.valueOf(total)));
+
+
 
 
 
@@ -28,5 +42,30 @@ public class BasketActivity extends AppCompatActivity {
        // listView.setAdapter(carsAdapter);
 
 
+    }
+
+    //action lorsqu'on appuie sur des images
+    public void clickPictureConnection(){
+        ImageView imageConnection = findViewById(R.id.iconConnexion);
+        imageConnection.setOnClickListener(v -> {
+            Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    public void clickPictureBasket(){
+        ImageView iconBasket = findViewById(R.id.iconPanier);
+        iconBasket.setOnClickListener(v -> {
+            Intent intent = new Intent(BasketActivity.this, BasketActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    public void clickPictureHome(){
+        ImageView imageRetour = findViewById(R.id.flecheRetour);
+        imageRetour.setOnClickListener(v -> {
+            Intent intent = new Intent(BasketActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
     }
 }

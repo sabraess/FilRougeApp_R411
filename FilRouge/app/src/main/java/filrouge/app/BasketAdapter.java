@@ -3,41 +3,34 @@ package filrouge.app;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
-/*
-    * classe qui permet de créer un adapter
- */
-
-public class CarsAdapter extends BaseAdapter {
+public class BasketAdapter {
     private final String TAG = "Clara + Sabra " + getClass().getSimpleName();
-    private final List<CarsList> carsList;
+    private final List<CarsList> carsInBasket;
     private LayoutInflater mInflater;
     private Clickable callBackActivity;
 
-    public CarsAdapter(List<CarsList> carsList, Clickable clickable) {
-        this.carsList = carsList;
+    public BasketAdapter(List<CarsList> carsInBasket, Clickable clickable) {
+        this.carsInBasket = carsInBasket;
         this.mInflater = LayoutInflater.from(CarsApp.getContext());
         this.callBackActivity = clickable;
     }
-
+/*
     @Override
     public int getCount() {
-        return carsList.size();
+        return carsInBasket.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return carsList.get(position);
+        return carsInBasket.get(position);
     }
 
     @Override
@@ -50,21 +43,20 @@ public class CarsAdapter extends BaseAdapter {
         ConstraintLayout layoutItem;
         layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.ratingbar_layout, parent, false);
 
-        TextView name = layoutItem.findViewById(R.id.name);
-        RatingBar ratingBar = layoutItem.findViewById(R.id.ratingBar);
         ImageView picture = layoutItem.findViewById(R.id.picture);
+        TextView name = layoutItem.findViewById(R.id.name);
+        TextView carPrice = layoutItem.findViewById(R.id.carPrice);
 
-        name.setText(carsList.get(position).getName());
-        Picasso.get().load(carsList.get(position).getPicture()).into(picture);
+        name.setText(carsInBasket.get(position).getName());
+        Picasso.get().load(carsInBasket.get(position).getPicture()).into(picture);
+        carPrice.setText(carsInBasket.get(position).getPrice());
 
-        ratingBar.setOnRatingBarChangeListener((ratingBar1, value, b) -> {
-            callBackActivity.onRatingChanged(position, value);
-        });
 
         layoutItem.setOnClickListener(click -> {
             callBackActivity.onClickItem(position);
         });
         return layoutItem;
 
-    }
-}
+    }*/
+   }
+

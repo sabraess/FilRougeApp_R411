@@ -23,11 +23,9 @@ import java.util.List;
 * permet de filtrer les annonces
  */
 
-public class FilterActivity extends AppCompatActivity {
+public class FilterActivity extends AppCompatActivity implements TaskbarInterface {
     Spinner spinner;
-    RadioGroup radioGroup;
-
-    EditText prixMinEditText, prixMaxEditText;
+    SeekBar priceSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,71 +45,46 @@ public class FilterActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         List<String> brands = new ArrayList<>();
 
-        for(Car car : CarsList.getCarsList()){
+       /** for(Car car : CarsList.getCarsList()){
             if(!brands.contains(car.getBrand())){
                 brands.add(car.getBrand());
             }
-        }
+        }**/
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, brands);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        //pour choisir l'énergie
-        radioGroup = findViewById(R.id.radioGroup);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.essence) {
-                    for(Car car : CarsList.getCarsList()){
-                        if(car.getEnergy().equals("essence")){
-                            System.out.println(car.getName());
-                        }
-                    }
-                } else if(checkedId == R.id.hybride){
-                    for(Car car : CarsList.getCarsList()){
-                        if(car.getEnergy().equals("hybride")){
-                            System.out.println(car.getName());
-                        }
-                    }
-                }
-            }
-        });
-
         //pour choisir le prix
-        prixMinEditText = findViewById(R.id.prixMin);
-        prixMaxEditText = findViewById(R.id.prixMax);
+        SeekBar priceSeekBar = findViewById(R.id.seekbar);
+        priceSeekBar.setMax(3500000);
+        TextView priceTextView = findViewById(R.id.textPrice);
 
-        //pour choisir la vitesse
-        SeekBar vitesseSeekBar = findViewById(R.id.seekbar);
-        vitesseSeekBar.setMax(450);
-        TextView vitesseTextView = findViewById(R.id.textVitesse);
-
-        vitesseSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChangedValue = 0;
+        priceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int price = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChangedValue = progress;
-                vitesseTextView.setText(progressChangedValue + " km/h");
+                price = progress;
+                priceTextView.setText(price + " €");
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                vitesseTextView.setText(progressChangedValue + " km/h");
+                priceTextView.setText(price + " €");
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                vitesseTextView.setText(progressChangedValue + " km/h");
+                priceTextView.setText(price + " €");
             }
         });
 
         //pour rechercher
-        clickButtonSearch();
+       // clickButtonSearch();
     }
 
 
     //action lorsqu'on appuie sur les images
-    private void clickPictureHome(){
+    public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.flecheRetour);
         imageRetour.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
@@ -119,7 +92,7 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
-    private void clickPictureBasket(){
+    public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconPanier);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, BasketActivity.class);
@@ -127,7 +100,7 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
-    private void clickPictureConnection(){
+    public void clickPictureConnection(){
         ImageView imageConnection = findViewById(R.id.iconConnexion);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, ConnectionActivity.class);
@@ -135,56 +108,37 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
-    private void clickButtonSearch(){
+   /** private void clickButtonSearch() {
         Button searchButton = findViewById(R.id.button);
         searchButton.setOnClickListener(v -> {
-            List<Car> carsFilter = new ArrayList<>();
-
-            //récupérer les valeurs des filtres
+            // Récupérer la marque sélectionnée dans le Spinner
             String brand = spinner.getSelectedItem().toString();
-            String energy = "";
-            if(radioGroup.getCheckedRadioButtonId() == R.id.essence){
-                energy = "essence";
-            }else{
-                energy = "hybride";
-            }
 
-            String prixMin = prixMinEditText.getText().toString();
-            String prixMax = prixMaxEditText.getText().toString();
+            // Récupérer le prix maximum souhaité
+            int maxPrice = priceSeekBar.getProgress();
 
-            int vitesseMax = Integer.parseInt(((TextView)findViewById(R.id.textVitesse)).getText().toString().split(" ")[0]);
+            // Filtrer les voitures
+            List<Car> carsFilter = filterCars(CarsList.getCarsList(), brand, maxPrice);
 
-            //filtrer les voitures
-            for (Car car : CarsList.getCarsList()) {
-                // Filtre par marque
-                if (!brand.isEmpty() && !car.getBrand().equals(brand)) {
-                    continue; // Ignore cette voiture si elle ne correspond pas à la marque sélectionnée
-                }
-                // Filtre par type de carburant
-                if (!energy.isEmpty() && !car.getEnergy().equals(energy)) {
-                    continue; // Ignore cette voiture si elle ne correspond pas au type de carburant sélectionné
-                }
-                // Filtre par prix
-                double prix = car.getPrice();
-                if (!prixMin.isEmpty() && prix < Double.parseDouble(prixMin)) {
-                    continue; // Ignore cette voiture si son prix est inférieur au prix minimum spécifié
-                }
-                if (!prixMax.isEmpty() && prix > Double.parseDouble(prixMax)) {
-                    continue; // Ignore cette voiture si son prix est supérieur au prix maximum spécifié
-                }
-                // Filtre par vitesse maximale
-                if (car.getMaxSpeed() > vitesseMax) {
-                    continue; // Ignore cette voiture si sa vitesse maximale est supérieure à la vitesse maximale spécifiée
-                }
-                // Ajoutez la voiture filtrée à la liste des voitures filtrées
-                carsFilter.add(car);
-            }
-
-
+            // Passer les voitures filtrées à HomeActivity
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
             intent.putExtra("carsFilter", carsFilter.toArray(new Car[0]));
             startActivity(intent);
-
         });
+    }**/
+
+    public static List<Car> filterCars(List<Car> cars, String brand, int maxPrice) {
+        List<Car> filteredCars = new ArrayList<>();
+        for (Car car : cars) {
+            if (brand != null && !brand.isEmpty() && !car.getBrand().equals(brand)) {
+                continue;
+            }
+            if (car.getPrice() > maxPrice) {
+                continue;
+            }
+            filteredCars.add(car);
+        }
+        return filteredCars;
     }
+
 }

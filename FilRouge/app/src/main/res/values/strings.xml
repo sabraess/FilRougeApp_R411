@@ -16,6 +16,7 @@
     <string name="price">Prix :  %s €</string>
     <string name="vitesse">Vitesse maximale : %s km/h</string>
     <string name="power">Puissance : %s ch</string>
+    <string name="energy">Energie : %s</string>
 
 
 </resources>

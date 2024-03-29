@@ -1,7 +1,6 @@
 package filrouge.app;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -11,16 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 * author : ESSALAH Sabra
 * Modifié par :
 * vue pour afficher les détails d'une voiture
 */
-public class SelectedCarActivity extends AppCompatActivity {
-    private final String TAG = "Clara " + getClass().getSimpleName();
+public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{
+    private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +29,7 @@ public class SelectedCarActivity extends AppCompatActivity {
         clickPictureBasket();
         clickPictureHome();
 
-        int indexCar = getIntent().getIntExtra("cars", 0);
-        Car car = CarsList.getDisplayCars(indexCar);
+        CarsList car = getIntent().getParcelableExtra("cars");
 
         TextView name = findViewById(R.id.carSelectedName);
         name.setText(car.getName());
@@ -55,11 +51,18 @@ public class SelectedCarActivity extends AppCompatActivity {
         power.setText(getString(R.string.power, String.valueOf(car.getPower())));
 
         TextView energy = findViewById(R.id.carEnergie);
-        energy.setText(car.getEnergy());
+        energy.setText(getString(R.string.energy, car.getEnergy()));
+
     }
+    
+    //quand on appuie sur le bouton ajouter au panier
+   /* public void clickAddToBasket(){
+        ShoppingBasket basket = new ShoppingBasket();
+        basket.addCar();
+    }*/
 
     //action lorsqu'on appuie sur des images
-    private void clickPictureConnection(){
+    public void clickPictureConnection(){
         ImageView imageConnection = findViewById(R.id.iconConnexion);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
@@ -67,7 +70,7 @@ public class SelectedCarActivity extends AppCompatActivity {
         });
     }
 
-    private void clickPictureBasket(){
+    public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconPanier);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, BasketActivity.class);
@@ -75,7 +78,7 @@ public class SelectedCarActivity extends AppCompatActivity {
         });
     }
 
-    private void clickPictureHome(){
+    public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.flecheRetour);
         imageRetour.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, HomeActivity.class);

@@ -1,5 +1,7 @@
 package filrouge.app;
 
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,52 +9,28 @@ import java.util.List;
 * classe qui permet de créer une liste de voitures
 */
 
-public class CarsList {
-    private static List<Car> carsList = new ArrayList<>();
-    private static List<Car> displayCars = new ArrayList<>();
-    private static CarsList instance = null;
-
-
-    public static List<Car> getCarsList() {
-        if (instance == null) {
-            instance = new CarsList();
-        }
-        return carsList;
-    }
-
-    public static List<Car> getDisplayCars() {
-        if (instance == null) {
-            instance = new CarsList();
-        }
-        return displayCars;
-    }
-
-    public static void clearDisplayCars() {
-        if(instance == null){
-            instance = new CarsList();
-        }
-        displayCars.clear();
-    }
-
-    public static void addDisplayCars(Car cars){
-        if(instance == null){
-            instance = new CarsList();
-        }
-        displayCars.add(cars);
-    }
-
-    public static Car getDisplayCars(int index){
-        if(instance == null){
-            instance = new CarsList();
-        }
-        return displayCars.get(index);
-    }
-
-    public static Car getCars(int index){
-        if(instance == null){
-            instance = new CarsList();
-        }
-        return carsList.get(index);
-    }
+public interface CarsList extends Parcelable {
+    int getId();
+    void setId(int id);
+    String getName();
+    void setName(String name);
+    String getBrand();
+    void setBrand(String brand);
+    String getDescription();
+    void setDescription(String description);
+    String getEnergy();
+    void setEnergy(String energy);
+    int getPrice();
+    void setPrice(int price);
+    int getMaxSpeed();
+    void setMaxSpeed(int maxSpeed);
+    int getPower();
+    void setPower(int power);
+    String getPicture();
+    void setPicture(String picture);
+    float getValue();
+    void setValues(float value);
+    @Override
+    String toString();
 
 }

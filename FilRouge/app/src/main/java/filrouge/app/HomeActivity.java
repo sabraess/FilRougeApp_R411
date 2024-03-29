@@ -7,20 +7,24 @@ package filrouge.app;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-
+/*
+* faire une ratingbar COEUR
+*
+* parcelable car singleton me mettais la liste en double ou triple chiant*/
 public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<Car> {
-    private final String TAG = "HomeActivity";
+    private final String TAG = "Clara " + getClass().getSimpleName();
     private CarsAdapter carsAdapter;
 
+    private static final List<CarsList> carsList = new ArrayList<>();
+    private static final List<CarsList> displayCars = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
         String url = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/fichierJson.json";
         new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
+
 
         /*si on clique sur connexion*/
         clickPictureConnection();
@@ -37,43 +42,29 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
         /*si on clique sur le panier*/
         clickPictureBasket();
-
-        // Récupérez les données filtrées
-        /*Car[] carsFiltrees = (Car[]) getIntent().getSerializableExtra("carsFiltrees");
-
-        // Assurez-vous que la liste des voitures n'est pas vide
-        if (carsFiltrees != null && carsFiltrees.length > 0) {
-            // Mettez à jour la liste des voitures affichées dans CarsList avec les voitures filtrées
-            CarsList.clearDisplayCars();
-            for (Car car : carsFiltrees) {
-                CarsList.addDisplayCars(car);
-            }
-
-            // Mettez à jour l'adaptateur avec les nouvelles données filtrées
-            carsAdapter.notifyDataSetChanged();
-        }*/
-
     }
 
     @Override
     public void onClickItem(int itemPosition) {
-        int itemIndex = findIndexInList(itemPosition);
-        Log.d(TAG, "clicked on = " + CarsList.getDisplayCars(itemPosition).getName());
+        CarsList car = carsList.get(itemPosition);
+        //Log.d(TAG, "clicked on = " + CarsList.getDisplayCars(itemPosition).getName());
 
         Intent intent = new Intent(HomeActivity.this, SelectedCarActivity.class);
-        intent.putExtra("cars", itemIndex);
+        intent.putExtra("cars", car);
         startActivity(intent);
     }
 
     /*a revoir cette methode c'est pas la meme avec l'ancienne version*/
+
     @Override
     public void onRatingChanged(int itemPosition, float value) {
+
     }
 
     private int findIndexInList(int index) {
-        Car cars = CarsList.getDisplayCars(index);
-        for(int i = 0; i < CarsList.getCarsList().size(); i++){
-            if(CarsList.getCars(i).getName().equals(cars.getName())){
+        CarsList car = displayCars.get(index);
+        for(int i = 0; i < carsList.size(); i++){
+            if(carsList.get(i).getName().equals(car)){
                 return i;
             }
         }
@@ -106,12 +97,20 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     }
 
     //pour fichier Json
+
     @Override
     public void onPostExecute(List<Car> itemList) {
+        //création des deux listes
+        if (carsList.isEmpty()) {
+            carsList.addAll(itemList);
+        }
+
+        if (displayCars.isEmpty()) {
+            displayCars.addAll(carsList);
+        }
+
         ListView listView = findViewById(R.id.listView);
-        CarsList.getCarsList().addAll(itemList);
-        CarsList.getDisplayCars().addAll(itemList);
-        carsAdapter = new CarsAdapter(CarsList.getDisplayCars(), this);
+        carsAdapter = new CarsAdapter(displayCars, this);
         listView.setAdapter(carsAdapter);
     }
 
@@ -119,7 +118,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
-
 
 
 }

@@ -3,9 +3,11 @@ package filrouge.app;
  * classe qui permet de créer un objet Cars
  */
 
-import java.io.Serializable;
 
-public class Car implements Serializable {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Car  implements CarsList{
     private int id;
     private String name;
     private String brand;
@@ -18,6 +20,19 @@ public class Car implements Serializable {
     private float value; //pour le ratingBar
 
     public Car(){
+    }
+
+    public Car(Parcel in){
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.brand = in.readString();
+        this.description = in.readString();
+        this.energy = in.readString();
+        this.price = in.readInt();
+        this.maxSpeed = in.readInt();
+        this.power = in.readInt();
+        this.picture = in.readString();
+        this.value = in.readFloat();
     }
 
     public int getId(){
@@ -88,4 +103,42 @@ public class Car implements Serializable {
     public String toString(){
         return this.name;
     }
+
+    @Override
+    public int describeContents(){
+        return 0;
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags){
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.brand);
+        dest.writeString(this.description);
+        dest.writeString(this.energy);
+        dest.writeInt(this.price);
+        dest.writeInt(this.maxSpeed);
+        dest.writeInt(this.power);
+        dest.writeString(this.picture);
+        dest.writeFloat(this.value);
+    }
+
+    public static final Parcelable.Creator<Car> CREATOR = new Parcelable.Creator<Car>(){
+
+        @Override
+        public Car createFromParcel(Parcel in){
+            return new Car(in);
+        }
+        @Override
+        public Car[] newArray(int size){
+            return new Car[size];
+        }
+    };
+
+    public static Parcelable.Creator<Car> getCREATOR(){
+        return CREATOR;
+    }
+
+
+
+
 }
