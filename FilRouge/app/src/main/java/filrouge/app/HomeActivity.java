@@ -19,7 +19,7 @@ import java.util.List;
 * faire une ratingbar COEUR
 *
 * parcelable car singleton me mettais la liste en double ou triple chiant*/
-public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<Car> {
+public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<CarsList> {
     private final String TAG = "Clara " + getClass().getSimpleName();
     private CarsAdapter carsAdapter;
 
@@ -54,11 +54,8 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         startActivity(intent);
     }
 
-    /*a revoir cette methode c'est pas la meme avec l'ancienne version*/
 
-    @Override
     public void onRatingChanged(int itemPosition, float value) {
-
     }
 
     private int findIndexInList(int index) {
@@ -99,7 +96,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     //pour fichier Json
 
     @Override
-    public void onPostExecute(List<Car> itemList) {
+    public void onPostExecute(List<CarsList> itemList) {
         //création des deux listes
         if (carsList.isEmpty()) {
             carsList.addAll(itemList);
@@ -118,6 +115,4 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
-
-
 }

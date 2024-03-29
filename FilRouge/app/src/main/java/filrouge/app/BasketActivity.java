@@ -1,5 +1,6 @@
 package filrouge.app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -16,30 +17,27 @@ import java.util.List;
  * permet de voir le panier
  */
 
-public class BasketActivity extends AppCompatActivity implements TaskbarInterface{
+public class BasketActivity extends AppCompatActivity implements TaskbarInterface, PostExecuteActivity<CarsList>{
 
     private final String TAG = "Clara et Sabra " + getClass().getSimpleName();
-    
+    private BasketAdapter basketAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
 
-        ListView listView = findViewById(R.id.listViewPanier);
+        String url = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/fichierJson.json";
+        new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
+
+
+
         TextView totalPrice = findViewById(R.id.prixPanier);
-
-        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
-
         int total = ShoppingBasket.getTotalPrice();
-
         totalPrice.setText(getString(R.string.price, String.valueOf(total)));
 
-
-
-
-
-        // Adapter adapter = new A(CarsList.getDisplayCars(), this);
-       // listView.setAdapter(carsAdapter);
+        clickPictureConnection();
+        clickPictureBasket();
+        clickPictureHome();
 
 
     }
@@ -67,5 +65,18 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
             Intent intent = new Intent(BasketActivity.this, HomeActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onPostExecute(List<CarsList> itemList) {
+        ListView listView = findViewById(R.id.listViewPanier);
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+        basketAdapter = new BasketAdapter(carsInBasket);
+        listView.setAdapter(basketAdapter);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

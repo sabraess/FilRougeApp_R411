@@ -57,9 +57,9 @@ public class CarsAdapter extends BaseAdapter {
         name.setText(carsList.get(position).getName());
         Picasso.get().load(carsList.get(position).getPicture()).into(picture);
 
-        ratingBar.setOnRatingBarChangeListener((ratingBar1, value, b) -> {
+      /*  ratingBar.setOnRatingBarChangeListener((ratingBar1, value, b) -> {
             callBackActivity.onRatingChanged(position, value);
-        });
+        });*/
 
         layoutItem.setOnClickListener(click -> {
             callBackActivity.onClickItem(position);

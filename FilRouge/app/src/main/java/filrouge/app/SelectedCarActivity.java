@@ -3,8 +3,10 @@ package filrouge.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +20,7 @@ import com.squareup.picasso.Picasso;
 */
 public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{
     private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
+    private BasketAdapter basketAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +56,23 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         TextView energy = findViewById(R.id.carEnergie);
         energy.setText(getString(R.string.energy, car.getEnergy()));
 
+        Button buttonBasket = findViewById(R.id.buttonAjouterAuPanier);
+        buttonBasket.setOnClickListener(v -> {
+            clickAddToBasket(car);
+
+        });
+
     }
     
     //quand on appuie sur le bouton ajouter au panier
-   /* public void clickAddToBasket(){
-        ShoppingBasket basket = new ShoppingBasket();
-        basket.addCar();
-    }*/
+    public void clickAddToBasket(CarsList car){
+        addToBasket(car);
+        Toast.makeText(this, "Car added to basket", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addToBasket(CarsList car) {
+        ShoppingBasket.addCar(car);
+    }
 
     //action lorsqu'on appuie sur des images
     public void clickPictureConnection(){
@@ -74,6 +87,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         ImageView iconBasket = findViewById(R.id.iconPanier);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, BasketActivity.class);
+            intent.putExtra("cars", 1);
             startActivity(intent);
         });
     }
