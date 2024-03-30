@@ -38,13 +38,36 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <ImageView
-            android:id="@+id/iconPanier"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/panier"
-            android:layout_marginRight="10dp"
-            android:gravity="right" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+                android:id="@+id/iconPanier"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/panier"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/quantitePanier"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/fond_quantitepanier"
+                android:gravity="center"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="-5sp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iconConnexion"

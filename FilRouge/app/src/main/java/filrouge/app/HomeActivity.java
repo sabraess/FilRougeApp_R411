@@ -7,8 +7,10 @@ package filrouge.app;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +35,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         String url = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/fichierJson.json";
         new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
 
+        updateNumberCars();
 
         /*si on clique sur connexion*/
         clickPictureConnection();
@@ -115,4 +118,18 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
+
+    public void updateNumberCars() {
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+        TextView numberCars = findViewById(R.id.quantitePanier);
+        int nbCars = carsInBasket.size();
+        if (nbCars > 0) {
+            numberCars.setText(String.valueOf(nbCars));
+            numberCars.setVisibility(View.VISIBLE);
+        } else {
+            numberCars.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
 }

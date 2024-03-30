@@ -3,6 +3,7 @@ package filrouge.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 
 /*
 * author : ESSALAH Sabra
@@ -20,12 +23,13 @@ import com.squareup.picasso.Picasso;
 */
 public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{
     private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
-    private BasketAdapter basketAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_car);
+
+        updateNumberCars();
 
         // Appel des méthodes pour les actions
         clickPictureConnection();
@@ -67,6 +71,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
     //quand on appuie sur le bouton ajouter au panier
     public void clickAddToBasket(CarsList car){
         addToBasket(car);
+        updateNumberCars();
         Toast.makeText(this, "Car added to basket", Toast.LENGTH_SHORT).show();
     }
 
@@ -81,6 +86,19 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
             Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void updateNumberCars() {
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+        TextView numberCars = findViewById(R.id.quantitePanier);
+        int nbCars = carsInBasket.size();
+        if (nbCars > 0) {
+            numberCars.setText(String.valueOf(nbCars));
+            numberCars.setVisibility(View.VISIBLE);
+        } else {
+            numberCars.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void clickPictureBasket(){

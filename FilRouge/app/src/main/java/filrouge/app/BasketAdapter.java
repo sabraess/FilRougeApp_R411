@@ -16,13 +16,14 @@ public class BasketAdapter extends BaseAdapter {
     private final String TAG = "Clara + Sabra " + getClass().getSimpleName();
     private final List<CarsList> carsInBasket;
     private LayoutInflater mInflater;
+    private Clickable callBackActivity;
 
 
-    public BasketAdapter(List<CarsList> carsInBasket) {
+    public BasketAdapter(List<CarsList> carsInBasket, Clickable clickable) {
         this.carsInBasket = carsInBasket;
         this.mInflater = LayoutInflater.from(CarsApp.getContext());
+        this.callBackActivity = clickable;
     }
-
 
     @Override
     public int getCount() {
@@ -51,6 +52,9 @@ public class BasketAdapter extends BaseAdapter {
         Picasso.get().load(carsInBasket.get(position).getPicture()).into(picture);
         carPrice.setText(carsInBasket.get(position).getPrice());
 
+        layoutItem.setOnClickListener(click -> {
+            callBackActivity.onClickItem(position);
+        });
         return layoutItem;
 
     }

@@ -2,6 +2,7 @@ package filrouge.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,13 +25,21 @@ import java.util.List;
  */
 
 public class FilterActivity extends AppCompatActivity implements TaskbarInterface {
-    Spinner spinner;
-    SeekBar priceSeekBar;
+    private Spinner spinner;
+    private SeekBar priceSeekBar;
+
+    private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
+
+
+    private static List<CarsList> carsList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
+
+        updateNumberCars();
 
         /*pour retourner à l'accueil*/
         clickPictureHome();
@@ -45,11 +54,12 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         spinner = findViewById(R.id.spinner);
         List<String> brands = new ArrayList<>();
 
-       /** for(Car car : CarsList.getCarsList()){
-            if(!brands.contains(car.getBrand())){
+        // Récupérer la liste des marques distinctes des voitures
+        for (CarsList car : carsList) {
+            if (!brands.contains(car.getBrand())) {
                 brands.add(car.getBrand());
             }
-        }**/
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, brands);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -79,7 +89,7 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         });
 
         //pour rechercher
-       // clickButtonSearch();
+       clickButtonSearch();
     }
 
 
@@ -108,7 +118,20 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         });
     }
 
-   /** private void clickButtonSearch() {
+    @Override
+    public void updateNumberCars() {
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+        TextView numberCars = findViewById(R.id.quantitePanier);
+        int nbCars = carsInBasket.size();
+        if (nbCars > 0) {
+            numberCars.setText(String.valueOf(nbCars));
+            numberCars.setVisibility(View.VISIBLE);
+        } else {
+            numberCars.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void clickButtonSearch() {
         Button searchButton = findViewById(R.id.button);
         searchButton.setOnClickListener(v -> {
             // Récupérer la marque sélectionnée dans le Spinner
@@ -118,27 +141,29 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
             int maxPrice = priceSeekBar.getProgress();
 
             // Filtrer les voitures
-            List<Car> carsFilter = filterCars(CarsList.getCarsList(), brand, maxPrice);
+            List<CarsList> filteredCars = filterCars(carsList, brand, maxPrice);
 
             // Passer les voitures filtrées à HomeActivity
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
-            intent.putExtra("carsFilter", carsFilter.toArray(new Car[0]));
+            intent.putExtra("carsFilter", filteredCars.toArray(new CarsList[0]));
             startActivity(intent);
         });
-    }**/
-
-    public static List<Car> filterCars(List<Car> cars, String brand, int maxPrice) {
-        List<Car> filteredCars = new ArrayList<>();
-        for (Car car : cars) {
-            if (brand != null && !brand.isEmpty() && !car.getBrand().equals(brand)) {
-                continue;
-            }
-            if (car.getPrice() > maxPrice) {
-                continue;
-            }
-            filteredCars.add(car);
-        }
-        return filteredCars;
     }
+
+
+    public static List<CarsList> filterCars(List<CarsList> cars, String brand, int maxPrice) {
+       List<CarsList> filteredCars = new ArrayList<>();
+       for (CarsList car : cars) {
+           if (brand != null && !brand.isEmpty() && !car.getBrand().equals(brand)) {
+               continue;
+           }
+           if (car.getPrice() > maxPrice) {
+               continue;
+           }
+           filteredCars.add(car);
+       }
+       return filteredCars;
+   }
+
 
 }
