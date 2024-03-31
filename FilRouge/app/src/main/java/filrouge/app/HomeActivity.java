@@ -1,9 +1,5 @@
 package filrouge.app;
-/*
-* author : TORRI Clara
-* Modifié par : TORRI Clara
-*  vue accueil
-* */
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,65 +10,55 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 /*
-* faire une ratingbar COEUR
+* author : TORRI Clara et ESSALAH Sabra
+* vue qui de l'acceuil de l'application elle affiche la liste des voitures
 *
-* parcelable car singleton me mettais la liste en double ou triple chiant*/
+* on a choisis d'utiliser finalement parcelable car lorsque j'ai commencé le code j'ai
+* voulu faire les lien entre activité avec Singleton mais le probleme
+* c'est que quand on etait dans d'autre activité et qu'on veut retourner au niveau
+* il va créer une nouvelle liste qui va se rajouter a la liste de base ainsi a la fin
+* on se retrouve avec une liste dupliquer.
+* Alors qu'avec parcelable y a plus ce pobleme vu qu'on gère grace à des listes*/
 public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<CarsList> {
-    private final String TAG = "Clara " + getClass().getSimpleName();
-    private CarsAdapter carsAdapter;
-
-    private static final List<CarsList> carsList = new ArrayList<>();
-    private static final List<CarsList> displayCars = new ArrayList<>();
+    private static List<CarsList> carsList = new ArrayList<>(); /*liste de base*/
+    private static List<CarsList> displayCars = new ArrayList<>();/*liste affiché*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        /*pour recuperer l'url des données du json*/
         String url = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/fichierJson.json";
         new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
 
+        /*met a jour le nb de voiture dans le textView du panier*/
         updateNumberCars();
 
-        /*si on clique sur connexion*/
-        clickPictureConnection();
 
-        /*si on clique sur filtre*/
-        clickPictureFilter();
-
-        /*si on clique sur le panier*/
-        clickPictureBasket();
+        clickPictureConnection(); /*si on clique sur connexion*/
+        clickPictureFilter(); /*si on clique sur filtre*/
+        clickPictureBasket(); /*si on clique sur le panier*/
     }
 
+    /*action lorsqu'on appuie sur une voiture, ça redirige vers l'activité SeletedCarsActivity */
     @Override
     public void onClickItem(int itemPosition) {
         CarsList car = carsList.get(itemPosition);
-        //Log.d(TAG, "clicked on = " + CarsList.getDisplayCars(itemPosition).getName());
-
         Intent intent = new Intent(HomeActivity.this, SelectedCarActivity.class);
         intent.putExtra("cars", car);
         startActivity(intent);
     }
 
-
     public void onRatingChanged(int itemPosition, float value) {
     }
 
-    private int findIndexInList(int index) {
-        CarsList car = displayCars.get(index);
-        for(int i = 0; i < carsList.size(); i++){
-            if(carsList.get(i).getName().equals(car)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
     //action lorsqu'on appuie sur des images
-    private void clickPictureConnection(){
+    public void clickPictureConnection(){
         ImageView imageConnection = findViewById(R.id.iconConnexion);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
@@ -80,7 +66,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         });
     }
 
-    private void clickPictureBasket(){
+    public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconPanier);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, BasketActivity.class);
@@ -88,37 +74,39 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         });
     }
 
-    private void clickPictureFilter(){
-        ImageView imageFilter = findViewById(R.id.iconFiltre);
+    public void clickPictureFilter(){
+        ImageView imageFilter = findViewById(R.id.iconFiltered);
         imageFilter.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
+            //intent.putExtra("cars", (CarsList) carsList);
             startActivity(intent);
         });
     }
 
-    //pour fichier Json
-
+    /*affiche la liste des voitures*/
     @Override
     public void onPostExecute(List<CarsList> itemList) {
         //création des deux listes
-        if (carsList.isEmpty()) {
-            carsList.addAll(itemList);
-        }
+        if (carsList.isEmpty()) { carsList.addAll(itemList); }
 
-        if (displayCars.isEmpty()) {
-            displayCars.addAll(carsList);
-        }
+        if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
 
         ListView listView = findViewById(R.id.listView);
-        carsAdapter = new CarsAdapter(displayCars, this);
+        CarsAdapter carsAdapter = new CarsAdapter(displayCars, this);
         listView.setAdapter(carsAdapter);
+
+        //list filtré
+       /* List<CarsList> filterCars = getIntent().getParcelableArrayListExtra("filteredCars");
+        if(filterCars != null && !filterCars.isEmpty()){
+            displayCars.clear();
+            displayCars.addAll(filterCars);
+        }
+
+        carsAdapter.notifyDataSetChanged();*/
+
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-        super.onPointerCaptureChanged(hasCapture);
-    }
-
+    /*met a jour le nb de voiture dans le textView du panier*/
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
         TextView numberCars = findViewById(R.id.quantitePanier);

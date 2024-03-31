@@ -44,12 +44,12 @@ public class BasketAdapter extends BaseAdapter {
         ConstraintLayout layoutItem;
         layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.listview_basket, parent, false);
 
-        ImageView picture = layoutItem.findViewById(R.id.picture);
-        TextView name = layoutItem.findViewById(R.id.name);
+        ImageView picture = layoutItem.findViewById(R.id.pictureCar);
+        TextView name = layoutItem.findViewById(R.id.nameCar);
         TextView carPrice = layoutItem.findViewById(R.id.carPrice);
 
-        name.setText(carsInBasket.get(position).getName());
         Picasso.get().load(carsInBasket.get(position).getPicture()).into(picture);
+        name.setText(carsInBasket.get(position).getName());
         carPrice.setText(carsInBasket.get(position).getPrice());
 
         layoutItem.setOnClickListener(click -> {

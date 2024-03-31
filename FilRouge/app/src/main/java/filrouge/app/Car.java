@@ -17,6 +17,7 @@ public class Car  implements CarsList{
     private int maxSpeed;
     private int power;
     private String picture;
+    private String[] pictureAnimation;
     private float value; //pour le ratingBar
 
     public Car(){

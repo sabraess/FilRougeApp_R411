@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/picture"
+        android:id="@+id/pictureCarAnimation"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/icone_cars"
@@ -29,7 +29,7 @@
 
 
     <ImageView
-        android:id="@+id/arrivee"
+        android:id="@+id/flag"
         android:layout_width="50dp"
         android:layout_height="25dp"
         android:background="@drawable/drapeau_arrivee"

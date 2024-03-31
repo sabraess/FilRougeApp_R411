@@ -9,14 +9,18 @@
     <string name="signUp">Pas encore inscrit ? S\'inscrire</string>
 
     // Vue panier
-    <string name="titrePanier">Panier</string>
-    <string name="totalPanier">Total : </string>
+    <string name="titleBasket">Panier</string>
+    <string name="totalBasket">Total: %s € </string>
 
     //vue voiture selectionné
+    <string name="opinion">Avis</string>
     <string name="price">Prix :  %s €</string>
-    <string name="vitesse">Vitesse maximale : %s km/h</string>
+    <string name="speed">Vitesse maximale : %s km/h</string>
     <string name="power">Puissance : %s ch</string>
     <string name="energy">Energie : %s</string>
+    <string name="addBasket">Ajouter au panier</string>
 
+    //vue home
+    <string name="filterTitle">Filtre</string>
 
 </resources>

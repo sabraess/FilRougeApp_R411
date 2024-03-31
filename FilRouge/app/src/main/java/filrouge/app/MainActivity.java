@@ -1,5 +1,8 @@
 package filrouge.app;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -19,28 +22,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //initialisation de l'animation
-        Animation startAnimation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.exit_cars);
-
         //initialisation de l'image et lancement de l'animation sur l'image
-        ImageView imageView = findViewById(R.id.picture);
-        imageView.startAnimation(startAnimation);
+        ImageView imageView = findViewById(R.id.pictureCarAnimation);
 
-        startAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
+        //creer objet animation
+        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, "translationX", 0f, 1000f);
+        animator.setDuration(4000);
 
+        //lancer l'animation
+        animator.start();
+
+        //apres la fin de l'animation, on lance l'activité HomeActivity
+        animator.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animation animation) {
-                //lancement de l'activité HomeActivity
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
         });
     }
 }

@@ -41,7 +41,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
-                android:id="@+id/iconPanier"
+                android:id="@+id/iconBasket"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/panier"
@@ -49,7 +49,7 @@
                 android:layout_gravity="center_vertical" />
 
             <TextView
-                android:id="@+id/quantitePanier"
+                android:id="@+id/nbCarInBasket"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:background="@drawable/fond_quantitepanier"
@@ -63,7 +63,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/iconConnexion"
+            android:id="@+id/iconConnection"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="right"
@@ -75,14 +75,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/filtre"
+        android:id="@+id/filtered"
         android:layout_margin="10dp"
         android:background="@drawable/fond_linearlayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintLeft_toLeftOf="parent">
 
         <ImageView
-            android:id="@+id/iconFiltre"
+            android:id="@+id/iconFiltered"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="5dp"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Filtre"
+            android:id="@+id/textFilter"
             android:textSize="18dp" />
     </LinearLayout>
 
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:choiceMode="singleChoice"
-        app:layout_constraintTop_toBottomOf="@id/filtre"
+        app:layout_constraintTop_toBottomOf="@id/filtered"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">

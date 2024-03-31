@@ -10,6 +10,10 @@ public class ShoppingBasket {
         carsInBasket.add(car);
     }
 
+    public static void removeCar(int position) {
+        carsInBasket.remove(position);
+    }
+
     public static List<CarsList> getCarsInBasket() {
         return carsInBasket;
     }
