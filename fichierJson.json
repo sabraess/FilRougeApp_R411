@@ -8,8 +8,7 @@
     "maxSpeed": 370,
     "power": 963,
     "energy": "Hybride",
-    "picture": "laferrari.jpg",    
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]      
+    "picture": "laferrari.jpg"     
   },
   {
     "id": 2,
@@ -20,8 +19,7 @@
     "maxSpeed": 296,
     "power": 525,
     "energy": "Essence",
-    "picture": "porsche.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "porsche.jpg"  
   },
   {
     "id": 3,
@@ -32,8 +30,7 @@
     "maxSpeed": 161,
     "power": 217,
     "energy": "Hybride",
-    "picture": "hyundaikona.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "hyundaikona.jpg"    
   },
   {
     "id": 4,
@@ -44,8 +41,7 @@
     "maxSpeed": 355,
     "power": 1014,
     "energy": "Essence",
-    "picture": "astonmartinvalkyrie.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]
+    "picture": "astonmartinvalkyrie.jpg"
   },
   {
     "id": 5,
@@ -56,8 +52,7 @@
     "maxSpeed": 335,
     "power": 558,
     "energy": "Essence",
-    "picture": "bentleycontinentalgt.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "bentleycontinentalgt.jpg"   
   },
   {
     "id": 6,
@@ -68,8 +63,7 @@
     "maxSpeed": 350,
     "power": 780,
     "energy": "Essence",
-    "picture": "lamborghiniaventador.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "lamborghiniaventador.jpg"   
   },
   {
     "id": 7,
@@ -80,8 +74,7 @@
     "maxSpeed": 250,
     "power": 571,
     "energy": "Essence",
-    "picture": "rollsroycephantom.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "rollsroycephantom.jpg"   
   },
   {
     "id": 8,
@@ -92,8 +85,7 @@
     "maxSpeed": 420,
     "power": 1500,
     "energy": "Essence",
-    "picture": "bugattichiron.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "bugattichiron.jpg"    
   },
   {
     "id": 9,
@@ -104,8 +96,7 @@
     "maxSpeed": 314,
     "power": 420,
     "energy": "Essence",
-    "picture": "astonmartinvantage.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "astonmartinvantage.jpg"    
   },
   {
     "id": 10,
@@ -116,7 +107,6 @@
     "maxSpeed": 330,
     "power": 830,
     "energy": "Hybride",
-    "picture": "ferrari296gtb.jpg",
-    "pictureAnimation" :[ "laferrari1.jpg", "laferrari2","laferrari3","laferrari4"]    
+    "picture": "ferrari296gtb.jpg"    
   }
 ]
