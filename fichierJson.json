@@ -36,7 +36,7 @@
     "id": 4,
     "name": "Aston Martin Valkyrie",
     "brand": "Aston Martin",
-    "description": "Performances de niveau compétition, avec une puissance impressionnante et un poids minimal. Design aérodynamique et construction en fibre de carbone, avec des caractéristiques qui se rapprochent de celles d'une voiture de Formule 1.",
+    "description": "Performances de niveau compétition, avec une puissance impressionnante et un poids minimal avec des caractéristiques qui se rapprochent de celles d'une voiture de Formule 1.",
     "price": 2500000,
     "maxSpeed": 355,
     "power": 1014,
