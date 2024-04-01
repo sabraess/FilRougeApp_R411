@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 /**
@@ -28,6 +31,8 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     private CarsAdapter adapter;
     private List<CarsList> carsInBasket;
     private TextView numberCars;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +40,10 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         setContentView(R.layout.activity_basket);
 
         carsInBasket = ShoppingBasket.getCarsInBasket();
-        /*affiche la liste des voitures*/
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
+        /*affiche la liste des voitures*/
         ListView listView = findViewById(R.id.listViewPanier);
         adapter = new CarsAdapter(carsInBasket, this);
         listView.setAdapter(adapter);
@@ -44,18 +51,22 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         //aide
         animationHelp();
 
-        /*mettre a jour le nombre de voiture dans le panier*/
+        /*mettre à jour le nombre de voiture dans le panier*/
         numberCars = findViewById(R.id.nbCarInBasket);
         updateNumberCars();
 
-        /*pour mettre a jour le prix total du panier*/
+        /*pour mettre à jour le prix total du panier*/
         updatePrice();
 
         /*si on appuie sur le bouton payer ça met un text pour confirmer puis ça enlève tout  */
         Button buttonPaid = findViewById(R.id.buttonBuy);
         buttonPaid.setOnClickListener(v -> {
-            Toast.makeText(this, "Merci pour votre achat", Toast.LENGTH_SHORT).show();
-            clear();
+            if(user == null) {
+                showLoginDialog();
+            }else{
+                Toast.makeText(this, "Merci pour votre achat", Toast.LENGTH_SHORT).show();
+                clear();
+            }
         });
 
         /*si on clique sur les images*/
@@ -101,12 +112,21 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     }
 
     //action lorsqu'on appuie sur des images
-    public void clickPictureConnection() {
+    public void clickPictureConnection(){
         ImageView imageConnection = findViewById(R.id.iconConnection);
-        imageConnection.setOnClickListener(v -> {
-            Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
-            startActivity(intent);
-        });
+
+        if (user == null ) {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
+                startActivity(intent);
+            });
+        }
+        else {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(BasketActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     public void clickPictureBasket() {
@@ -155,6 +175,21 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
                         dialog.dismiss();
                         // Redémarrer l'animation après la fermeture de l'AlertDialog
                         animator.start();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    /*affiche se connecter dans une alert dialog*/
+    private void showLoginDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(BasketActivity.this);
+        builder.setMessage("Vous devez vous connecter ou inscrire pour payer")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
                 });
         AlertDialog alert = builder.create();

@@ -1,5 +1,6 @@
 package filrouge.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -45,9 +46,10 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         minPrice = findViewById(R.id.editTextMin);
         maxPrice = findViewById(R.id.editTextMax);
         radioGroup = findViewById(R.id.radioGroup);
+        searchBouton = findViewById(R.id.button);
 
         /*on recupere la liste des voitures  */
-        carsList = getIntent().getParcelableExtra("cars");
+        carsList = getIntent().getParcelableArrayListExtra("cars");
 
         updateNumberCars(); /*met à jour l'affiche du nb d'article dans le panier*/
         clickPictureHome(); /*pour retourner à l'accueil*/
@@ -56,10 +58,9 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
 
         /*pour choisir la marque*/
         List<String> brands = new ArrayList<>();
-
+        brands.add("Tous");
         // Récupérer la liste des marques distinctes des voitures
         for (CarsList car : carsList) {
-            brands.add("Toutes les marques");
             if (!brands.contains(car.getBrand())) {
                 brands.add(car.getBrand());
             }
@@ -74,9 +75,18 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         String brand = spinner.getSelectedItem().toString();
 
         //pour choisir le prix
-        int priceMin = Integer.parseInt(minPrice.getText().toString());
-        int priceMax = Integer.parseInt(maxPrice.getText().toString());
+        int priceMin = 0;
+        int priceMax = 0;
 
+        String minPriceString = minPrice.getText().toString();
+        String maxPriceString = maxPrice.getText().toString();
+
+        if (!minPriceString.isEmpty()) {
+            priceMin = Integer.parseInt(minPriceString);
+        }
+        if (!maxPriceString.isEmpty()) {
+            priceMax = Integer.parseInt(maxPriceString);
+        }
 
         //pour choisir l'energie
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
@@ -152,15 +162,19 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
             // Passer les voitures filtrées à HomeActivity
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
             intent.putParcelableArrayListExtra("filteredCars", (ArrayList<? extends Parcelable>) filteredCars);
-            startActivity(intent);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
     }
 
     /*filtrer les voitures*/
     public static List<CarsList> filterCars(List<CarsList> cars, String brand,int priceMin, int priceMax, String choiceEnergy) {
-       for (CarsList car : cars) {
-           if (brand != null && !brand.isEmpty() && !car.getBrand().equals(brand)) {
-               continue;
+        filteredCars = new ArrayList<>();
+        for (CarsList car : cars) {
+           if (brand != null && !brand.isEmpty() && !brand.equals("Tous")) {
+               if(!car.getBrand().equals(brand)){
+                   continue;
+               }
            }
            if (priceMin > 0 && car.getPrice() < priceMin) {
                continue;

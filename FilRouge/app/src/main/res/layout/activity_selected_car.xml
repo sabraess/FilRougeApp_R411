@@ -189,6 +189,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/addBasket"
+        android:textColor="@color/darkGrey"
+        android:backgroundTint="@color/grey"
+        android:fontFamily="@font/calistoga"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

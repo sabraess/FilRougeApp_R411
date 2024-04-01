@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,13 +20,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
 /*
 * auteur : Clara et Sabra
 * modifié par : Clara
 * vue qui affiche le profil de l'utilisateur grâce a firebase
 */
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements TaskbarInterface{
     FirebaseAuth mAuth;
     Button decoButton;
     TextView emailTV;
@@ -51,12 +54,70 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        clickPictureBasket();
+        clickPictureHome();
+        clickPictureConnection();
+        updateNumberCars();
     }
 
     /*pour afficher l'email de l'utilisateur*/
     private void setTextUserData(FirebaseUser user){
         if (user != null) {
             emailTV.setText(user.getEmail());
+        }
+    }
+
+    @Override
+    public void clickPictureHome(){
+        ImageView imageRetour = findViewById(R.id.returnHome);
+        imageRetour.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void clickPictureBasket(){
+        ImageView iconBasket = findViewById(R.id.iconBasket);
+        iconBasket.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, BasketActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void clickPictureConnection(){
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        ImageView imageConnection = findViewById(R.id.iconConnection);
+
+        if (user == null ) {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(ProfileActivity.this, ConnectionActivity.class);
+                startActivity(intent);
+            });
+        }
+        else {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+        }
+    }
+
+    @Override
+    /*met a jour le nb de voiture dans le textView du panier*/
+    public void updateNumberCars() {
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+        TextView numberCars = findViewById(R.id.nbCarInBasket);
+        int nbCars = carsInBasket.size();
+        if (nbCars > 0) {
+            numberCars.setText(String.valueOf(nbCars));
+            numberCars.setVisibility(View.VISIBLE);
+        } else {
+            numberCars.setVisibility(View.INVISIBLE);
         }
     }
 }

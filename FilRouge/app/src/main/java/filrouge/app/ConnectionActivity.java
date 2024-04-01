@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,12 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.ktx.Firebase;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -30,7 +28,8 @@ import java.util.List;
 * vue pour se connecter avec un email et un mot de passe grace à firebase
 */
 
-public class ConnectionActivity extends AppCompatActivity {
+public class ConnectionActivity extends AppCompatActivity implements TaskbarInterface{
+    FirebaseUser user;
 
     private static final int RC_SIGN_IN = 123;
     private Button loginButton;
@@ -102,6 +101,12 @@ public class ConnectionActivity extends AppCompatActivity {
                         });
             }
         });
+
+        clickPictureHome();
+        clickPictureBasket();
+        clickPictureConnection();
+
+        updateNumberCars();
     }
 
     /*methode pour lancer l'activité de connexion*/
@@ -117,5 +122,56 @@ public class ConnectionActivity extends AppCompatActivity {
                         .setIsSmartLockEnabled(false, true)
                         .build(),
                 RC_SIGN_IN);
+    }
+
+    @Override
+    public void clickPictureHome(){
+        ImageView imageRetour = findViewById(R.id.returnHome);
+        imageRetour.setOnClickListener(v -> {
+            Intent intent = new Intent(ConnectionActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void clickPictureBasket(){
+        ImageView iconBasket = findViewById(R.id.iconBasket);
+        iconBasket.setOnClickListener(v -> {
+            Intent intent = new Intent(ConnectionActivity.this, BasketActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void clickPictureConnection(){
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        ImageView imageConnection = findViewById(R.id.iconConnection);
+
+        if (user == null ) {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(ConnectionActivity.this, ConnectionActivity.class);
+                startActivity(intent);
+            });
+        }
+        else {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(ConnectionActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+        }
+    }
+
+    @Override
+    public void updateNumberCars() {
+        List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
+        TextView numberCars = findViewById(R.id.nbCarInBasket);
+        int nbCars = carsInBasket.size();
+        if (nbCars > 0) {
+            numberCars.setText(String.valueOf(nbCars));
+            numberCars.setVisibility(View.VISIBLE);
+        } else {
+            numberCars.setVisibility(View.INVISIBLE);
+        }
     }
 }

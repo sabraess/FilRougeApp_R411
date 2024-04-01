@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.List;
 * vue pour afficher les détails d'une voiture
 */
 public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,11 +96,23 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
     * pour revenir à l'accueil
     * */
     public void clickPictureConnection(){
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
         ImageView imageConnection = findViewById(R.id.iconConnection);
-        imageConnection.setOnClickListener(v -> {
-            Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
-            startActivity(intent);
-        });
+
+        if (user == null ) {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
+                startActivity(intent);
+            });
+        }
+        else {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(SelectedCarActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     public void clickPictureBasket(){
