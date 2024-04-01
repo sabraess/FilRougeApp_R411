@@ -15,8 +15,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /*
-    * classe qui permet de créer un adapter
- */
+* auteur : ESSALAH Sabra et TORRI Clara
+* modifié par : clara
+* classe qui permet de créer un adapter pour afficher la liste des voitures
+*/
 
 public class CarsAdapter extends BaseAdapter {
     private final String TAG = "Clara + Sabra " + getClass().getSimpleName();
@@ -50,9 +52,9 @@ public class CarsAdapter extends BaseAdapter {
         ConstraintLayout layoutItem;
         layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.ratingbar_layout, parent, false);
 
-        TextView name = layoutItem.findViewById(R.id.name);
+        TextView name = layoutItem.findViewById(R.id.nameCar);
         RatingBar ratingBar = layoutItem.findViewById(R.id.ratingBar);
-        ImageView picture = layoutItem.findViewById(R.id.picture);
+        ImageView picture = layoutItem.findViewById(R.id.pictureCar);
 
         name.setText(carsList.get(position).getName());
         Picasso.get().load(carsList.get(position).getPicture()).into(picture);

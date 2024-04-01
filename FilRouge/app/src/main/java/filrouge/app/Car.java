@@ -1,11 +1,17 @@
 package filrouge.app;
 /*
- * classe qui permet de créer un objet Cars
+ * auteur : clara et sabra
+ * Modifié par: clara
+ *
+ * classe qui permet de créer un objet Car qui contient les informations d'une voiture
+ * elle implémente l'interface CarsList
+ * elle implémente Parcelable pour pouvoir passer un objet de type Car entre les activités
  */
-
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -101,6 +107,7 @@ public class Car implements CarsList{
         this.picture = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/imagesfilrouge/" + picture;
     }
 
+    @NonNull
     @Override
     public String toString(){
         return this.name;

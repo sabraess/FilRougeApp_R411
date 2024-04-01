@@ -1,8 +1,5 @@
 package filrouge.app;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 /**
- * Author: TORRI Clara
- * Modifier par:
+ * Auteur: TORRI Clara et ESSALAH Sabra
+ * Modifié par : clara
  * permet de voir le panier
  */
 
@@ -48,14 +45,14 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         animationHelp();
 
         /*mettre a jour le nombre de voiture dans le panier*/
-        numberCars = findViewById(R.id.quantitePanier);
+        numberCars = findViewById(R.id.nbCarInBasket);
         updateNumberCars();
 
         /*pour mettre a jour le prix total du panier*/
         updatePrice();
 
         /*si on appuie sur le bouton payer ça met un text pour confirmer puis ça enlève tout  */
-        Button buttonPaid = findViewById(R.id.payer);
+        Button buttonPaid = findViewById(R.id.buttonBuy);
         buttonPaid.setOnClickListener(v -> {
             Toast.makeText(this, "Merci pour votre achat", Toast.LENGTH_SHORT).show();
             clear();
@@ -86,20 +83,10 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
 
     /*mettre à jour le prix*/
     public void updatePrice() {
-        TextView totalPrice = findViewById(R.id.prixPanier);
+        TextView totalPrice = findViewById(R.id.priceBasket);
         int total = ShoppingBasket.getTotalPrice();
         totalPrice.setText(getString(R.string.price, String.valueOf(total)));
     }
-
-    /*public void clickPictureBin(int itemPosition){
-        ImageView imageBin = findViewById(R.id.iconBin);
-        imageBin.setOnClickListener(v -> {
-            CarsList car = carsInBasket.get(itemPosition);
-            carsInBasket.remove(car);
-            updatePrice();
-            updateNumberCars();
-        });
-    }*/
 
 
     /*afficher nb d'élément dans le fichier*/
@@ -115,7 +102,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
 
     //action lorsqu'on appuie sur des images
     public void clickPictureConnection() {
-        ImageView imageConnection = findViewById(R.id.iconConnexion);
+        ImageView imageConnection = findViewById(R.id.iconConnection);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
             startActivity(intent);
@@ -123,7 +110,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     }
 
     public void clickPictureBasket() {
-        ImageView iconBasket = findViewById(R.id.iconPanier);
+        ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(BasketActivity.this, BasketActivity.class);
             startActivity(intent);
@@ -131,7 +118,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     }
 
     public void clickPictureHome() {
-        ImageView imageRetour = findViewById(R.id.flecheRetour);
+        ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
             Intent intent = new Intent(BasketActivity.this, HomeActivity.class);
             startActivity(intent);
@@ -140,7 +127,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
 
     /*fait l'animation du bouton help et affiche l'aide*/
     public void animationHelp() {
-        final ImageView imageHelp = findViewById(R.id.aide);
+        final ImageView imageHelp = findViewById(R.id.iconHelp);
         final ObjectAnimator animator = ObjectAnimator.ofFloat(imageHelp, "translationY", 0f, 10f);
         animator.setDuration(4000);
         animator.setInterpolator(new BounceInterpolator());
@@ -157,6 +144,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         });
     }
 
+    /*affiche l'aide dans une alert dialog*/
     private void showAlertDialog(final ObjectAnimator animator) {
         AlertDialog.Builder builder = new AlertDialog.Builder(BasketActivity.this);
         builder.setMessage("Pour supprimer un produit, cliquez sur celui-ci")

@@ -14,8 +14,8 @@ import java.util.List;
 
 
 /*
-* author : ESSALAH Sabra et TORRI Clara
-* Modifié par : ESSALAH Sabra et TORRI Clara
+* auteur : ESSALAH Sabra et TORRI Clara
+* Modifié par : Clara
 * vue pour afficher les détails d'une voiture
 */
 public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{

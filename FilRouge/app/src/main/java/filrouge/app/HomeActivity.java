@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* author : TORRI Clara et ESSALAH Sabra
-* vue qui de l'acceuil de l'application elle affiche la liste des voitures
+* auteur : TORRI Clara et ESSALAH Sabra
+* Modifié par : clara
+* vue qui de l'accueil de l'application elle affiche la liste des voitures
+*
 *
 * on a choisis d'utiliser finalement parcelable car lorsque j'ai commencé le code j'ai
 * voulu faire les lien entre activité avec Singleton mais le probleme

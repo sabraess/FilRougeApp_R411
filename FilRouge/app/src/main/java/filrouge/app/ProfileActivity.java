@@ -19,9 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
+/*
+* auteur : Clara et Sabra
+* modifié par : Clara
+* vue qui affiche le profil de l'utilisateur grâce a firebase
+*/
 
 public class ProfileActivity extends AppCompatActivity {
-
     FirebaseAuth mAuth;
     Button decoButton;
     TextView emailTV;
@@ -38,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         setTextUserData(user);
 
+        /*pour la deconnexion*/
         decoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,14 +51,12 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
+    /*pour afficher l'email de l'utilisateur*/
     private void setTextUserData(FirebaseUser user){
-
         if (user != null) {
             emailTV.setText(user.getEmail());
         }
-
     }
 }

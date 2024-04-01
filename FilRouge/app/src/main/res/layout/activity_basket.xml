@@ -12,23 +12,25 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:background="@color/grey"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
         <ImageView
-            android:id="@+id/flecheRetour"
+            android:id="@+id/returnHome"
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:src="@drawable/fleche_retour"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:gravity="right" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
+            android:fontFamily="@font/calistoga"
+            android:layout_marginStart="90dp"
             android:text="@string/appTitle"
             android:textSize="24sp" />
 
@@ -47,20 +49,21 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
-                android:id="@+id/iconPanier"
+                android:id="@+id/iconBasket"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/panier"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_gravity="center_vertical" />
 
             <TextView
-                android:id="@+id/quantitePanier"
+                android:id="@+id/nbCarInBasket"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:background="@drawable/fond_quantitepanier"
                 android:gravity="center"
                 android:layout_marginStart="15sp"
+                android:fontFamily="@font/calistoga"
                 android:layout_marginTop="-5sp"
                 android:text="0"
                 android:textColor="@color/white"
@@ -69,12 +72,12 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/iconConnexion"
+            android:id="@+id/iconConnection"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="right"
             android:src="@drawable/connexion"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginEnd="10dp"/>
 
 
     </LinearLayout>
@@ -84,6 +87,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/titleBasket"
         android:text="@string/titleBasket"
+        android:fontFamily="@font/calistoga"
         android:textSize="40sp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,7 +95,7 @@
 
 
     <ImageView
-        android:id="@+id/aide"
+        android:id="@+id/iconHelp"
         android:layout_width="0dp"
         android:layout_height="15dp"
         android:layout_marginStart="100dp"
@@ -112,9 +116,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/prixPanier"
+        android:id="@+id/priceBasket"
         android:text="@string/totalBasket"
         android:textSize="20dp"
+        android:fontFamily="@font/calistoga"
         android:layout_margin="30dp"
         app:layout_constraintTop_toBottomOf="@+id/listViewPanier"
         app:layout_constraintRight_toRightOf="parent"
@@ -123,8 +128,8 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/payer"
-        android:text="Payer"
+        android:id="@+id/buttonBuy"
+        android:text="@string/buttonBuy"
         android:layout_marginBottom="105dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

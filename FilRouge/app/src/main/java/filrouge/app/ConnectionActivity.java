@@ -24,27 +24,24 @@ import com.google.firebase.ktx.Firebase;
 import java.util.Collections;
 import java.util.List;
 
-
-
 /*
-* author :
+* auteur : clara et sabra
 * Modifié par : Sabra
-* vue pour se connecter
+* vue pour se connecter avec un email et un mot de passe grace à firebase
 */
 
 public class ConnectionActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
-    // private UserManager userManager = UserManager.getInstance();
     private Button loginButton;
     private EditText emailInput, passwordInput;
     FirebaseAuth mAuth;
 
-
+    /* methode qui sert à vérifier si l'utilisateur est déjà connecté */
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -59,7 +56,7 @@ public class ConnectionActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         loginButton = findViewById(R.id.connection);
-        emailInput = findViewById(R.id.email2);
+        emailInput = findViewById(R.id.email);
         passwordInput = findViewById(R.id.password);
 
         /*si on clique sur le textView s'inscrire*/
@@ -68,9 +65,9 @@ public class ConnectionActivity extends AppCompatActivity {
             //lancement de l'activité SignUpActivity
             Intent intent = new Intent(ConnectionActivity.this, SignUpActivity.class);
             startSignInActivity();
-            //startActivity(intent);
         });
 
+        /*si on clique sur le bouton connexion*/
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +75,7 @@ public class ConnectionActivity extends AppCompatActivity {
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
 
-
+                /*si l'email ou le mot de passe est vide*/
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(ConnectionActivity.this, "Entrez un email", Toast.LENGTH_SHORT).show();
                     return;
@@ -88,23 +85,18 @@ public class ConnectionActivity extends AppCompatActivity {
                     return;
                 }
 
+                /*connexion avec l'email et le mot de passe*/
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                /*si la connexion est réussie*/
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-
                                     Toast.makeText(ConnectionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
-                                    //finish();
-
-                                } else {
-                                    // If sign in fails, display a message to the user.
-
+                                } else { /*si la connexion est échouée*/
                                     Toast.makeText(ConnectionActivity.this, "Connexion echouée", Toast.LENGTH_SHORT).show();
-
                                 }
                             }
                         });
@@ -112,14 +104,12 @@ public class ConnectionActivity extends AppCompatActivity {
         });
     }
 
-
+    /*methode pour lancer l'activité de connexion*/
     private void startSignInActivity(){
-
-        // Choose authentication providers
         List<AuthUI.IdpConfig> providers =
                 Collections.singletonList(new AuthUI.IdpConfig.EmailBuilder().build());
 
-        // Launch the activity
+        /*lancement de l'activité de connexion*/
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
@@ -128,11 +118,4 @@ public class ConnectionActivity extends AppCompatActivity {
                         .build(),
                 RC_SIGN_IN);
     }
-
-    // Launching Profile Activity
-    private void startProfileActivity(){
-        // Intent intent = new Intent(this, ProfileActivity.class);
-        // startActivity(intent);
-    }
-
 }
