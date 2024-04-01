@@ -23,4 +23,8 @@
     //vue home
     <string name="filterTitle">Filtre</string>
 
+    // Vue profile :
+    <string name="profil">Profil</string>
+    <string name="deconnexion">Deconnexion</string>
+
 </resources>
