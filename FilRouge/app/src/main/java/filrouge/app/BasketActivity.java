@@ -18,6 +18,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 /**
@@ -31,6 +34,8 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     private CarsAdapter adapter;
     private List<CarsList> carsInBasket;
     private TextView numberCars;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,11 +120,25 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
 
     //action lorsqu'on appuie sur des images
     public void clickPictureConnection() {
-        ImageView imageConnection = findViewById(R.id.iconConnexion);
-        imageConnection.setOnClickListener(v -> {
-            Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
-            startActivity(intent);
-        });
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        ImageView imageConnection = findViewById(R.id.iconConnection);
+
+        if (user == null ) {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
+                startActivity(intent);
+            });
+
+
+        }
+        else {
+            imageConnection.setOnClickListener(v -> {
+                Intent intent = new Intent(BasketActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+
+        }
     }
 
     public void clickPictureBasket() {

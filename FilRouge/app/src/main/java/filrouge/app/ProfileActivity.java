@@ -23,9 +23,10 @@ import org.w3c.dom.Text;
 public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    FirebaseUser user;
     Button decoButton;
     TextView emailTV;
-    FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

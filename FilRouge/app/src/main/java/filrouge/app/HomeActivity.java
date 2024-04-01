@@ -116,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
         if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
 
-        new RatingData(this); /*récupère les notes des produits*/
+        //new RatingData(this); /*récupère les notes des produits*/
 
         ListView listView = findViewById(R.id.listView);
         CarsAdapter carsAdapter = new CarsAdapter(displayCars, this);

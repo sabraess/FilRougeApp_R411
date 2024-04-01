@@ -208,4 +208,27 @@
         android:layout_marginTop="10dp">
     </ListView>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commentaireAvis"
+        app:layout_constraintTop_toBottomOf="@id/listViewOpinion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        android:hint="@string/commentaire"
+        android:padding="10dp"
+        android:inputType="textEmailAddress"
+        />
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonCommentaireAvis"
+        app:layout_constraintTop_toBottomOf="@id/commentaireAvis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:text="@string/ajouterAvisButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

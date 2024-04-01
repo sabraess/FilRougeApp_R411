@@ -19,12 +19,17 @@
     <string name="power">Puissance : %s ch</string>
     <string name="energy">Energie : %s</string>
     <string name="addBasket">Ajouter au panier</string>
+    // les avis (sur la mm page) :
+    <string name="commentaire">Laissez un commentaire !!</string>
+    <string name="ajouterAvisButton">Ajouter l\'avis</string>
 
-    //vue home
+    // Vue home :
     <string name="filterTitle">Filtre</string>
 
     // Vue profile :
     <string name="profil">Profil</string>
     <string name="deconnexion">Deconnexion</string>
+
+
 
 </resources>

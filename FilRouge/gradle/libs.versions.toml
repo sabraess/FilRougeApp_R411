@@ -10,6 +10,7 @@ activity = "1.8.2"
 constraintlayout = "2.1.4"
 picasso = "2.71828"
 firebaseDatabase = "20.3.1"
+googleServices = "4.4.1"
 
 [libraries]
 firebase-ui-auth = { module = "com.firebaseui:firebase-ui-auth", version.ref = "firebaseUiAuth" }
@@ -22,6 +23,7 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
