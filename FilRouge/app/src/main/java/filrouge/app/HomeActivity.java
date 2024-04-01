@@ -2,6 +2,7 @@ package filrouge.app;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -115,6 +116,8 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
         if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
 
+        new RatingData(this); /*récupère les notes des produits*/
+
         ListView listView = findViewById(R.id.listView);
         CarsAdapter carsAdapter = new CarsAdapter(displayCars, this);
         listView.setAdapter(carsAdapter);
@@ -129,6 +132,23 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         carsAdapter.notifyDataSetChanged();*/
 
     }
+
+    @Override
+    public void onProductRate(List<Opinion> ratingData) {
+        for (CarsList car : carsList) {
+            List<Opinion> currentRating = new ArrayList<>();
+            for (OpinionList opinion : ratingData) {
+                // Vérifie si l'opinion correspond à la voiture actuelle
+                if (car.getId() == opinion.getCarId()) {
+                    currentRating.add((Opinion) opinion);
+                }
+            }
+            // Définit la liste d'opinions actuelle pour la voiture
+            car.setOpinionList(currentRating);
+        }
+    }
+
+
 
     /*met a jour le nb de voiture dans le textView du panier*/
     public void updateNumberCars() {

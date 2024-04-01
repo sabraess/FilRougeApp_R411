@@ -7,7 +7,9 @@ package filrouge.app;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Car  implements CarsList{
+import java.util.List;
+
+public class Car implements CarsList{
     private int id;
     private String name;
     private String brand;
@@ -17,10 +19,9 @@ public class Car  implements CarsList{
     private int maxSpeed;
     private int power;
     private String picture;
-    private String[] pictureAnimation;
-    private float value; //pour le ratingBar
+    private List<Opinion> opinionList; //pour la liste des avis du produit
 
-    public Car(){
+    public Car() {
     }
 
     public Car(Parcel in){
@@ -33,7 +34,7 @@ public class Car  implements CarsList{
         this.maxSpeed = in.readInt();
         this.power = in.readInt();
         this.picture = in.readString();
-        this.value = in.readFloat();
+        this.opinionList = in.createTypedArrayList(Opinion.CREATOR);
     }
 
     public int getId(){
@@ -86,11 +87,11 @@ public class Car  implements CarsList{
         this.power = power;
     }
 
-    public float getValue() {
-        return this.value;
+    public List<Opinion> getOpinionList() {
+        return this.opinionList;
     }
-    public void setValues(float value) {
-        this.value = value;
+    public void setOpinionList(List<Opinion> value) {
+        this.opinionList = value;
     }
 
     public String getPicture() {
@@ -120,7 +121,7 @@ public class Car  implements CarsList{
         dest.writeInt(this.maxSpeed);
         dest.writeInt(this.power);
         dest.writeString(this.picture);
-        dest.writeFloat(this.value);
+        dest.writeTypedList(this.opinionList);
     }
 
     public static final Parcelable.Creator<Car> CREATOR = new Parcelable.Creator<Car>(){

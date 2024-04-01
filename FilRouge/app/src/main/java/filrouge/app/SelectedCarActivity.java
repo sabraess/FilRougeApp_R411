@@ -100,7 +100,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
     }
 
     public void clickPictureBasket(){
-        ImageView iconBasket = findViewById(R.id.iconPanier);
+        ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, BasketActivity.class);
             startActivity(intent);
@@ -108,7 +108,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
     }
 
     public void clickPictureHome(){
-        ImageView imageRetour = findViewById(R.id.flecheRetour);
+        ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, HomeActivity.class);
             startActivity(intent);
