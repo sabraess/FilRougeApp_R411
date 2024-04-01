@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/picture"
+        android:id="@+id/pictureCar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="5dp"
@@ -16,12 +16,13 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/nameCar"
         android:textSize="20sp"
+        android:fontFamily="@font/calistoga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/picture"
+        app:layout_constraintLeft_toRightOf="@id/pictureCar"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="TextView" />
@@ -29,12 +30,13 @@
     <RatingBar
         android:id="@+id/ratingBar"
         style="@style/CustomRatingBarStyle"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
         android:numStars="5"
         android:rating="3.5"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintStart_toStartOf="@+id/nameCar"
+        app:layout_constraintTop_toBottomOf="@id/nameCar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

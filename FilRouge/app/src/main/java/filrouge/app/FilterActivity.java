@@ -1,5 +1,6 @@
 package filrouge.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -20,13 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* Author: TORRI Clara
-* Modifier par:
+* auteur: clara et sabra
+* Modifié par: clara
 * permet de filtrer les annonces
  */
 
 public class FilterActivity extends AppCompatActivity implements TaskbarInterface {
-
     private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
     private static List<CarsList> carsList;
     private static List<CarsList> filteredCars;
@@ -35,8 +35,6 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
     private EditText minPrice, maxPrice;
     private Button searchBouton;
     private String choiceEnergy;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +46,10 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         minPrice = findViewById(R.id.editTextMin);
         maxPrice = findViewById(R.id.editTextMax);
         radioGroup = findViewById(R.id.radioGroup);
+        searchBouton = findViewById(R.id.button);
 
         /*on recupere la liste des voitures  */
-        carsList = getIntent().getParcelableExtra("cars");
+        carsList = getIntent().getParcelableArrayListExtra("cars");
 
         updateNumberCars(); /*met à jour l'affiche du nb d'article dans le panier*/
         clickPictureHome(); /*pour retourner à l'accueil*/
@@ -59,10 +58,9 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
 
         /*pour choisir la marque*/
         List<String> brands = new ArrayList<>();
-
+        brands.add("Tous");
         // Récupérer la liste des marques distinctes des voitures
         for (CarsList car : carsList) {
-            brands.add("Toutes les marques");
             if (!brands.contains(car.getBrand())) {
                 brands.add(car.getBrand());
             }
@@ -76,14 +74,21 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         //recuperer la marque choisi
         String brand = spinner.getSelectedItem().toString();
 
-
         //pour choisir le prix
-        int priceMin = Integer.parseInt(minPrice.getText().toString());
-        int priceMax = Integer.parseInt(maxPrice.getText().toString());
+        int priceMin = 0;
+        int priceMax = 0;
 
+        String minPriceString = minPrice.getText().toString();
+        String maxPriceString = maxPrice.getText().toString();
+
+        if (!minPriceString.isEmpty()) {
+            priceMin = Integer.parseInt(minPriceString);
+        }
+        if (!maxPriceString.isEmpty()) {
+            priceMax = Integer.parseInt(maxPriceString);
+        }
 
         //pour choisir l'energie
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -106,20 +111,12 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         });
 
         //pour rechercher
-        searchBouton.setOnClickListener(v -> {
-            // Filtrer les voitures
-            filteredCars = filterCars(carsList, brand, priceMin, priceMax, choiceEnergy);
-
-            // Passer les voitures filtrées à HomeActivity
-            Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
-            intent.putParcelableArrayListExtra("filteredCars", (ArrayList<? extends Parcelable>) filteredCars);
-            startActivity(intent);
-        });
+        clickButtonSearch(brand, priceMin, priceMax, choiceEnergy);
     }
 
     //action lorsqu'on appuie sur les images
     public void clickPictureHome(){
-        ImageView imageRetour = findViewById(R.id.flecheRetour);
+        ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
             startActivity(intent);
@@ -127,7 +124,7 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
     }
 
     public void clickPictureBasket(){
-        ImageView iconBasket = findViewById(R.id.iconPanier);
+        ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, BasketActivity.class);
             startActivity(intent);
@@ -135,17 +132,18 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
     }
 
     public void clickPictureConnection(){
-        ImageView imageConnection = findViewById(R.id.iconConnexion);
+        ImageView imageConnection = findViewById(R.id.iconConnection);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(FilterActivity.this, ConnectionActivity.class);
             startActivity(intent);
         });
     }
 
+    /*met à jour l'affiche du nb d'article dans le panier*/
     @Override
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
-        TextView numberCars = findViewById(R.id.quantitePanier);
+        TextView numberCars = findViewById(R.id.nbCarInBasket);
         int nbCars = carsInBasket.size();
         if (nbCars > 0) {
             numberCars.setText(String.valueOf(nbCars));
@@ -155,7 +153,7 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
         }
     }
 
-
+    /*lorsqu'on appuie sur le bouton rechercher*/
     private void clickButtonSearch(String brand,int priceMin, int priceMax, String choiceEnergy){
         searchBouton.setOnClickListener(v -> {
             // Filtrer les voitures
@@ -164,15 +162,19 @@ public class FilterActivity extends AppCompatActivity implements TaskbarInterfac
             // Passer les voitures filtrées à HomeActivity
             Intent intent = new Intent(FilterActivity.this, HomeActivity.class);
             intent.putParcelableArrayListExtra("filteredCars", (ArrayList<? extends Parcelable>) filteredCars);
-            startActivity(intent);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
     }
 
-
+    /*filtrer les voitures*/
     public static List<CarsList> filterCars(List<CarsList> cars, String brand,int priceMin, int priceMax, String choiceEnergy) {
-       for (CarsList car : cars) {
-           if (brand != null && !brand.isEmpty() && !car.getBrand().equals(brand)) {
-               continue;
+        filteredCars = new ArrayList<>();
+        for (CarsList car : cars) {
+           if (brand != null && !brand.isEmpty() && !brand.equals("Tous")) {
+               if(!car.getBrand().equals(brand)){
+                   continue;
+               }
            }
            if (priceMin > 0 && car.getPrice() < priceMin) {
                continue;

@@ -11,6 +11,7 @@
     // Vue panier
     <string name="titleBasket">Panier</string>
     <string name="totalBasket">Total: %s € </string>
+    <string name="buttonBuy">Payer</string>
 
     //vue voiture selectionné
     <string name="opinion">Avis</string>
@@ -28,7 +29,7 @@
 
     // Vue profile :
     <string name="profil">Profil</string>
-    <string name="deconnexion">Deconnexion</string>
+    <string name="deconnection">Deconnexion</string>
 
 
 

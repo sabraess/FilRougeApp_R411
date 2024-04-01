@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Path;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* author : TORRI Clara et ESSALAH Sabra
-* vue qui de l'acceuil de l'application elle affiche la liste des voitures
+* auteur : TORRI Clara et ESSALAH Sabra
+* Modifié par : clara et sabra
+* vue qui de l'accueil de l'application elle affiche la liste des voitures
+*
 *
 * on a choisis d'utiliser finalement parcelable car lorsque j'ai commencé le code j'ai
 * voulu faire les lien entre activité avec Singleton mais le probleme
@@ -32,7 +35,9 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<CarsList> {
     private static List<CarsList> carsList = new ArrayList<>(); /*liste de base*/
     private static List<CarsList> displayCars = new ArrayList<>();/*liste affiché*/
-
+    private static final int FILTER_REQUEST_CODE = 1;
+    private ListView listView;
+    private CarsAdapter carsAdapter ;
     FirebaseAuth mAuth;
     FirebaseUser user;
 
@@ -52,7 +57,22 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         clickPictureConnection(); /*si on clique sur connexion*/
         clickPictureFilter(); /*si on clique sur filtre*/
         clickPictureBasket(); /*si on clique sur le panier*/
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILTER_REQUEST_CODE  && resultCode == RESULT_OK) {
+            List<CarsList> filterCars = data.getParcelableArrayListExtra("filteredCars");
+            if (filterCars != null && !filterCars.isEmpty()) {
+                // Mettre à jour l'adaptateur de la ListView avec la nouvelle liste filtrée
+                carsAdapter = new CarsAdapter(filterCars, this);
+                listView.setAdapter(carsAdapter);
+            }
+        }
+    }
+
 
     /*action lorsqu'on appuie sur une voiture, ça redirige vers l'activité SeletedCarsActivity */
     @Override
@@ -68,7 +88,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
     //action lorsqu'on appuie sur des images
     public void clickPictureConnection(){
-
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         ImageView imageConnection = findViewById(R.id.iconConnection);
@@ -78,17 +97,13 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
                 Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
-
-
         }
         else {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
             });
-
         }
-
     }
 
     public void clickPictureBasket(){
@@ -99,11 +114,11 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         });
     }
 
-    public void clickPictureFilter(){
+    private void clickPictureFilter(){
         ImageView imageFilter = findViewById(R.id.iconFiltered);
         imageFilter.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
-            //intent.putExtra("cars", (CarsList) carsList);
+            intent.putParcelableArrayListExtra("cars", (ArrayList<? extends Parcelable>) carsList);
             startActivity(intent);
         });
     }
@@ -118,19 +133,9 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
         //new RatingData(this); /*récupère les notes des produits*/
 
-        ListView listView = findViewById(R.id.listView);
-        CarsAdapter carsAdapter = new CarsAdapter(displayCars, this);
+        listView = findViewById(R.id.listView);
+        carsAdapter = new CarsAdapter(displayCars, this);
         listView.setAdapter(carsAdapter);
-
-        //list filtré
-       /* List<CarsList> filterCars = getIntent().getParcelableArrayListExtra("filteredCars");
-        if(filterCars != null && !filterCars.isEmpty()){
-            displayCars.clear();
-            displayCars.addAll(filterCars);
-        }
-
-        carsAdapter.notifyDataSetChanged();*/
-
     }
 
     @Override
@@ -147,8 +152,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
             car.setOpinionList(currentRating);
         }
     }
-
-
 
     /*met a jour le nb de voiture dans le textView du panier*/
     public void updateNumberCars() {

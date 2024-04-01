@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -33,11 +34,12 @@ import java.util.List;
 
 
 /*
-* author : ESSALAH Sabra et TORRI Clara
-* Modifié par : ESSALAH Sabra et TORRI Clara
+* auteur : ESSALAH Sabra et TORRI Clara
+* Modifié par : Clara
 * vue pour afficher les détails d'une voiture
 */
 public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{
+
     FirebaseAuth mAuth;
     FirebaseUser user;
 
@@ -209,8 +211,10 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
     * pour revenir à l'accueil
     * */
     public void clickPictureConnection(){
+
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+
         ImageView imageConnection = findViewById(R.id.iconConnection);
 
         if (user == null ) {
@@ -218,7 +222,6 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
                 Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
-
 
         }
         else {
