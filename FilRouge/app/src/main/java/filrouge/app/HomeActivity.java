@@ -2,6 +2,7 @@ package filrouge.app;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -59,7 +60,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
     //action lorsqu'on appuie sur des images
     public void clickPictureConnection(){
-        ImageView imageConnection = findViewById(R.id.iconConnexion);
+        ImageView imageConnection = findViewById(R.id.iconConnection);
         imageConnection.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
             startActivity(intent);
@@ -67,7 +68,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     }
 
     public void clickPictureBasket(){
-        ImageView iconBasket = findViewById(R.id.iconPanier);
+        ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, BasketActivity.class);
             startActivity(intent);
@@ -91,6 +92,8 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
         if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
 
+        new RatingData(this); /*récupère les notes des produits*/
+
         ListView listView = findViewById(R.id.listView);
         CarsAdapter carsAdapter = new CarsAdapter(displayCars, this);
         listView.setAdapter(carsAdapter);
@@ -106,10 +109,27 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
 
     }
 
+    @Override
+    public void onProductRate(List<Opinion> ratingData) {
+        for (CarsList car : carsList) {
+            List<Opinion> currentRating = new ArrayList<>();
+            for (OpinionList opinion : ratingData) {
+                // Vérifie si l'opinion correspond à la voiture actuelle
+                if (car.getId() == opinion.getCarId()) {
+                    currentRating.add((Opinion) opinion);
+                }
+            }
+            // Définit la liste d'opinions actuelle pour la voiture
+            car.setOpinionList(currentRating);
+        }
+    }
+
+
+
     /*met a jour le nb de voiture dans le textView du panier*/
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
-        TextView numberCars = findViewById(R.id.quantitePanier);
+        TextView numberCars = findViewById(R.id.nbCarInBasket);
         int nbCars = carsInBasket.size();
         if (nbCars > 0) {
             numberCars.setText(String.valueOf(nbCars));

@@ -36,26 +36,23 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    // Import the Firebase BoM
-    //noinspection UseTomlInstead
-    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
-    //noinspection UseTomlInstead
-    implementation("com.google.firebase:firebase-analytics")
+    implementation (libs.picasso)
+    implementation (libs.firebase.ui.auth)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // Pour l'authentification
-    implementation (libs.firebase.ui.auth)
-    //noinspection UseTomlInstead
-    // implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
 
+    //jackson
     implementation ("com.squareup.retrofit2:converter-jackson:2.7.2")
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.10.3")
     implementation ("com.fasterxml.jackson.core:jackson-core:2.10.3")
     implementation ("com.fasterxml.jackson.core:jackson-annotations:2.10.3")
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation("com.google.firebase:firebase-analytics")
 
-    implementation (libs.picasso)
 
 
 }
