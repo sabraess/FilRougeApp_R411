@@ -15,7 +15,7 @@
     "name": "Porsche 911 GT3 RS",
     "brand": "Porsche",
     "description": "Puissance et maniabilité exceptionnelles. Dotée d'une technologie de pointe et d'un design aérodynamique, conçue pour des performances sur piste optimales tout en restant parfaitement adaptée à une utilisation quotidienne.",
-    "price": 253454,
+    "price":254050,
     "maxSpeed": 296,
     "power": 525,
     "energy": "Essence",
@@ -23,14 +23,14 @@
   },
   {
     "id": 3,
-    "name": "Hyundai Kona",
-    "brand": "Hyundai",
-    "description": "Variété d'options de motorisation pour répondre aux besoins des conducteurs. Intérieur spacieux et bien aménagé offre un confort de conduite agréable. Véhicule idéal pour la conduite en ville et les trajets quotidiens.",
-    "price": 33400,
-    "maxSpeed": 161,
-    "power": 217,
-    "energy": "Hybride",
-    "picture": "hyundaikona.jpg"    
+    "name": "Maserati MC20",
+    "brand": "Maserati",
+    "description": "La Maserati MC20 incarne l'essence de la performance et du luxe italien, fusionnant un design époustouflant avec des performances de pointe.",
+    "price": 254050,
+    "maxSpeed": 325,
+    "power": 630,
+    "energy": "Essence",
+    "picture": "maserati_mc20.jpg"    
   },
   {
     "id": 4,
