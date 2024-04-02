@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.basket;
 
 import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
@@ -20,6 +20,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import filrouge.app.cars.CarsAdapter;
+import filrouge.app.cars.CarsList;
+import filrouge.app.main.Clickable;
+import filrouge.app.connection.ConnectionActivity;
+import filrouge.app.main.HomeActivity;
+import filrouge.app.connection.ProfileActivity;
+import filrouge.app.R;
+import filrouge.app.main.TaskbarInterface;
 
 /**
  * Auteur: TORRI Clara et ESSALAH Sabra

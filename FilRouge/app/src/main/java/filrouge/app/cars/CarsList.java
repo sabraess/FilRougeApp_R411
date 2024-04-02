@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.cars;
 
 import android.os.Parcelable;
 
@@ -32,10 +32,8 @@ public interface CarsList extends Parcelable {
     void setPower(int power);
     String getPicture();
     void setPicture(String picture);
-    List<Opinion> getOpinionList();
     float getRating();
     void setRating(float rating);
-    void setOpinionList(List<Opinion> value);
     @NonNull
     @Override
     String toString();

@@ -1,18 +1,14 @@
-package filrouge.app;
+package filrouge.app.main;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +19,16 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import filrouge.app.R;
+import filrouge.app.basket.BasketActivity;
+import filrouge.app.basket.ShoppingBasket;
+import filrouge.app.cars.Car;
+import filrouge.app.cars.CarsAdapter;
+import filrouge.app.cars.CarsList;
+import filrouge.app.cars.SelectedCarActivity;
+import filrouge.app.connection.ConnectionActivity;
+import filrouge.app.connection.ProfileActivity;
 
 /*
 * auteur : TORRI Clara et ESSALAH Sabra
@@ -148,20 +154,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         listView.setAdapter(carsAdapter);
     }
 
-    @Override
-    public void onProductRate(List<Opinion> ratingData) {
-        for (CarsList car : carsList) {
-            List<Opinion> currentRating = new ArrayList<>();
-            for (OpinionList opinion : ratingData) {
-                // Vérifie si l'opinion correspond à la voiture actuelle
-                if (car.getId() == opinion.getCarId()) {
-                    currentRating.add((Opinion) opinion);
-                }
-            }
-            // Définit la liste d'opinions actuelle pour la voiture
-            car.setOpinionList(currentRating);
-        }
-    }
 
     /*met a jour le nb de voiture dans le textView du panier*/
     public void updateNumberCars() {

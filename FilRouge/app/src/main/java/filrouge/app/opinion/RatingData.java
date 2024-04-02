@@ -1,13 +1,15 @@
 
-package filrouge.app;
+package filrouge.app.opinion;
 
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
+import filrouge.app.opinion.AvisList;
+
 @SuppressLint("ParcelCreator")
-public class RatingData implements AvisList{
+public class RatingData implements AvisList {
     private String emailUtilisateur;
     private String avis;
     private float ranking;

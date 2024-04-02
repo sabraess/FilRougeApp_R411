@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.cars;
 
 import android.app.Application;
 import android.content.Context;

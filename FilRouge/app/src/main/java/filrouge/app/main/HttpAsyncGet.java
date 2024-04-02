@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.main;
 
 import android.app.ProgressDialog;
 import android.util.Log;

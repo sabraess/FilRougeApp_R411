@@ -1,6 +1,5 @@
-package filrouge.app;
+package filrouge.app.opinion;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,11 +24,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
-import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import filrouge.app.basket.BasketActivity;
+import filrouge.app.cars.CarsList;
+import filrouge.app.connection.ConnectionActivity;
+import filrouge.app.connection.ProfileActivity;
+import filrouge.app.R;
+import filrouge.app.cars.SelectedCarActivity;
 
 public class AvisActivity extends AppCompatActivity {
 
@@ -38,8 +42,8 @@ public class AvisActivity extends AppCompatActivity {
 
     private HashMap<String , Object> avis;
     Integer nbrAvis = 0;
-    private Button buttonAjouterAvis;
-    private EditText commentaire;
+    private Button buttonAddOpinion;
+    private EditText comment;
     private ListView listeAvis;
 
 
@@ -128,18 +132,18 @@ public class AvisActivity extends AppCompatActivity {
     // ####################################### L'ajout davis #######################################
 
         avis = new HashMap<>();
-        buttonAjouterAvis = findViewById(R.id.buttonCommentaireAvis);
-        commentaire = findViewById(R.id.commentaireAvis);
+        buttonAddOpinion = findViewById(R.id.buttonAddOpinion);
+        comment = findViewById(R.id.commentOpinion);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        buttonAjouterAvis.setOnClickListener(new View.OnClickListener() {
+        buttonAddOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String commentaireString;
-                commentaireString = commentaire.getText().toString();
-                RatingBar ratingBarAvis = findViewById(R.id.ratingBarAvis);
+                commentaireString = comment.getText().toString();
+                RatingBar ratingBarAvis = findViewById(R.id.ratingBarOpinion);
 
 
                 float ranking = ratingBarAvis.getRating();
@@ -166,7 +170,7 @@ public class AvisActivity extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                         // Avis ajouté avec succès
                                         Toast.makeText(AvisActivity.this, "Avis ajouté avec succès !", Toast.LENGTH_LONG).show();
-                                        commentaire.setText(null);
+                                        comment.setText(null);
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -222,7 +226,7 @@ public class AvisActivity extends AppCompatActivity {
     public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
-            Intent intent = new Intent(AvisActivity.this, HomeActivity.class);
+            Intent intent = new Intent(AvisActivity.this, SelectedCarActivity.class);
             startActivity(intent);
         });
     }

@@ -1,8 +1,9 @@
-package filrouge.app;
+package filrouge.app.connection;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -22,13 +23,20 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Collections;
 import java.util.List;
 
+import filrouge.app.main.HomeActivity;
+import filrouge.app.R;
+import filrouge.app.main.TaskbarInterface;
+import filrouge.app.basket.BasketActivity;
+import filrouge.app.basket.ShoppingBasket;
+import filrouge.app.cars.CarsList;
+
 /*
 * auteur : clara et sabra
 * Modifié par : Sabra
 * vue pour se connecter avec un email et un mot de passe grace à firebase
 */
 
-public class ConnectionActivity extends AppCompatActivity implements TaskbarInterface{
+public class ConnectionActivity extends AppCompatActivity implements TaskbarInterface {
     FirebaseUser user;
 
     private static final int RC_SIGN_IN = 123;
@@ -57,6 +65,8 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
         loginButton = findViewById(R.id.connection);
         emailInput = findViewById(R.id.email);
         passwordInput = findViewById(R.id.password);
+        passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
 
         /*si on clique sur le textView s'inscrire*/
         TextView signUp = findViewById(R.id.signUp);
@@ -173,4 +183,5 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
             numberCars.setVisibility(View.INVISIBLE);
         }
     }
+
 }

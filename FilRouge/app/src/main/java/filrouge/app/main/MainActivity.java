@@ -1,15 +1,15 @@
-package filrouge.app;
+package filrouge.app.main;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import filrouge.app.R;
 
 /*
  * auteur: Clara et Sabra

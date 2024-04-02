@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.cars;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -20,6 +20,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import filrouge.app.main.Clickable;
+import filrouge.app.R;
 
 /*
 * auteur : ESSALAH Sabra et TORRI Clara

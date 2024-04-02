@@ -1,7 +1,9 @@
-package filrouge.app;
+package filrouge.app.basket;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import filrouge.app.cars.CarsList;
 
 public class ShoppingBasket {
     private static List<CarsList> carsInBasket = new ArrayList<>();

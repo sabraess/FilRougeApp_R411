@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.opinion;
 
 import android.os.Parcelable;
 

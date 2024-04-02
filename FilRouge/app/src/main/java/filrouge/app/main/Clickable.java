@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.main;
 
 /*
 * auteur : clara et sabra

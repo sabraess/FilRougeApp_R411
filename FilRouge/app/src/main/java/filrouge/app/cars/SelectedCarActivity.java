@@ -1,48 +1,38 @@
-package filrouge.app;
+package filrouge.app.cars;
 
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import filrouge.app.connection.ConnectionActivity;
+import filrouge.app.main.HomeActivity;
+import filrouge.app.connection.ProfileActivity;
+import filrouge.app.R;
+import filrouge.app.main.TaskbarInterface;
+import filrouge.app.basket.BasketActivity;
+import filrouge.app.basket.ShoppingBasket;
+import filrouge.app.opinion.AvisActivity;
 
 
 /*
 * auteur : ESSALAH Sabra et TORRI Clara
-* Modifié par : Clara
+* Modifié par : Clara et sabra
 * vue pour afficher les détails d'une voiture
 */
-public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface{
+public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface {
 
     FirebaseAuth mAuth;
     FirebaseUser user;
     private Button buttonAvis;
+    private CarsList car;
 
 
     @Override
@@ -51,7 +41,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         setContentView(R.layout.activity_selected_car);
 
 
-        CarsList car = getIntent().getParcelableExtra("cars");
+        car = getIntent().getParcelableExtra("cars");
 
 
         ///////////////////////////////// Accéder et ajouter des avis /////////////////////////////////
@@ -175,6 +165,14 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         });
     }
 
+    // Méthode appelée pour sauvegarder l'état de l'activité
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Sauvegarder l'objet CarsList dans le bundle outState
+        outState.putParcelable("selectedCar", car);
+    }
 
 
 }

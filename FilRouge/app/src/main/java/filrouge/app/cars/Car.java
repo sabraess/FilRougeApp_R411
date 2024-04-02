@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.cars;
 /*
  * auteur : clara et sabra
  * Modifié par: clara
@@ -10,13 +10,10 @@ package filrouge.app;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import java.util.List;
-
-public class Car implements CarsList{
+public class Car implements CarsList {
     private int id;
     private String name;
     private String brand;
@@ -26,7 +23,6 @@ public class Car implements CarsList{
     private int maxSpeed;
     private int power;
     private String picture;
-    private List<Opinion> opinionList; //pour la liste des avis du produit
 
     private float rating;
 
@@ -43,8 +39,6 @@ public class Car implements CarsList{
         this.maxSpeed = in.readInt();
         this.power = in.readInt();
         this.picture = in.readString();
-        this.opinionList = in.createTypedArrayList(Opinion.CREATOR);
-
     }
 
 
@@ -97,14 +91,6 @@ public class Car implements CarsList{
     public void setPower(int power){
         this.power = power;
     }
-
-    public List<Opinion> getOpinionList() {
-        return this.opinionList;
-    }
-    public void setOpinionList(List<Opinion> value) {
-        this.opinionList = value;
-    }
-
     public float getRating () {
         return this.rating;
     }
@@ -140,8 +126,6 @@ public class Car implements CarsList{
         dest.writeInt(this.maxSpeed);
         dest.writeInt(this.power);
         dest.writeString(this.picture);
-
-        dest.writeTypedList(this.opinionList);
     }
 
     public static final Parcelable.Creator<Car> CREATOR = new Parcelable.Creator<Car>(){

@@ -1,4 +1,4 @@
-package filrouge.app;
+package filrouge.app.main;
 
 import java.util.List;
 
@@ -12,5 +12,4 @@ import java.util.List;
 public interface PostExecuteActivity<T> {
     void onPostExecute(List<T> itemList); //retourne la liste des produits
     void runOnUiThread(Runnable runable); //permet de lancer une tâche en arrière plan
-    void onProductRate(List<Opinion> ratingData); //retourne la liste des avis
 }

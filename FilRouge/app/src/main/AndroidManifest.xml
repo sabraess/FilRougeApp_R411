@@ -7,7 +7,7 @@
 
     <application
         android:usesCleartextTraffic="true"
-        android:name=".CarsApp"
+        android:name=".cars.CarsApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,28 +17,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilRouge">
         <activity
-            android:name=".BasketActivity"
+            android:name=".basket.BasketActivity"
             android:exported="false" />
         <activity
             android:name=".OpinionActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectedCarActivity"
+            android:name=".cars.SelectedCarActivity"
             android:exported="false" />
         <activity
-            android:name=".ConnectionActivity"
+            android:name=".connection.ConnectionActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".main.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".connection.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".AvisActivity"
+            android:name=".opinion.AvisActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
