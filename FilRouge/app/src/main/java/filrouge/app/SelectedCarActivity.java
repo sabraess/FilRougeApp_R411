@@ -42,15 +42,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
 
     FirebaseAuth mAuth;
     FirebaseUser user;
-
-    private HashMap<String , Object> avis;
-    Integer nbrAvis = 0;
-    private Button buttonAjouterAvis;
-    private EditText commentaire;
-    private ListView listeAvis;
-
-    // Déclaration de la liste des avis
-    private List<RatingData> avisList = new ArrayList<>();
+    private Button buttonAvis;
 
 
     @Override
@@ -58,89 +50,23 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_car);
 
-        // ************************************ L'affichage d'avis
-        listeAvis = findViewById(R.id.listViewOpinion);
-        ArrayList<String> list = new ArrayList<>();
-       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, android.R.id.text1, list);
-        listeAvis.setAdapter(adapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Avis");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@androidx.annotation.NonNull DataSnapshot dataSnapshot) {
-                list.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    RatingData avis = snapshot.getValue(RatingData.class);
+        CarsList car = getIntent().getParcelableExtra("cars");
 
-                    if (avis != null && avis.getEmailUtilisateur() != null && avis.getAvis() != null) {
-                        String text = avis.getEmailUtilisateur() + " : " + avis.getAvis();
-                        list.add(text);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@androidx.annotation.NonNull DatabaseError error) {
+        ///////////////////////////////// Accéder et ajouter des avis /////////////////////////////////
 
-            }
-        });
-
-        // ####################################### L'ajout davis #######################################
-
-        avis = new HashMap<>();
-        buttonAjouterAvis = findViewById(R.id.buttonCommentaireAvis);
-        commentaire = findViewById(R.id.commentaireAvis);
-
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        buttonAjouterAvis.setOnClickListener(new View.OnClickListener() {
+        buttonAvis = findViewById(R.id.boutonAvis);
+        buttonAvis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String commentaireString;
-                commentaireString = commentaire.getText().toString();
-                if (user != null) {
-                    if (commentaireString.isEmpty()) {
-                        Toast.makeText(SelectedCarActivity.this, "Écrire un avis avant de valider !!", Toast.LENGTH_LONG).show();
-
-
-                    } else {
-                        avis.put("EmailUtilisateur", user.getEmail());
-                        avis.put("Avis", commentaireString);
-                        nbrAvis++;
-                        // Générer automatiquement une clé unique pour cet avis
-                        // Obtenir une référence à la base de données
-                        DatabaseReference avisRef = FirebaseDatabase.getInstance().getReference().child("Avis");
-
-                        // Générer automatiquement une clé unique pour cet avis
-                        String nouvelAvisKey = avisRef.push().getKey();
-
-                        // Ajouter l'avis sous la clé unique générée
-                        avisRef.child(nouvelAvisKey).setValue(avis).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        // Avis ajouté avec succès
-                                        Toast.makeText(SelectedCarActivity.this, "Avis ajouté avec succès !", Toast.LENGTH_LONG).show();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        // Échec de l'ajout de l'avis
-                                        Toast.makeText(SelectedCarActivity.this, "Erreur lors de l'ajout de l'avis : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                });
-
-                    }
-                } else {
-                    Toast.makeText(SelectedCarActivity.this, "Veuillez vous connecter afin d'ajouter un avis", Toast.LENGTH_LONG).show();
-
-                }
+                Intent intent = new Intent(getApplicationContext(), AvisActivity.class);
+                intent.putExtra("cars", car);
+                startActivity(intent);
             }
         });
 
-        ///////////////////////////////////////////////////////////////////////////////////////
-
+        //////////////////////////////////////////////////////////////////
         /*Appel de la méthode pour mettre à jour le nombre de voitures dans le panier*/
         updateNumberCars();
 
@@ -150,7 +76,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         clickPictureHome();
 
         /*Récupération de l'objet CarsList envoyé par l'activité précédente*/
-        CarsList car = getIntent().getParcelableExtra("cars");
+
 
         /*Affichage des détails de la voiture*/
         TextView name = findViewById(R.id.carSelectedName);

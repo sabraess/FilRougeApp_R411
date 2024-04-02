@@ -62,7 +62,6 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
         TextView signUp = findViewById(R.id.signUp);
         signUp.setOnClickListener(v -> {
             //lancement de l'activité SignUpActivity
-            Intent intent = new Intent(ConnectionActivity.this, SignUpActivity.class);
             startSignInActivity();
         });
 
