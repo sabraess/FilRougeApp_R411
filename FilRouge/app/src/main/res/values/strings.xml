@@ -25,12 +25,13 @@
     <string name="ajouterAvisButton">Ajouter l\'avis</string>
 
     // Vue home :
-    <string name="filterTitle">Filtre</string>
+    <string name="filterTitle">Filtre:</string>
+    <string name="all">Tous</string>
+    <string name="essence">Essence</string>
+    <string name="hybride">Hybride</string>
 
     // Vue profile :
     <string name="profil">Profil</string>
     <string name="deconnection">Deconnexion</string>
-
-
 
 </resources>

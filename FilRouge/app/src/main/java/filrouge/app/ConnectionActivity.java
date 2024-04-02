@@ -58,14 +58,6 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
         emailInput = findViewById(R.id.email);
         passwordInput = findViewById(R.id.password);
 
-        /*si on clique sur le textView s'inscrire*/
-        TextView signUp = findViewById(R.id.signUp);
-        signUp.setOnClickListener(v -> {
-            //lancement de l'activité SignUpActivity
-            Intent intent = new Intent(ConnectionActivity.this, SignUpActivity.class);
-            startSignInActivity();
-        });
-
         /*si on clique sur le bouton connexion*/
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

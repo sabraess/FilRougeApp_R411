@@ -2,13 +2,17 @@ package filrouge.app;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,22 +28,16 @@ import java.util.List;
 * auteur : TORRI Clara et ESSALAH Sabra
 * Modifié par : clara et sabra
 * vue qui de l'accueil de l'application elle affiche la liste des voitures
-*
-*
-* on a choisis d'utiliser finalement parcelable car lorsque j'ai commencé le code j'ai
-* voulu faire les lien entre activité avec Singleton mais le probleme
-* c'est que quand on etait dans d'autre activité et qu'on veut retourner au niveau
-* il va créer une nouvelle liste qui va se rajouter a la liste de base ainsi a la fin
-* on se retrouve avec une liste dupliquer.
-* Alors qu'avec parcelable y a plus ce pobleme vu qu'on gère grace à des listes*/
+*/
+
 public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<CarsList> {
+    private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
     private static List<CarsList> carsList = new ArrayList<>(); /*liste de base*/
     private static List<CarsList> displayCars = new ArrayList<>();/*liste affiché*/
-    private static final int FILTER_REQUEST_CODE = 1;
     private ListView listView;
     private CarsAdapter carsAdapter ;
-    FirebaseAuth mAuth;
-    FirebaseUser user;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,35 +51,58 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         /*met a jour le nb de voiture dans le textView du panier*/
         updateNumberCars();
 
-
         clickPictureConnection(); /*si on clique sur connexion*/
-        clickPictureFilter(); /*si on clique sur filtre*/
         clickPictureBasket(); /*si on clique sur le panier*/
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FILTER_REQUEST_CODE  && resultCode == RESULT_OK) {
-            List<CarsList> filterCars = data.getParcelableArrayListExtra("filteredCars");
-            if (filterCars != null && !filterCars.isEmpty()) {
-                // Mettre à jour l'adaptateur de la ListView avec la nouvelle liste filtrée
-                carsAdapter = new CarsAdapter(filterCars, this);
-                listView.setAdapter(carsAdapter);
+        /*pour les filtres*/
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        RadioButton radioButtonTous = findViewById(R.id.all);
+        radioButtonTous.setChecked(true);
+        //pour les energies
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if(checkedId == R.id.essence) {
+                displayCars.clear();
+                for (CarsList car : carsList) {
+                    if (car.getEnergy().equals("Essence")) {
+                        displayCars.add(car);
+                    }
+                }
+            } else if(checkedId == R.id.hybride){
+                displayCars.clear();
+                for (CarsList car : carsList) {
+                    if (car.getEnergy().equals("Hybride")) {
+                        displayCars.add(car);
+                    }
+                }
+            } else {
+                displayCars.clear();
+                displayCars.addAll(carsList);
             }
-        }
+            carsAdapter.notifyDataSetChanged();
+        });
     }
-
 
     /*action lorsqu'on appuie sur une voiture, ça redirige vers l'activité SeletedCarsActivity */
     @Override
     public void onClickItem(int itemPosition) {
-        CarsList car = carsList.get(itemPosition);
+        // Récupérer l'élément de la liste de base correspondant à l'élément sélectionné dans la liste affichée
+        CarsList car = displayCars.get(itemPosition);
+
+        // Rechercher l'élément correspondant dans la liste de base (carsList) en utilisant son ID
+        for (CarsList fullCar : carsList) {
+            if (fullCar.getId() == car.getId()) {
+                car = fullCar;
+            }
+        }
+
+
+
+        // Rediriger vers l'activité de détails du produit avec l'élément complet 'car'
         Intent intent = new Intent(HomeActivity.this, SelectedCarActivity.class);
         intent.putExtra("cars", car);
         startActivity(intent);
     }
+
 
     public void onRatingChanged(int itemPosition, float value) {
     }
@@ -114,15 +135,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         });
     }
 
-    private void clickPictureFilter(){
-        ImageView imageFilter = findViewById(R.id.iconFiltered);
-        imageFilter.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
-            intent.putParcelableArrayListExtra("cars", (ArrayList<? extends Parcelable>) carsList);
-            startActivity(intent);
-        });
-    }
-
     /*affiche la liste des voitures*/
     @Override
     public void onPostExecute(List<CarsList> itemList) {
@@ -130,8 +142,6 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         if (carsList.isEmpty()) { carsList.addAll(itemList); }
 
         if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
-
-        //new RatingData(this); /*récupère les notes des produits*/
 
         listView = findViewById(R.id.listView);
         carsAdapter = new CarsAdapter(displayCars, this);
@@ -163,6 +173,32 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
             numberCars.setVisibility(View.VISIBLE);
         } else {
             numberCars.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
+    // Sauvegarde  des données lors de la rotation de l'écran
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Sauvegarder les données nécessaires dans le Bundle outState
+        outState.putParcelableArrayList("carsList", (ArrayList<? extends Parcelable>) carsList);
+        outState.putParcelableArrayList("displayCars", (ArrayList<? extends Parcelable>) displayCars);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restaurer les données sauvegardées depuis le Bundle savedInstanceState
+        if (savedInstanceState != null) {
+            carsList.clear(); // Effacer les données existantes
+            displayCars.clear(); // Effacer les données existantes
+            carsList.addAll(savedInstanceState.getParcelableArrayList("carsList")); // Restaurer carsList
+            displayCars.addAll(savedInstanceState.getParcelableArrayList("displayCars")); // Restaurer displayCars
+            // Mettre à jour l'adaptateur de la liste avec les nouvelles données
+            if (carsAdapter != null) {
+                carsAdapter.notifyDataSetChanged();
+            }
         }
     }
 

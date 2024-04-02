@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +28,6 @@ import java.util.List;
  */
 
 public class BasketActivity extends AppCompatActivity implements TaskbarInterface, Clickable {
-    private final String TAG = "Clara et Sabra " + getClass().getSimpleName();
     private CarsAdapter adapter;
     private List<CarsList> carsInBasket;
     private TextView numberCars;
@@ -122,14 +123,12 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
                 Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
-
         }
         else {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(BasketActivity.this, ProfileActivity.class);
                 startActivity(intent);
             });
- 
         }
     }
 
@@ -199,4 +198,30 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Sauvegarder les données nécessaires dans le Bundle outState
+        // Par exemple, vous pouvez sauvegarder les informations sur les voitures dans le panier
+        outState.putParcelableArrayList("carsInBasket", (ArrayList<? extends Parcelable>) carsInBasket);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restaurer les données sauvegardées depuis le Bundle savedInstanceState
+        // Par exemple, vous pouvez restaurer les informations sur les voitures dans le panier
+        if (savedInstanceState != null) {
+            carsInBasket = savedInstanceState.getParcelableArrayList("carsInBasket");
+            // Mettre à jour l'adaptateur de la liste avec les nouvelles données
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+            // Mettre à jour le nombre de voitures dans le panier et le prix total
+            updateNumberCars();
+            updatePrice();
+        }
+    }
+
 }
