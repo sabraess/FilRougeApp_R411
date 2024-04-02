@@ -20,7 +20,7 @@ public class RatingAdapter extends ArrayAdapter<RatingData> {
         RatingData avis = getItem(position);
 
         if (convertView == null) {
-           // convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_avis, parent, false);
+         //   convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_avis, parent, false);
         }
 
 

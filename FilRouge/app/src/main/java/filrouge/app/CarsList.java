@@ -33,6 +33,8 @@ public interface CarsList extends Parcelable {
     String getPicture();
     void setPicture(String picture);
     List<Opinion> getOpinionList();
+    float getRating();
+    void setRating(float rating);
     void setOpinionList(List<Opinion> value);
     @NonNull
     @Override
