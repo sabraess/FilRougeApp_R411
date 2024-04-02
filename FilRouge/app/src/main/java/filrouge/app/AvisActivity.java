@@ -148,7 +148,6 @@ public class AvisActivity extends AppCompatActivity {
                     if (commentaireString.isEmpty()) {
                         Toast.makeText(AvisActivity.this, "Écrire un avis avant de valider !!", Toast.LENGTH_LONG).show();
 
-
                     } else {
                         avis.put("EmailUtilisateur", user.getEmail());
                         avis.put("Avis", commentaireString);

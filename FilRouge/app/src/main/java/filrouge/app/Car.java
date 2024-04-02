@@ -10,6 +10,7 @@ package filrouge.app;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -27,6 +28,8 @@ public class Car implements CarsList{
     private String picture;
     private List<Opinion> opinionList; //pour la liste des avis du produit
 
+    private float rating;
+
     public Car() {
     }
 
@@ -41,7 +44,9 @@ public class Car implements CarsList{
         this.power = in.readInt();
         this.picture = in.readString();
         this.opinionList = in.createTypedArrayList(Opinion.CREATOR);
+
     }
+
 
     public int getId(){
         return this.id;
@@ -100,6 +105,13 @@ public class Car implements CarsList{
         this.opinionList = value;
     }
 
+    public float getRating () {
+        return this.rating;
+    }
+
+    public void setRating (float rating) {
+        this.rating = rating;
+    }
     public String getPicture() {
        return this.picture;
     }
@@ -128,6 +140,7 @@ public class Car implements CarsList{
         dest.writeInt(this.maxSpeed);
         dest.writeInt(this.power);
         dest.writeString(this.picture);
+
         dest.writeTypedList(this.opinionList);
     }
 

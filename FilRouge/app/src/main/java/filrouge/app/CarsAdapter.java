@@ -1,5 +1,6 @@
 package filrouge.app;
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,14 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -59,6 +66,9 @@ public class CarsAdapter extends BaseAdapter {
         name.setText(carsList.get(position).getName());
         Picasso.get().load(carsList.get(position).getPicture()).into(picture);
 
+        setRatingWithFirebase();
+        ratingBar.setRating(carsList.get(position).getRating());
+
       /*  ratingBar.setOnRatingBarChangeListener((ratingBar1, value, b) -> {
             callBackActivity.onRatingChanged(position, value);
         });*/
@@ -69,4 +79,42 @@ public class CarsAdapter extends BaseAdapter {
         return layoutItem;
 
     }
+
+    private void setRatingWithFirebase () {
+        DatabaseReference ratingsRef = FirebaseDatabase.getInstance().getReference().child("Avis");
+
+        ratingsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (CarsList car : carsList) {
+                    String carName = car.getName();
+                    List<Float> ratings = new ArrayList<>();
+
+                    for (DataSnapshot carSnapshot : dataSnapshot.getChildren()) {
+                        if (carSnapshot.getKey().equals(carName)) {
+                            for (DataSnapshot ratingSnapshot : carSnapshot.getChildren()) {
+                                float rating = ratingSnapshot.child("Ranking").getValue(Float.class);
+                                ratings.add(rating);
+                            }
+                        }
+                    }
+
+                    // Calculer la moyenne des notes
+                    float totalRating = 0;
+                    for (float rating : ratings) {
+                        totalRating += rating;
+                    }
+                    float averageRating = ratings.isEmpty() ? 0 : totalRating / ratings.size();
+
+                    // Mettre à jour la note moyenne de la voiture dans la liste des voitures
+                    car.setRating(averageRating);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Gérer les erreurs ici
+            }
+        });
+    }
+
 }
