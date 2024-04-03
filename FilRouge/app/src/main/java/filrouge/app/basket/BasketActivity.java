@@ -82,7 +82,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
                 showLoginDialog();
             }else{
                 if (carsInBasket.size() > 0) {
-                    Toast.makeText(this, "Merci pour votre achat", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(this, "Merci pour votre achat", Toast.LENGTH_SHORT).show();
                     makeNotification();
                     clear();
                 }
