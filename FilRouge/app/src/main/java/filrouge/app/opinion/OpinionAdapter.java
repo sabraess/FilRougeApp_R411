@@ -16,14 +16,14 @@ import filrouge.app.cars.CarsApp;
 import filrouge.app.main.Clickable;
 import filrouge.app.R;
 
-public class AvisAdapter extends BaseAdapter {
+public class OpinionAdapter extends BaseAdapter {
 
     private final String TAG = "Clara + Sabra " + getClass().getSimpleName();
-    private final List<RatingData> avisList;
+    private final List<OpinionData> avisList;
     private LayoutInflater mInflater;
     private Clickable callBackActivity;
 
-    public AvisAdapter(Context context, List<RatingData> avisList) {
+    public OpinionAdapter(Context context, List<OpinionData> avisList) {
         this.avisList = avisList;
         this.mInflater = LayoutInflater.from(CarsApp.getContext());
 //        this.callBackActivity = clickable;
@@ -51,7 +51,7 @@ public class AvisAdapter extends BaseAdapter {
         layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.avis_list_layout, parent, false);
 
         // Récupérer l'avis à la position donnée
-        RatingData avis = avisList.get(position);
+        OpinionData avis = avisList.get(position);
 
         // Récupérer les vues de la mise en page
         TextView textViewEmail = layoutItem.findViewById(R.id.textEmail);

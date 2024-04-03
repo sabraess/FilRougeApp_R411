@@ -35,7 +35,7 @@ import filrouge.app.connection.ProfileActivity;
 import filrouge.app.R;
 import filrouge.app.cars.SelectedCarActivity;
 
-public class AvisActivity extends AppCompatActivity {
+public class OpinionActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -49,7 +49,7 @@ public class AvisActivity extends AppCompatActivity {
 
 
     // Déclaration de la liste des avis
-    private List<RatingData> avisList = new ArrayList<>();
+    private List<OpinionData> avisList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +73,8 @@ public class AvisActivity extends AppCompatActivity {
         // ArrayList<String> list = new ArrayList<>();
         // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.avis_list_layout, android.R.id.text1, list);
 
-        ArrayList<RatingData> listAvisA = new ArrayList<>();
-        AvisAdapter adapterA = new AvisAdapter(this, listAvisA);
+        ArrayList<OpinionData> listAvisA = new ArrayList<>();
+        OpinionAdapter adapterA = new OpinionAdapter(this, listAvisA);
 
         listeAvis.setAdapter(adapterA);
 
@@ -115,7 +115,7 @@ public class AvisActivity extends AppCompatActivity {
                     }
 
                     //  initialiser RatingData avec données réécupérées
-                    RatingData avisObj = new RatingData(avisString, emailUtilisateur, ranking);
+                    OpinionData avisObj = new OpinionData(avisString, emailUtilisateur, ranking);
 
                     listAvisA.add(avisObj);
                     //}
@@ -150,7 +150,7 @@ public class AvisActivity extends AppCompatActivity {
 
                 if (user != null) {
                     if (commentaireString.isEmpty()) {
-                        Toast.makeText(AvisActivity.this, "Écrire un avis avant de valider !!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(OpinionActivity.this, "Écrire un avis avant de valider !!", Toast.LENGTH_LONG).show();
 
                     } else {
                         avis.put("EmailUtilisateur", user.getEmail());
@@ -169,7 +169,7 @@ public class AvisActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         // Avis ajouté avec succès
-                                        Toast.makeText(AvisActivity.this, "Avis ajouté avec succès !", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(OpinionActivity.this, "Avis ajouté avec succès !", Toast.LENGTH_LONG).show();
                                         comment.setText(null);
                                     }
                                 })
@@ -177,13 +177,13 @@ public class AvisActivity extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         // Échec de l'ajout de l'avis
-                                        Toast.makeText(AvisActivity.this, "Erreur lors de l'ajout de l'avis : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(OpinionActivity.this, "Erreur lors de l'ajout de l'avis : " + e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 });
 
                     }
                 } else {
-                    Toast.makeText(AvisActivity.this, "Veuillez vous connecter afin d'ajouter un avis", Toast.LENGTH_LONG).show();
+                    Toast.makeText(OpinionActivity.this, "Veuillez vous connecter afin d'ajouter un avis", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -201,14 +201,14 @@ public class AvisActivity extends AppCompatActivity {
 
         if (user == null ) {
             imageConnection.setOnClickListener(v -> {
-                Intent intent = new Intent(AvisActivity.this, ConnectionActivity.class);
+                Intent intent = new Intent(OpinionActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
 
         }
         else {
             imageConnection.setOnClickListener(v -> {
-                Intent intent = new Intent(AvisActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(OpinionActivity.this, ProfileActivity.class);
                 startActivity(intent);
             });
 
@@ -218,7 +218,7 @@ public class AvisActivity extends AppCompatActivity {
     public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
-            Intent intent = new Intent(AvisActivity.this, BasketActivity.class);
+            Intent intent = new Intent(OpinionActivity.this, BasketActivity.class);
             startActivity(intent);
         });
     }
@@ -226,7 +226,7 @@ public class AvisActivity extends AppCompatActivity {
     public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
-            Intent intent = new Intent(AvisActivity.this, SelectedCarActivity.class);
+            Intent intent = new Intent(OpinionActivity.this, SelectedCarActivity.class);
             startActivity(intent);
         });
     }

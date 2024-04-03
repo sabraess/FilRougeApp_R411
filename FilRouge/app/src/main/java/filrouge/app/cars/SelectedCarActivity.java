@@ -19,7 +19,7 @@ import filrouge.app.R;
 import filrouge.app.main.TaskbarInterface;
 import filrouge.app.basket.BasketActivity;
 import filrouge.app.basket.ShoppingBasket;
-import filrouge.app.opinion.AvisActivity;
+import filrouge.app.opinion.OpinionActivity;
 
 
 /*
@@ -50,7 +50,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         buttonAvis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AvisActivity.class);
+                Intent intent = new Intent(getApplicationContext(), OpinionActivity.class);
                 intent.putExtra("cars", car);
                 startActivity(intent);
             }

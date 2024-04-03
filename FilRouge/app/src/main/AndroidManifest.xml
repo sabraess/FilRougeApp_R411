@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:name=".cars.CarsApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,7 +16,11 @@
         android:label="@string/appTitle"
         android:roundIcon="@drawable/icon_appli"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FilRouge">
+        android:theme="@style/Theme.FilRouge"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".basket.NotificationActivity"
+            android:exported="false" />
         <activity
             android:name=".basket.BasketActivity"
             android:exported="false" />
@@ -35,7 +40,7 @@
             android:name=".connection.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".opinion.AvisActivity"
+            android:name=".opinion.OpinionActivity"
             android:exported="false" />
         <activity
             android:name=".main.MainActivity"

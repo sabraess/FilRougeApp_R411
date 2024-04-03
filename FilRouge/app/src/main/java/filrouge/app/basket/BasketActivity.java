@@ -1,8 +1,14 @@
 package filrouge.app.basket;
 
 import android.animation.ObjectAnimator;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -15,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -29,7 +37,7 @@ import filrouge.app.main.HomeActivity;
 import filrouge.app.connection.ProfileActivity;
 import filrouge.app.R;
 import filrouge.app.main.TaskbarInterface;
-
+import android.os.Build.VERSION_CODES;
 /**
  * Auteur: TORRI Clara et ESSALAH Sabra
  * Modifié par : clara
@@ -75,6 +83,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
             }else{
                 if (carsInBasket.size() > 0) {
                     Toast.makeText(this, "Merci pour votre achat", Toast.LENGTH_SHORT).show();
+                    makeNotification();
                     clear();
                 }
             }
@@ -85,6 +94,43 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         clickPictureBasket();
         clickPictureHome();
 
+    }
+
+    public void makeNotification () {
+
+        String chanelID = "CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), chanelID);
+        String nomVoituresAchat = "";
+        for (CarsList car : carsInBasket) {
+            nomVoituresAchat += (car.getName())  + ("\n");
+        }
+        builder.setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle("Confirmation de paiement")
+                .setContentText("Achat de : " +  nomVoituresAchat )
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("nomVoitures", nomVoituresAchat );
+        PendingIntent ppendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_MUTABLE);
+        builder.setContentIntent(ppendingIntent);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= VERSION_CODES.O) {
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(chanelID);
+            if (notificationChannel == null) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(chanelID, "description", importance);
+                notificationChannel.setLightColor(Color.GREEN);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+
+            }
+
+        }
+
+        notificationManager.notify(0, builder.build());
     }
 
     @Override

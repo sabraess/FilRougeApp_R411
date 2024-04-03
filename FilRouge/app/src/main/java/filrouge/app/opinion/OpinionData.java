@@ -6,19 +6,17 @@ import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
-import filrouge.app.opinion.AvisList;
-
 @SuppressLint("ParcelCreator")
-public class RatingData implements AvisList {
+public class OpinionData implements OpinionList {
     private String emailUtilisateur;
     private String avis;
     private float ranking;
 
-    public RatingData() {
+    public OpinionData() {
         // Constructeur vide requis pour Firebase
     }
 
-    public RatingData( String avis, String emailUtilisateur, float ranking) {
+    public OpinionData(String avis, String emailUtilisateur, float ranking) {
         this.emailUtilisateur = emailUtilisateur;
         this.avis = avis;
         this.ranking = ranking;
