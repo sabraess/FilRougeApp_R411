@@ -183,7 +183,45 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         } else {
             numberCars.setVisibility(View.INVISIBLE);
         }
-    }}
+    }
+
+    private void setRatingWithFirebase () {
+        DatabaseReference ratingsRef = FirebaseDatabase.getInstance().getReference().child("Avis");
+
+        ratingsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (CarsList car : displayCars) {
+                    String carName = car.getName();
+                    List<Float> ratings = new ArrayList<>();
+
+                    for (DataSnapshot carSnapshot : dataSnapshot.getChildren()) {
+                        if (carSnapshot.getKey().equals(carName)) {
+                            for (DataSnapshot ratingSnapshot : carSnapshot.getChildren()) {
+                                float rating = ratingSnapshot.child("Ranking").getValue(Float.class);
+                                ratings.add(rating);
+                            }
+                        }
+                    }
+
+                    // Calculer la moyenne des notes
+                    float totalRating = 0;
+                    for (float rating : ratings) {
+                        totalRating += rating;
+                    }
+                    float averageRating = ratings.isEmpty() ? 0 : totalRating / ratings.size();
+
+                    // Mettre à jour la note moyenne de la voiture dans la liste des voitures
+                    car.setRating(averageRating);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Gérer les erreurs ici
+            }
+        });
+    }
+}
 
      
 
