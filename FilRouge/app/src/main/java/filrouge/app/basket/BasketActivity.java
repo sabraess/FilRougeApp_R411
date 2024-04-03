@@ -1,5 +1,6 @@
 package filrouge.app.basket;
 
+import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import filrouge.app.main.TaskbarInterface;
  * Auteur: TORRI Clara et ESSALAH Sabra
  * Modifié par : clara
  * permet de voir le panier
+ * implemente les interfaces TaskbarInterface et Clickable
  */
 
 public class BasketActivity extends AppCompatActivity implements TaskbarInterface, Clickable {
@@ -48,7 +50,9 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
 
+        // Récupérer les voitures dans le panier
         carsInBasket = ShoppingBasket.getCarsInBasket();
+        // Récupérer l'utilisateur connecté
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
@@ -87,6 +91,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
 
     }
 
+    //supprimer la voiture lorsqu'on appuie, ca met à jour le prix et le nombre de voiture du panier
     @Override
     public void onClickItem(int itemPosition) {
         ShoppingBasket.removeCar(itemPosition);
@@ -107,7 +112,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     public void updatePrice() {
         TextView totalPrice = findViewById(R.id.priceBasket);
         int total = ShoppingBasket.getTotalPrice();
-        totalPrice.setText(getString(R.string.price, String.valueOf(total)));
+        totalPrice.setText(getString(R.string.totalBasket, String.valueOf(total)));
     }
 
 
@@ -122,13 +127,15 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         }
     }
 
-    //action lorsqu'on appuie sur des images
- 
+    //action lorsqu'on appuie sur les differentes images (connexion, panier, accueil)
+    /*
+    *connexion: ici on vérifie d'abord si l'utilisateur est connecté ou pas s'il est connecté alors
+    *ça l'amène à la page de profil sinon ça l'amene à la page de connexion
+    */
     public void clickPictureConnection(){ 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         ImageView imageConnection = findViewById(R.id.iconConnection);
-
         if (user == null ) {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(BasketActivity.this, ConnectionActivity.class);
@@ -143,6 +150,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         }
     }
 
+    /*se remet dans le panier */
     public void clickPictureBasket() {
         ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
@@ -151,6 +159,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         });
     }
 
+    /*amène à l'accueil*/
     public void clickPictureHome() {
         ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
@@ -162,14 +171,13 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
     /*fait l'animation du bouton help et affiche l'aide*/
     public void animationHelp() {
         final ImageView imageHelp = findViewById(R.id.iconHelp);
-        final ObjectAnimator animator = ObjectAnimator.ofFloat(imageHelp, "translationY", 0f, 10f);
-        animator.setDuration(4000);
-        animator.setInterpolator(new BounceInterpolator());
-        animator.setRepeatCount(ObjectAnimator.INFINITE);
+         ObjectAnimator animator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.help_animator);
+         animator.setTarget(imageHelp);
 
         // Démarrer l'animation
         animator.start();
 
+        /*pour afficher l'alert dialog*/
         imageHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,30 +217,4 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
         AlertDialog alert = builder.create();
         alert.show();
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Sauvegarder les données nécessaires dans le Bundle outState
-        // Par exemple, vous pouvez sauvegarder les informations sur les voitures dans le panier
-        outState.putParcelableArrayList("carsInBasket", (ArrayList<? extends Parcelable>) carsInBasket);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Restaurer les données sauvegardées depuis le Bundle savedInstanceState
-        // Par exemple, vous pouvez restaurer les informations sur les voitures dans le panier
-        if (savedInstanceState != null) {
-            carsInBasket = savedInstanceState.getParcelableArrayList("carsInBasket");
-            // Mettre à jour l'adaptateur de la liste avec les nouvelles données
-            if (adapter != null) {
-                adapter.notifyDataSetChanged();
-            }
-            // Mettre à jour le nombre de voitures dans le panier et le prix total
-            updateNumberCars();
-            updatePrice();
-        }
-    }
-
 }
