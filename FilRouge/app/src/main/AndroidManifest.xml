@@ -25,9 +25,6 @@
             android:name=".basket.BasketActivity"
             android:exported="false" />
         <activity
-            android:name=".OpinionActivity"
-            android:exported="false" />
-        <activity
             android:name=".cars.SelectedCarActivity"
             android:exported="false" />
         <activity
