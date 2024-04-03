@@ -30,14 +30,15 @@
     <RatingBar
         android:id="@+id/ratingBar"
         style="@style/CustomRatingBarStyle"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="12dp"
+        android:isIndicator="true"
         android:numStars="5"
         android:rating="3.5"
         app:layout_constraintStart_toStartOf="@+id/nameCar"
-        app:layout_constraintTop_toBottomOf="@id/nameCar"
-        android:isIndicator="true"/>
+        app:layout_constraintTop_toBottomOf="@id/nameCar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
