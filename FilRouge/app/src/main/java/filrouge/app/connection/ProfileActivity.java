@@ -22,7 +22,7 @@ import filrouge.app.basket.ShoppingBasket;
 import filrouge.app.cars.CarsList;
 /*
 * auteur : Clara et Sabra
-* modifié par : Clara
+* modifié par : Clara et sabra
 * vue qui affiche le profil de l'utilisateur grâce a firebase
 */
 
@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity implements TaskbarInterfa
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
@@ -67,6 +67,7 @@ public class ProfileActivity extends AppCompatActivity implements TaskbarInterfa
         }
     }
 
+    /*amène a l'accueil*/
     @Override
     public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.returnHome);
@@ -76,6 +77,7 @@ public class ProfileActivity extends AppCompatActivity implements TaskbarInterfa
         });
     }
 
+    /*amène au panier*/
     @Override
     public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconBasket);
@@ -85,6 +87,7 @@ public class ProfileActivity extends AppCompatActivity implements TaskbarInterfa
         });
     }
 
+    /*amène à la connexion si utilisateur pas connecter sinon amène au profil*/
     @Override
     public void clickPictureConnection(){
 
@@ -106,8 +109,8 @@ public class ProfileActivity extends AppCompatActivity implements TaskbarInterfa
         }
     }
 
-    @Override
     /*met a jour le nb de voiture dans le textView du panier*/
+    @Override
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
         TextView numberCars = findViewById(R.id.nbCarInBasket);

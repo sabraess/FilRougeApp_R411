@@ -41,6 +41,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         // textViewVoitures.setText(nomVoitures);
 
+        /*methode pour les icones de la barre de tâches*/
         clickPictureConnection();
         clickPictureBasket();
         clickPictureHome();

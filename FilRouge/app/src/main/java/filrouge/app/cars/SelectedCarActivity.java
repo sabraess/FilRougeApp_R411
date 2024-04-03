@@ -21,52 +21,43 @@ import filrouge.app.basket.BasketActivity;
 import filrouge.app.basket.ShoppingBasket;
 import filrouge.app.opinion.OpinionActivity;
 
-
 /*
 * auteur : ESSALAH Sabra et TORRI Clara
 * Modifié par : Clara et sabra
 * vue pour afficher les détails d'une voiture
 */
 public class SelectedCarActivity extends AppCompatActivity implements TaskbarInterface {
-
     FirebaseAuth mAuth;
     FirebaseUser user;
-    private Button buttonAvis;
+    private Button buttonOpinion;
     private CarsList car;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_car);
 
-
+        /*Récupération de l'objet CarsList envoyé par HomeActivity*/
         car = getIntent().getParcelableExtra("cars");
 
-
-        ///////////////////////////////// Accéder et ajouter des avis /////////////////////////////////
-
-        buttonAvis = findViewById(R.id.boutonAvis);
-        buttonAvis.setOnClickListener(new View.OnClickListener() {
+        /*Bouton pour donner son avis et voir les avis sur la voiture*/
+        buttonOpinion = findViewById(R.id.boutonAvis);
+        buttonOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), OpinionActivity.class);
+                Intent intent = new Intent(SelectedCarActivity.this, OpinionActivity.class);
                 intent.putExtra("cars", car);
                 startActivity(intent);
             }
         });
 
-        //////////////////////////////////////////////////////////////////
         /*Appel de la méthode pour mettre à jour le nombre de voitures dans le panier*/
         updateNumberCars();
 
-        /* Appel des méthodes pour les actions*/
+        /*methode pour les icones de la barre de tâches*/
         clickPictureConnection();
         clickPictureBasket();
         clickPictureHome();
-
-        /*Récupération de l'objet CarsList envoyé par l'activité précédente*/
-
 
         /*Affichage des détails de la voiture*/
         TextView name = findViewById(R.id.carSelectedName);
@@ -86,17 +77,15 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         power.setText(getString(R.string.power, String.valueOf(car.getPower())));
         energy.setText(getString(R.string.energy, car.getEnergy()));
 
-        /*quand on appuie sur le bouton ajouter au panier*/
+        /*action lorsqu'on appuie sur le bouton ajouter au panier*/
         Button buttonBasket = findViewById(R.id.buttonAddBasket);
         buttonBasket.setOnClickListener(v -> {
             clickAddToBasket(car);
         });
 
-
-
     }
     
-    /*quand on appuie sur le bouton ajouter au panier*/
+    /*ça appel la méthode pour ajouter au panier et pour modifier le nombre d'élément dans le panier*/
     public void clickAddToBasket(CarsList car){
         addToBasket(car);
         updateNumberCars();
@@ -107,7 +96,7 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         ShoppingBasket.addCar(car);
     }
 
-    /*met a jour le textview qui nous permet de voir le nb de voiture dans le panier*/
+    /*met à jour le textview qui nous permet de voir le nb de voiture dans le panier*/
     @Override
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
@@ -121,16 +110,12 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         }
     }
 
-    /*action lorsqu'on appuie sur des images
-    * pour ce connecter
-    * pour aller au panier
-    * pour revenir à l'accueil
-    * */
+    /*action lorsqu'on appuie sur des images*/
+    /*si l'utilisateur est connecté on le redirige vers son profil
+    sinon on le redirige vers la page de connexion*/
     public void clickPictureConnection(){
-
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-
         ImageView imageConnection = findViewById(R.id.iconConnection);
 
         if (user == null ) {
@@ -138,17 +123,16 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
                 Intent intent = new Intent(SelectedCarActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
-
         }
         else {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(SelectedCarActivity.this, ProfileActivity.class);
                 startActivity(intent);
             });
-
         }
     }
 
+    /*redirige vers le panier*/
     public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
@@ -157,22 +141,15 @@ public class SelectedCarActivity extends AppCompatActivity implements TaskbarInt
         });
     }
 
+    /*redirige vers la page d'accueil*/
     public void clickPictureHome(){
-        ImageView imageRetour = findViewById(R.id.returnHome);
-        imageRetour.setOnClickListener(v -> {
+        ImageView iconArow = findViewById(R.id.returnHome);
+        iconArow.setOnClickListener(v -> {
             Intent intent = new Intent(SelectedCarActivity.this, HomeActivity.class);
             startActivity(intent);
         });
     }
 
-    // Méthode appelée pour sauvegarder l'état de l'activité
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // Sauvegarder l'objet CarsList dans le bundle outState
-        outState.putParcelable("selectedCar", car);
-    }
 
 
 }

@@ -33,23 +33,23 @@ import filrouge.app.cars.CarsList;
 import filrouge.app.connection.ConnectionActivity;
 import filrouge.app.connection.ProfileActivity;
 import filrouge.app.R;
-import filrouge.app.cars.SelectedCarActivity;
+import filrouge.app.main.HomeActivity;
+
+/*
+* auteur : clara et sabra
+* modifié par sabra
+*Activité pour afficher les avis et ajouter un avis
+*/
 
 public class OpinionActivity extends AppCompatActivity {
-
     FirebaseAuth mAuth;
     FirebaseUser user;
-
     private HashMap<String , Object> avis;
     Integer nbrAvis = 0;
     private Button buttonAddOpinion;
     private EditText comment;
     private ListView listeAvis;
 
-
-
-    // Déclaration de la liste des avis
-    private List<OpinionData> avisList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,38 +62,36 @@ public class OpinionActivity extends AppCompatActivity {
         clickPictureHome();
 
         /*Récupération de l'objet CarsList envoyé par l'activité précédente*/
-
-
         CarsList car = getIntent().getParcelableExtra("cars");
 
-    // ************************************ L'affichage d'avis ************************************************* //
-
+        /*affichage des avis*/
         listeAvis = findViewById(R.id.listViewOpinion);
 
-        // ArrayList<String> list = new ArrayList<>();
-        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.avis_list_layout, android.R.id.text1, list);
+        /*Création de la liste des avis*/
+        ArrayList<Opinion> listOpinion = new ArrayList<>();
+        OpinionAdapter adapter = new OpinionAdapter(this, listOpinion);
+        listeAvis.setAdapter(adapter);
 
-        ArrayList<OpinionData> listAvisA = new ArrayList<>();
-        OpinionAdapter adapterA = new OpinionAdapter(this, listAvisA);
-
-        listeAvis.setAdapter(adapterA);
-
+        /*Récupération des avis de la base de données*/
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Avis").child(car.getName());
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@androidx.annotation.NonNull DataSnapshot dataSnapshot) {
-                listAvisA.clear();
-                for (DataSnapshot avisSnapshot : dataSnapshot.getChildren()) {
+                /*Vider la liste des avis*/
+                listOpinion.clear();
 
+                /*Parcours des avis*/
+                for (DataSnapshot opinionSnapshot : dataSnapshot.getChildren()) {
 
-                    String avisSnapshotString = avisSnapshot.getValue().toString().substring(1, avisSnapshot.getValue().toString().length() - 1);
+                    /*Récupération des données de l'avis*/
+                    String opinionSnapshotString = opinionSnapshot.getValue().toString().substring(1, opinionSnapshot.getValue().toString().length() - 1);
+
                     // Diviser la chaîne en parties basées sur ","
-                    String[] parts = avisSnapshotString.split(", ");
+                    String[] parts = opinionSnapshotString.split(", ");
 
                     // Initialisation des variables pour stocker les données extraites
-                    String emailUtilisateur = "";
-                    String avisString = "";
+                    String userEmail = "";
+                    String comment = "";
                     float ranking = 0;
 
                     // Parcours des parties pour extraire les clés et les valeurs
@@ -101,26 +99,24 @@ public class OpinionActivity extends AppCompatActivity {
                         // Diviser selon "=" (clé - valeur)
                         String[] keyValue = part.split("=");
 
-                        // Récupèrer la clé et la valeur des données que je veuxx
+                        // Récupèrer la clé et la valeur des données
                         String key = keyValue[0];
                         String value = keyValue[1];
 
                         if (key.equals("Avis")) {
-                            avisString = value;
+                            comment = value;
                         } else if (key.equals("EmailUtilisateur")) {
-                            emailUtilisateur = value;
+                            userEmail = value;
                         } else if (key.equals("Ranking")) {
                             ranking = Float.parseFloat(value);
                         }
                     }
 
-                    //  initialiser RatingData avec données réécupérées
-                    OpinionData avisObj = new OpinionData(avisString, emailUtilisateur, ranking);
+                    Opinion opinion = new Opinion(comment,userEmail,ranking);
+                    listOpinion.add(opinion);
 
-                    listAvisA.add(avisObj);
-                    //}
                 }
-                adapterA.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -129,8 +125,7 @@ public class OpinionActivity extends AppCompatActivity {
             }
         });
 
-    // ####################################### L'ajout davis #######################################
-
+        /*ajout des avis*/
         avis = new HashMap<>();
         buttonAddOpinion = findViewById(R.id.buttonAddOpinion);
         comment = findViewById(R.id.commentOpinion);
@@ -138,31 +133,28 @@ public class OpinionActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
+        /*Action du bouton pour ajouter un avis*/
         buttonAddOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String commentaireString;
-                commentaireString = comment.getText().toString();
+                String commentString;
+                commentString = comment.getText().toString();
                 RatingBar ratingBarAvis = findViewById(R.id.ratingBarOpinion);
-
-
                 float ranking = ratingBarAvis.getRating();
 
+                /*Vérification de la connexion de l'utilisateur*/
                 if (user != null) {
-                    if (commentaireString.isEmpty()) {
+                    if (commentString.isEmpty()) {
                         Toast.makeText(OpinionActivity.this, "Écrire un avis avant de valider !!", Toast.LENGTH_LONG).show();
 
                     } else {
                         avis.put("EmailUtilisateur", user.getEmail());
-                        avis.put("Avis", commentaireString);
+                        avis.put("Avis", commentString);
                         avis.put("Ranking", ranking );
                         nbrAvis++;
                         // Générer automatiquement une clé unique pour cet avis
                         // Obtenir une référence à la base de données
                         DatabaseReference avisRef = FirebaseDatabase.getInstance().getReference().child("Avis").child(car.getName());
-
-                        // Générer automatiquement une clé unique pour cet avis
-                        // String nouvelAvisKey = avisRef.push().getKey();
 
                         // Ajouter l'avis sous la clé unique générée
                         avisRef.child(user.getUid()).setValue(avis).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -188,15 +180,14 @@ public class OpinionActivity extends AppCompatActivity {
                 }
             }
         });
-
-        ///////////////////////////////////////////////////////////////////////////////////////
     }
 
+    /*Méthode pour les actions de la bar de tâche*/
+    /*si l'utilisateur est connecté, l'icône de connexion redirige vers le profil de l'utilisateur
+    * sinon redirige vers la page de connexion*/
     public void clickPictureConnection(){
-
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-
         ImageView imageConnection = findViewById(R.id.iconConnection);
 
         if (user == null ) {
@@ -204,17 +195,16 @@ public class OpinionActivity extends AppCompatActivity {
                 Intent intent = new Intent(OpinionActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
-
         }
         else {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(OpinionActivity.this, ProfileActivity.class);
                 startActivity(intent);
             });
-
         }
     }
 
+    /*redirige vers panier*/
     public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
@@ -223,10 +213,11 @@ public class OpinionActivity extends AppCompatActivity {
         });
     }
 
+    /*redirige vers la page d'accueil*/
     public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.returnHome);
         imageRetour.setOnClickListener(v -> {
-            Intent intent = new Intent(OpinionActivity.this, SelectedCarActivity.class);
+            Intent intent = new Intent(OpinionActivity.this, HomeActivity.class);
             startActivity(intent);
         });
     }

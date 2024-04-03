@@ -34,4 +34,8 @@
     <string name="profil">Profil</string>
     <string name="deconnection">Deconnexion</string>
 
+    // Vue opinion:
+    <string name="opinionTitle">Avis</string>
+    <string name="opinionEmail">EmailUtilisateur</string>
+
 </resources>

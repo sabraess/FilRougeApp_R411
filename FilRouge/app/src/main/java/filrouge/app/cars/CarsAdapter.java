@@ -26,7 +26,7 @@ import filrouge.app.R;
 
 /*
 * auteur : ESSALAH Sabra et TORRI Clara
-* modifié par : clara
+* modifié par : clara et sabra
 * classe qui permet de créer un adapter pour afficher la liste des voitures
 */
 
@@ -62,19 +62,18 @@ public class CarsAdapter extends BaseAdapter {
         ConstraintLayout layoutItem;
         layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.ratingbar_layout, parent, false);
 
+        /*initialisation des données qu'on veut afficher*/
         TextView name = layoutItem.findViewById(R.id.nameCar);
         RatingBar ratingBar = layoutItem.findViewById(R.id.ratingBar);
         ImageView picture = layoutItem.findViewById(R.id.pictureCar);
 
+        /*affichage des données*/
         name.setText(carsList.get(position).getName());
         Picasso.get().load(carsList.get(position).getPicture()).into(picture);
 
+        /*appel de la méthode*/
         setRatingWithFirebase();
         ratingBar.setRating(carsList.get(position).getRating());
-
-      /*  ratingBar.setOnRatingBarChangeListener((ratingBar1, value, b) -> {
-            callBackActivity.onRatingChanged(position, value);
-        });*/
 
         layoutItem.setOnClickListener(click -> {
             callBackActivity.onClickItem(position);
@@ -83,18 +82,23 @@ public class CarsAdapter extends BaseAdapter {
 
     }
 
+    /*recupere la moyenne des avis qui se trouvent sur firebase*/
     private void setRatingWithFirebase () {
+        /*Récupérer les avis des voitures*/
         DatabaseReference ratingsRef = FirebaseDatabase.getInstance().getReference().child("Avis");
-
         ratingsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                /*parcourir la liste des voitures*/
                 for (CarsList car : carsList) {
                     String carName = car.getName();
                     List<Float> ratings = new ArrayList<>();
 
+                    /* Parcourir la liste des avis pour chaque voiture */
                     for (DataSnapshot carSnapshot : dataSnapshot.getChildren()) {
+                        /* Si la voiture a des avis */
                         if (carSnapshot.getKey().equals(carName)) {
+                            /* Parcourir la liste des notes */
                             for (DataSnapshot ratingSnapshot : carSnapshot.getChildren()) {
                                 float rating = ratingSnapshot.child("Ranking").getValue(Float.class);
                                 ratings.add(rating);
@@ -102,20 +106,20 @@ public class CarsAdapter extends BaseAdapter {
                         }
                     }
 
-                    // Calculer la moyenne des notes
+                    /*calcul de la somme des notes*/
                     float totalRating = 0;
                     for (float rating : ratings) {
                         totalRating += rating;
                     }
+                    /*calcul de la moyenne*/
                     float averageRating = ratings.isEmpty() ? 0 : totalRating / ratings.size();
 
-                    // Mettre à jour la note moyenne de la voiture dans la liste des voitures
+                    /*met à jour la note de la voiture*/
                     car.setRating(averageRating);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Gérer les erreurs ici
             }
         });
     }

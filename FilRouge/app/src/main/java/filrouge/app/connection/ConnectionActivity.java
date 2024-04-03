@@ -32,13 +32,12 @@ import filrouge.app.cars.CarsList;
 
 /*
 * auteur : clara et sabra
-* Modifié par : Sabra
+* Modifié par : clara et Sabra
 * vue pour se connecter avec un email et un mot de passe grace à firebase
 */
 
 public class ConnectionActivity extends AppCompatActivity implements TaskbarInterface {
     FirebaseUser user;
-
     private static final int RC_SIGN_IN = 123;
     private Button loginButton;
     private EditText emailInput, passwordInput;
@@ -48,7 +47,6 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
     @Override
     public void onStart() {
         super.onStart();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -56,6 +54,7 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
 
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,10 +110,12 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
             }
         });
 
+        /*methode pour les icones de la barre de tâches*/
         clickPictureHome();
         clickPictureBasket();
         clickPictureConnection();
 
+        /*met à jour le nombre de voitures dans le panier*/
         updateNumberCars();
     }
 
@@ -133,6 +134,8 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
                 RC_SIGN_IN);
     }
 
+    /*methode pour les icones de la barre de tâches*/
+    /*return a l'accueil*/
     @Override
     public void clickPictureHome(){
         ImageView imageRetour = findViewById(R.id.returnHome);
@@ -142,6 +145,7 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
         });
     }
 
+    /*Amène au panier*/
     @Override
     public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconBasket);
@@ -151,6 +155,8 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
         });
     }
 
+    /*verife si la personne est connecter ou pas si elle est pas connecté amène ConnectionActivity sinon
+    * amène à ProfilActivity*/
     @Override
     public void clickPictureConnection(){
         mAuth = FirebaseAuth.getInstance();
@@ -171,6 +177,7 @@ public class ConnectionActivity extends AppCompatActivity implements TaskbarInte
         }
     }
 
+    /*modifie le nombre d'élément dans le panier*/
     @Override
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();

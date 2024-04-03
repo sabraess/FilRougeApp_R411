@@ -5,7 +5,8 @@ import android.content.Context;
 
 /*
 * auteur : TORRI Clara et ESSALAH Sabra
-* classe qui permet de créer un objet Application
+* modifié par : clara
+* classe qui permet de récupérer le contexte de l'application
 */
 
 public class CarsApp extends Application {
@@ -17,6 +18,7 @@ public class CarsApp extends Application {
         context = getApplicationContext();
     }
 
+    /*retourne le contexte de l'application*/
     public static Context getContext() {
         return context;
     }

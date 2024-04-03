@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         /*initialisation de l'image et lancement de l'animation sur l'image*/
         ImageView imageView = findViewById(R.id.pictureCarAnimation);
 
-        //creer objet animation
+        //creer objet animation avec le fichier car_sliding.xml
         ObjectAnimator animator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.car_sliding);
         animator.setTarget(imageView);
 

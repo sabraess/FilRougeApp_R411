@@ -44,6 +44,7 @@ public class Car implements CarsList {
         this.picture = in.readString();
     }
 
+    /*get et set des données*/
 
     public int getId(){
         return this.id;
@@ -114,6 +115,7 @@ public class Car implements CarsList {
         return this.name;
     }
 
+    /*methode de la classe Parcelable*/
     @Override
     public int describeContents(){
         return 0;
@@ -146,8 +148,4 @@ public class Car implements CarsList {
     public static Parcelable.Creator<Car> getCREATOR(){
         return CREATOR;
     }
-
-
-
-
 }

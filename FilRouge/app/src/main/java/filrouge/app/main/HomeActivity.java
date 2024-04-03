@@ -33,7 +33,7 @@ import filrouge.app.connection.ProfileActivity;
 /*
 * auteur : TORRI Clara et ESSALAH Sabra
 * Modifié par : clara et sabra
-* vue qui de l'accueil de l'application elle affiche la liste des voitures
+* vue qui de l'accueil de l'application elle affiche la liste des voitures et les filtres
 */
 
 public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<CarsList> {
@@ -101,19 +101,14 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
             }
         }
 
-
-
         // Rediriger vers l'activité de détails du produit avec l'élément complet 'car'
         Intent intent = new Intent(HomeActivity.this, SelectedCarActivity.class);
         intent.putExtra("cars", car);
         startActivity(intent);
     }
 
-
-    public void onRatingChanged(int itemPosition, float value) {
-    }
-
-    //action lorsqu'on appuie sur des images
+    /*si utilisateur pas connecter on redirige vers la page de connexion
+     sinon on redirige vers la page de profil*/
     public void clickPictureConnection(){
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -133,6 +128,7 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         }
     }
 
+    /*amène au panier*/
     public void clickPictureBasket(){
         ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
@@ -145,8 +141,10 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
     @Override
     public void onPostExecute(List<CarsList> itemList) {
         //création des deux listes
+        /*liste des voitures*/
         if (carsList.isEmpty()) { carsList.addAll(itemList); }
 
+        /*liste des voitures affichaient*/
         if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
 
         listView = findViewById(R.id.listView);
@@ -167,32 +165,4 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
             numberCars.setVisibility(View.INVISIBLE);
         }
     }
-
-
-    // Sauvegarde  des données lors de la rotation de l'écran
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Sauvegarder les données nécessaires dans le Bundle outState
-        outState.putParcelableArrayList("carsList", (ArrayList<? extends Parcelable>) carsList);
-        outState.putParcelableArrayList("displayCars", (ArrayList<? extends Parcelable>) displayCars);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Restaurer les données sauvegardées depuis le Bundle savedInstanceState
-        if (savedInstanceState != null) {
-            carsList.clear(); // Effacer les données existantes
-            displayCars.clear(); // Effacer les données existantes
-            carsList.addAll(savedInstanceState.getParcelableArrayList("carsList")); // Restaurer carsList
-            displayCars.addAll(savedInstanceState.getParcelableArrayList("displayCars")); // Restaurer displayCars
-            // Mettre à jour l'adaptateur de la liste avec les nouvelles données
-            if (carsAdapter != null) {
-                carsAdapter.notifyDataSetChanged();
-            }
-        }
-    }
-
-
 }

@@ -13,30 +13,32 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.List;
 
 import filrouge.app.cars.CarsApp;
-import filrouge.app.main.Clickable;
 import filrouge.app.R;
 
+/*
+    * auteur : clara et sabra
+    * modifié par : sabra
+    * Classe pour l'adaptateur de la liste des avis
+*/
 public class OpinionAdapter extends BaseAdapter {
 
     private final String TAG = "Clara + Sabra " + getClass().getSimpleName();
-    private final List<OpinionData> avisList;
+    private final List<Opinion> opinionList;
     private LayoutInflater mInflater;
-    private Clickable callBackActivity;
 
-    public OpinionAdapter(Context context, List<OpinionData> avisList) {
-        this.avisList = avisList;
+    public OpinionAdapter(Context context, List<Opinion> opinionList) {
+        this.opinionList = opinionList;
         this.mInflater = LayoutInflater.from(CarsApp.getContext());
-//        this.callBackActivity = clickable;
     }
 
     @Override
     public int getCount() {
-        return avisList.size();
+        return opinionList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return avisList.get(position);
+        return opinionList.get(position);
     }
 
     @Override
@@ -51,16 +53,16 @@ public class OpinionAdapter extends BaseAdapter {
         layoutItem = (ConstraintLayout) mInflater.inflate(R.layout.avis_list_layout, parent, false);
 
         // Récupérer l'avis à la position donnée
-        OpinionData avis = avisList.get(position);
+        Opinion avis = opinionList.get(position);
 
         // Récupérer les vues de la mise en page
         TextView textViewEmail = layoutItem.findViewById(R.id.textEmail);
-        TextView textViewAvis = layoutItem.findViewById(R.id.textAvis);
+        TextView textViewOpinion = layoutItem.findViewById(R.id.textOpinion);
         RatingBar ratingBar = layoutItem.findViewById(R.id.ratingBar);
 
         // Définir les valeurs des vues avec les données de l'avis
-        textViewEmail.setText(avis.getEmailUtilisateur());
-        textViewAvis.setText(avis.getAvis());
+        textViewEmail.setText(avis.getUserEmail());
+        textViewOpinion.setText(avis.getOpinion());
         ratingBar.setRating(avis.getRanking());
         return layoutItem;
 

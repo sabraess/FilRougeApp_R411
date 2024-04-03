@@ -4,7 +4,6 @@ import java.util.List;
 
 /*
 * auteur : M.Rallo
-* modifié par : clara
 * Interface qui permet de créer un objet PostExecuteActivity
 */
 

@@ -93,7 +93,7 @@ public class BasketActivity extends AppCompatActivity implements TaskbarInterfac
             }
         });
 
-        /*si on clique sur les images*/
+        /*methode pour les icones de la barre de tâches*/
         clickPictureConnection();
         clickPictureBasket();
         clickPictureHome();
