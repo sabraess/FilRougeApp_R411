@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -13,9 +14,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +43,10 @@ import filrouge.app.connection.ProfileActivity;
 
 public class HomeActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<CarsList> {
     private final String TAG = "Clara et Sabra" + getClass().getSimpleName();
-    private static List<CarsList> carsList = new ArrayList<>(); /*liste de base*/
-    private static List<CarsList> displayCars = new ArrayList<>();/*liste affiché*/
+    private static List<CarsList> carsList = new ArrayList<>(); /* liste de base */
+    private static List<CarsList> displayCars = new ArrayList<>();/* liste affiché */
     private ListView listView;
-    private CarsAdapter carsAdapter ;
+    private CarsAdapter carsAdapter;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
 
@@ -50,30 +55,30 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        /*pour recuperer l'url des données du json*/
+        /* pour recuperer l'url des données du json */
         String url = "https://raw.githubusercontent.com/sabraess/filrouge/jsonimages/fichierJson.json";
-        new HttpAsyncGet<>(url, Car.class,this,new ProgressDialog(this));
+        new HttpAsyncGet<>(url, Car.class, this, new ProgressDialog(this));
 
-        /*met a jour le nb de voiture dans le textView du panier*/
+        /* met a jour le nb de voiture dans le textView du panier */
         updateNumberCars();
 
-        clickPictureConnection(); /*si on clique sur connexion*/
-        clickPictureBasket(); /*si on clique sur le panier*/
+        clickPictureConnection(); /* si on clique sur connexion */
+        clickPictureBasket(); /* si on clique sur le panier */
 
-        /*pour les filtres*/
+        /* pour les filtres */
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         RadioButton radioButtonTous = findViewById(R.id.all);
         radioButtonTous.setChecked(true);
-        //pour les energies
+        // pour les energies
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if(checkedId == R.id.essence) {
+            if (checkedId == R.id.essence) {
                 displayCars.clear();
                 for (CarsList car : carsList) {
                     if (car.getEnergy().equals("Essence")) {
                         displayCars.add(car);
                     }
                 }
-            } else if(checkedId == R.id.hybride){
+            } else if (checkedId == R.id.hybride) {
                 displayCars.clear();
                 for (CarsList car : carsList) {
                     if (car.getEnergy().equals("Hybride")) {
@@ -88,13 +93,18 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         });
     }
 
-    /*action lorsqu'on appuie sur une voiture, ça redirige vers l'activité SeletedCarsActivity */
+    /*
+     * action lorsqu'on appuie sur une voiture, ça redirige vers l'activité
+     * SeletedCarsActivity
+     */
     @Override
     public void onClickItem(int itemPosition) {
-        // Récupérer l'élément de la liste de base correspondant à l'élément sélectionné dans la liste affichée
+        // Récupérer l'élément de la liste de base correspondant à l'élément sélectionné
+        // dans la liste affichée
         CarsList car = displayCars.get(itemPosition);
 
-        // Rechercher l'élément correspondant dans la liste de base (carsList) en utilisant son ID
+        // Rechercher l'élément correspondant dans la liste de base (carsList) en
+        // utilisant son ID
         for (CarsList fullCar : carsList) {
             if (fullCar.getId() == car.getId()) {
                 car = fullCar;
@@ -107,20 +117,21 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         startActivity(intent);
     }
 
-    /*si utilisateur pas connecter on redirige vers la page de connexion
-     sinon on redirige vers la page de profil*/
-    public void clickPictureConnection(){
+    /*
+     * si utilisateur pas connecter on redirige vers la page de connexion
+     * sinon on redirige vers la page de profil
+     */
+    public void clickPictureConnection() {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         ImageView imageConnection = findViewById(R.id.iconConnection);
 
-        if (user == null ) {
+        if (user == null) {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(HomeActivity.this, ConnectionActivity.class);
                 startActivity(intent);
             });
-        }
-        else {
+        } else {
             imageConnection.setOnClickListener(v -> {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
@@ -128,8 +139,8 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         }
     }
 
-    /*amène au panier*/
-    public void clickPictureBasket(){
+    /* amène au panier */
+    public void clickPictureBasket() {
         ImageView iconBasket = findViewById(R.id.iconBasket);
         iconBasket.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, BasketActivity.class);
@@ -137,23 +148,31 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         });
     }
 
-    /*affiche la liste des voitures*/
+    /* affiche la liste des voitures */
     @Override
     public void onPostExecute(List<CarsList> itemList) {
-        //création des deux listes
-        /*liste des voitures*/
-        if (carsList.isEmpty()) { carsList.addAll(itemList); }
+        // création des deux listes
+        /* liste des voitures */
+        if (carsList.isEmpty()) {
+            carsList.addAll(itemList);
+        }
 
-        /*liste des voitures affichaient*/
-        if (displayCars.isEmpty()) { displayCars.addAll(carsList);}
+        /* liste des voitures affichaient */
+        if (displayCars.isEmpty()) {
+            displayCars.addAll(carsList);
+        }
 
         listView = findViewById(R.id.listView);
+        setRatingWithFirebase();
         carsAdapter = new CarsAdapter(displayCars, this);
+
+        carsAdapter.notifyDataSetChanged();
+
         listView.setAdapter(carsAdapter);
+
     }
 
-
-    /*met a jour le nb de voiture dans le textView du panier*/
+    /* met a jour le nb de voiture dans le textView du panier */
     public void updateNumberCars() {
         List<CarsList> carsInBasket = ShoppingBasket.getCarsInBasket();
         TextView numberCars = findViewById(R.id.nbCarInBasket);
@@ -164,5 +183,8 @@ public class HomeActivity extends AppCompatActivity implements Clickable, PostEx
         } else {
             numberCars.setVisibility(View.INVISIBLE);
         }
-    }
-}
+    }}
+
+     
+
+     

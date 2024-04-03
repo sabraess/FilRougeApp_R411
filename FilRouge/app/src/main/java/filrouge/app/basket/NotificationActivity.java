@@ -34,7 +34,7 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         textViewRemerciement = findViewById(R.id.textViewRemerciement);
-        textViewRemerciement.setText("Merci beaucoup pour votre achat !!");
+        textViewRemerciement.setText("Merci beaucoup pour votre achat !! \n A bientôt chez PrestigeAutos");
         textViewVoitures = findViewById(R.id.textViewData);
 
         String nomVoitures = getIntent().getStringExtra("nomVoitures");
