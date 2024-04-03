@@ -128,9 +128,10 @@
 
     <Button
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/buttonBuy"
         android:text="@string/buttonBuy"
+        android:textSize="18dp"
         android:textColor="@color/darkGrey"
         android:fontFamily="@font/calistoga"
         android:backgroundTint="@color/grey"

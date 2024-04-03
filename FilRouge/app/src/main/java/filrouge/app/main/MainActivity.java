@@ -1,6 +1,7 @@
 package filrouge.app.main;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.pictureCarAnimation);
 
         //creer objet animation
-        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, "translationX", 0f, 1000f);
-        animator.setDuration(4000);
+        ObjectAnimator animator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.car_sliding);
+        animator.setTarget(imageView);
 
         /*lancer l'animation*/
         animator.start();

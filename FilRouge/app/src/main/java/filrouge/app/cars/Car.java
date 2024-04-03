@@ -14,6 +14,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Car implements CarsList {
+    /*donnée stocké dans le json*/
     private int id;
     private String name;
     private String brand;
@@ -26,9 +27,11 @@ public class Car implements CarsList {
 
     private float rating;
 
+    /*constructeur par défaut*/
     public Car() {
     }
 
+    /*constructeur pour l'échange de données entre activités*/
     public Car(Parcel in){
         this.id = in.readInt();
         this.name = in.readString();
